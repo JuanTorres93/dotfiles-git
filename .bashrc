@@ -15,7 +15,7 @@
 #export HISTCONTROL=ignoreboth:erasedups
 
 #PS1='[\u@\h \W]\$ '
-#Terminal prompt Blue accent
+#Terminal prompt accent
 PS1='\[\e[1;35m\][\u@\h \W]\$ \[\e[m\]'
 
 if [ -d "$HOME/.bin" ] ;
@@ -23,7 +23,16 @@ if [ -d "$HOME/.bin" ] ;
 fi
 
 #list
-alias ls='ls -lh --color=auto'  
+alias ls='ls --color=auto'  
+alias ll='ls -lh --color=auto'  
+alias la='ls -lhA --color=auto'  
+
+alias ..='cd ..'  
+
+alias lns='ln -srfi'  
+alias mv='mv -i'  
+alias cp='cp -i'  
+
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
