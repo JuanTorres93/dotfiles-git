@@ -7,9 +7,10 @@ function run {
 	fi
 }
 
+ChangeWallpaper
+
 #xset -b quiets down the bios beep
 xset -b
-run variety &
 picom --config ~/.config/picom/picom.conf --focus-exclude "x = 0 && y = 0 && override_redirect = true" &
 run numlockx on &
 run volumeicon &

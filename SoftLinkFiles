@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Get the files, directories and executables in the current directory
+directoryContent=$(ls -AF)
+
+files=$(echo "$directoryContent" | sed "/.*[*,/,=,>,@,|]/d ; /README.md/ d ; /^$/ d")
+
+directories=$(echo "$directoryContent" | sed "/.*[/]/!d ; /README.md/ d ; /.git/ d ; /^$/ d")
+
+
+# Spplit the value obtained by echo in an array to link each element individualy
+while IFS='\n' read -ra ADDR; do
+	for file in "${ADDR[@]}"; do
+		ln -sfr "$file" "$HOME/PruebasLN/$file"
+	done
+done <<< "$files"

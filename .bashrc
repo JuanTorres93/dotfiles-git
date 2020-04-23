@@ -53,6 +53,8 @@ alias yt="youtube-dl -ic "
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
+alias listServices='systemctl list-units --type=service'
+
 #Shenanigans
 alias StarWars="telnet towel.blinkenlights.nl"
 alias tiempo="curl wttr.in"
