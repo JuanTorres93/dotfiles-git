@@ -1,16 +1,77 @@
 #!/bin/bash
 
-#Get the files, directories and executables in the current directory
-directoryContent=$(ls -AF)
+#This script currently CAN'T handle more than 2 subdirectories
 
-files=$(echo "$directoryContent" | sed "/.*[*,/,=,>,@,|]/d ; /README.md/ d ; /^$/ d")
+function GetFiles {
+	# This function gets the files in a directory which is passed through $1, then stores its value in $2. $2 MUST BE PASSED AS ITS NAME VARIABLE, WITHOUT QUOTES AND ITS NAME SHOULD NOT BE THE SAME THAN ANY OF THE PARAMETERS IN THIS VERY FUNCTION.
+	local directory_Content=$(ls -AF "$1")
+	local files_in_dir=$(echo "$directory_Content" | sed "/.*[/,=,>,@,|]/d ; /README.md/ d ; /SoftLinkFiles\*/ d ; /^$/ d ; s/\*//g; s/$/\//g")
+	#The last sed has the purpose of filtrating in following steps with IFS env.variable
+	local -n ret=$2
+	ret="$files_in_dir"
+}
 
-directories=$(echo "$directoryContent" | sed "/.*[/]/!d ; /README.md/ d ; /.git/ d ; /^$/ d")
+function GetDirectories {
+	# This function gets the directories in a directory which is passed through $1, then stores its value in $2. $2 MUST BE PASSED AS ITS NAME VARIABLE, WITHOUT QUOTES AND ITS NAME SHOULD NOT BE THE SAME THAN ANY OF THE PARAMETERS IN THIS VERY FUNCTION.
+	local directory_Content=$(ls -AF "$1")
+	local directories_in_dir=$(echo "$directory_Content" | sed "/.*[/]/!d ; /README.md/ d ; /.git/ d ; /^$/ d")
+	local -n ret=$2
+	ret="$directories_in_dir"
+}
 
+# Get the files in the git repository folder
+GetFiles "$PWD" filesGitFolder
 
-# Spplit the value obtained by echo in an array to link each element individualy
-while IFS='\n' read -ra ADDR; do
-	for file in "${ADDR[@]}"; do
+# Get the directories in the git repository folder
+GetDirectories "$PWD" directoriesGitFolder
+
+# Split the value obtained by GetFiles in an array to link each element individualy
+while IFS='/' read -ra FILES; do
+	for file in "${FILES[@]}"; do
 		ln -sfr "$file" "$HOME/PruebasLN/$file"
+		#echo "$file"
 	done
-done <<< "$files"
+done <<< "$filesGitFolder"
+
+
+# For each directory in git directories
+while IFS='/' read -ra DIRECTORIES; do
+
+	for directory in "${DIRECTORIES[@]}"; do
+		GetDirectories "$directory" subDirectories
+
+		while IFS='/' read -ra SUBDIRECTORIES; do
+
+			for subDirectory in "${SUBDIRECTORIES[@]}"; do
+				GetFiles "$directory/$subDirectory" subFiles
+
+				while IFS='/' read -ra SUBFILES; do
+					for subFile in "${SUBFILES[@]}"; do
+
+						mkdir -p "$HOME/PruebasLN/$directory/$subDirectory"
+						ln -sfr "$directory/$subDirectory" "$HOME/PruebasLN/$directory/$subDirectory"
+
+					done
+				done <<< "$subFiles"
+
+			done
+
+		done <<< "$subDirectories"
+	done
+
+done <<< "$directoriesGitFolder"
+
+
+
+#while IFS='/' read -ra ADDR; do
+	#for directory in "${ADDR[@]}"; do
+		#subdirectoriesContent=$(ls -AF "$directory")
+		#subdirectoriesDirectories=$(echo "$subdirectoriesContent" | sed "/.*[/]/!d ; /README.md/ d ; /.git/ d ; /^$/ d")
+#
+		#while IFS='/' read -ra ADDR; do
+			#for sub in "${ADDR[@]}"; do
+				#echo "$sub"
+			#done
+		#done <<< "$subdirectoriesDirectories"
+	#done
+#done <<< "$directories"
