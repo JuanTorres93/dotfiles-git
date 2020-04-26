@@ -28,7 +28,7 @@ GetDirectories "$PWD" directoriesGitFolder
 # Split the value obtained by GetFiles in an array to link each element individualy
 while IFS='/' read -ra FILES; do
 	for file in "${FILES[@]}"; do
-		ln -sfr "$file" "$HOME/PruebasLN/$file"
+		ln -sfr "$file" "$HOME/$file"
 		#echo "$file"
 	done
 done <<< "$filesGitFolder"
@@ -48,8 +48,8 @@ while IFS='/' read -ra DIRECTORIES; do
 				while IFS='/' read -ra SUBFILES; do
 					for subFile in "${SUBFILES[@]}"; do
 
-						mkdir -p "$HOME/PruebasLN/$directory/$subDirectory"
-						ln -sfr "$directory/$subDirectory" "$HOME/PruebasLN/$directory/$subDirectory"
+						mkdir -p "$HOME/$directory/$subDirectory"
+						ln -sfr "$directory/$subDirectory/$subFile" "$HOME/$directory/$subDirectory/$subFile"
 
 					done
 				done <<< "$subFiles"
