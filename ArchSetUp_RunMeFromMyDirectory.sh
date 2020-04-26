@@ -18,11 +18,6 @@ fi
 # Retrieve theming
 git clone https://github.com/JuanTorres93/wallpapers
 
-# Make the executables, executables
-chmod +x .config/*.sh
-chmod +x .config/*/*.sh
-chmod +x .config/*/*/*.sh
-
 # Remove the .git folder from all downloaded repositoires
 rm -rf ./*/.git
 
@@ -40,11 +35,7 @@ rm -rf wallpapers
 sudo mv lightdmPictures/ /usr/share/
 
 # Dot files configuration
-chmod +x SoftLinkFiles
-SoftLinkFiles
-
-# Make Scripts executable
-chmod +x .local/bin/*
+./SoftLinkFiles
 
 # Set keyboard layout as Spanish
 sudo localectl set-x11-keymap es
