@@ -1,0 +1,121 @@
+#!/bin/bash
+
+# Selection of the mode to be used.
+sel="$1"
+
+# List of possible options for environment mode
+env_list=$(echo -e "center\nitemize\nenumerate\nbmatrix\ndocument\nfigure\nverbatim\nthebibliography")
+
+# Function to create an environment that needs no label
+function environment {
+	echo "\begin{$1}"
+	echo "<++>"
+	echo "\end{$1}"
+}
+
+# Options for the mathematical mode
+mat_list=$(echo -e "fraction\nequation\nmathematicalMode\nparenthesis\nsquareBrackets\ncurlyBrackets\nintegral\nintegralDefined\nsqrt\nsum\nsumDefined\npartialDerivative")
+
+# These are intended to be used in math mode, except for equation which is an environment, but since it needs label, it is included here
+function mathematics {
+	case "$1" in
+		"fraction")
+			echo "\displaystyle\frac{<++>}{<++>}"
+			;;
+		"equation")
+			echo "\begin{equation}\label{eq:<++>}"
+			echo "<++>"
+			echo "\end{equation}"
+			;;
+		"mathematicalMode")
+			echo "$<++>$"
+			;;
+		"parenthesis")
+			echo "\left( <++> \right)"
+			;;
+		"squareBrackets")
+			echo "\left[ <++> \right]"
+			;;
+		"curlyBrackets")
+			echo "\left{ <++> \right}"
+			;;
+		"integral")
+			echo "\displaystyle\int"
+			;;
+		"integralDefined")
+			echo "\displaystyle\int_{<++>}^{<++>}"
+			;;
+		"sqrt")
+			echo "\displaystyle\sqrt"
+			;;
+		"sum")
+			echo "\displaystyle\sum"
+			;;
+		"sumDefined")
+			echo "\displaystyle\sum_{<++>}^{<++>}"
+			;;
+		"partialDerivative")
+			echo "\displaystyle\partial"
+			;;
+		*)
+			echo ""
+			;;
+	esac
+}
+
+sec_list=$(echo -e "section\nsubsection\nsubsubsection")
+
+function section {
+	echo "\\$1{<++>}\label{$1:<++>}" | sed "s/tion:/:/"
+}
+
+function images {
+	imageName=$(ls ./Images/ | dmenu -i -l 10)
+	echo "\IncludeImage{Images/$imageName}[0.9][<++>][fig:<++>]"
+}
+
+function references {
+	current_dir=$(ls *.tex)
+	general_labels=$(grep -E "label{.*}" "$current_dir" | sed "s/.*{//g ; s/}.*//g ; s/#.*//g ; /^$/ d" | cat)
+	figure_labels=$(grep -E "\[fig:.*\]" "$current_dir" | sed "s/.*\[//g ; s/\].*//g ; s/#.*//g ; /^$/ d" | cat)
+	
+	final_label=$(echo -e "$general_labels" "\n" "$figure_labels")
+	final_label=$(echo "$final_label" | sed "s/\s*//g" | dmenu -i -l 12)
+	echo "\ref{$final_label}"
+}
+
+function tables {
+	echo "\begin{table}[h!]"	
+	echo "\caption{<++>}"	
+	echo "\label{tab:<++>}"	
+	echo "\centering"	
+	echo "\begin{tabular}{ccc<++>}"	
+	echo "\hline\hline"	
+	echo "\textbf{<++>} & \textbf{<++>} & \textbf{<++>} \\\\\hline\hline"	
+	echo "\end{tabular}"	
+	echo "\end{table}"	
+}
+
+case "$sel" in
+	"env")
+		environment $(echo "$env_list" | dmenu -i -l 10)
+		;;
+	"mat")
+		mathematics $(echo "$mat_list" | dmenu -i -l 10)
+		;;
+	"sec")
+		section $(echo "$sec_list" | dmenu -i -l 10)
+		;;
+	"img")
+		images	
+		;;
+	"ref")
+		references	
+		;;
+	"tab")
+		tables	
+		;;
+	*)
+		;;
+esac
+

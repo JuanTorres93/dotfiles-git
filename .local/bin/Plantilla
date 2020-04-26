@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+	echo "Error. No has especificado un nombre."
+	exit
+fi
+
+#Editor de latex a utilizar
+latexEditor=vim
+
+nombre="$1"
+#Ruta de la CARPETA en la que se encuentra la plantilla
+rutaPlantilla=$HOME/hdd/University/Master/Plantilla\ Latex/
+rutaActual="$PWD"
+
+mkdir "$nombre"
+
+#Ruta de la carpeta en la que se guardaran todos los archivos del documento
+rutaFinal="$rutaActual"/"$nombre"/
+#Copiar el archivo .tex
+cp "$rutaPlantilla"*.tex "$rutaFinal""$nombre".tex
+#Copiar la carpeta Images
+cp -r "$rutaPlantilla"Images "$rutaFinal"Images
+
+if [ "$latexEditor" == "vim" ]; then cd "$rutaFinal"; fi
+
+$latexEditor "$rutaFinal""$nombre".tex

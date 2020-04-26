@@ -1,0 +1,16 @@
+#!/bin/bash
+
+selection="$1"
+
+confirmation=$(echo -e "Yes\nNo" | dmenu -p "Are you sure yo want to $1 the machine?")
+
+if [ "$confirmation" == "Yes" ]; then
+	case "$1" in
+		"poweroff")
+			shutdown now;
+			;;
+		"reboot")
+			reboot;
+			;;
+	esac
+fi
