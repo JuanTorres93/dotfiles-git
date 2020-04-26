@@ -42,7 +42,8 @@ sudo localectl set-x11-keymap es
 # Enable the display manager
 sudo systemctl enable lightdm
 
-sudo vim -c %s/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s /etc/systemd/system.conf
+#sudo vim -c %s/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s /etc/systemd/system.conf
+sudo sed -i s/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/ /etc/systemd/system.conf
 sudo systemctl daemon-reload
 # Enable clock sync
 sudo systemctl enable systemd-timesyncd.service
