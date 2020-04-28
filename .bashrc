@@ -15,7 +15,7 @@
 #export HISTCONTROL=ignoreboth:erasedups
 
 # Make pywal persisten between instances. Import colorscheme from 'wal' asynchronously
-(cat ~/.cache/wal/sequences &)
+#(cat ~/.cache/wal/sequences &)
 
 #PS1='[\u@\h \W]\$ '
 #Terminal prompt accent

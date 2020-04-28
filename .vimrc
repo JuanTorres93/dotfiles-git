@@ -1,21 +1,20 @@
 " This two lines are needed in order to get pathogen functional
 execute pathogen#infect()
+" In addition, filetype allows the detection of different file types
 filetype plugin indent on
-
-" Plugin configurations
-" vim-airline-themes
-let g:airline_theme='onedark'
-" vim-afterglow
-colo afterglow
-
-let g:livepreview_previewer = 'zathura'
-
+"
 " Do not make compatible with vi
 set nocompatible              
-" Detect different file estension in order to map keys accordingly
-filetype plugin on
 " Enable systax highliting
 syntax on
+
+"======== Plugin configurations =========
+" vim-airline-themes
+let g:airline_theme='onedark'
+colo iceberg
+let g:livepreview_previewer = 'zathura'
+
+"======= End plugin configurations ======= 
 
 set number
 set relativenumber
@@ -35,6 +34,13 @@ set splitbelow splitright
 set clipboard=unnamedplus
 
 " General bindings
+" Move between splits with Crtl+key
+map <C-l> <C-W>l
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+
+" General bindings in normal mode
 nnoremap <F11> :set spell spelllang=es <Return>
 nnoremap <F12> :set spell spelllang=en <Return>
 nnoremap ++ "+P

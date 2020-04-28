@@ -126,7 +126,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -395,31 +395,31 @@ key_bindings:
   - { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
-
 colors:
   # Default colors
   primary:
-    background: '0x161616'
-    foreground: '0xffffff'
+    background: '0x1d1f21'
+    foreground: '0xc5c8c6'
 
   # Normal colors
   normal:
-    black:   '0x222222'
-    red:     '0xe84f4f'
-    green:   '0xb7ce42'
-    yellow:  '0xfea63c'
-    blue:    '0x66aabb'
-    magenta: '0xb7416e'
-    cyan:    '0x6d878d'
-    white:   '0xdddddd'
+    black:   '0x1d1f21'
+    red:     '0xcc6666'
+    green:   '0xb5bd68'
+    yellow:  '0xf0c674'
+    blue:    '0x81a2be'
+    magenta: '0xb294bb'
+    cyan:    '0x8abeb7'
+    white:   '0xc5c8c6'
 
   # Bright colors
   bright:
-    black:   '0x666666'
-    red:     '0xd23d3d'
-    green:   '0xbde077'
-    yellow:  '0xffe863'
-    blue:    '0xaaccbb'
-    magenta: '0xe16a98'
-    cyan:    '0x42717b'
-    white:   '0xcccccc'
+    black:   '0x969896'
+    red:     '0xcc6666'
+    green:   '0xb5bd68'
+    yellow:  '0xf0c674'
+    blue:    '0x81a2be'
+    magenta: '0xb294bb'
+    cyan:    '0x8abeb7'
+    white:   '0xffffff'
+
