@@ -9,5 +9,5 @@ newWallpaper=$(find "$wallDirectory" -name "[!.]*.*" | shuf -n 1)
 # Set the image as wallpaper
 xwallpaper --zoom "$newWallpaper"
 
-wal -i "$newWallpaper"
+#wal -i "$newWallpaper"
 

@@ -94,6 +94,7 @@ function tables {
 	echo "\textbf{<++>} & \textbf{<++>} & \textbf{<++>} \\\\\hline\hline"	
 	echo "\end{tabular}"	
 	echo "\end{table}"	
+	echo "\FloatBarrier"	
 }
 
 case "$sel" in

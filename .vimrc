@@ -12,8 +12,8 @@ syntax on
 " vim-airline-themes
 let g:airline_theme='onedark'
 colo iceberg
+"colo minimalist
 let g:livepreview_previewer = 'zathura'
-
 "======= End plugin configurations ======= 
 
 set number
@@ -56,12 +56,15 @@ vmap ww <Esc>
 " LaTeX
 autocmd FileType tex nnoremap ;;c @='I%<C-V><Esc>j'<CR> 
 autocmd FileType tex nnoremap ;;u @='^x<C-V><Esc>j'<CR> 
+" Rust
+autocmd FileType rust nnoremap ;;c @='I//<C-V><Esc>j'<CR> 
+autocmd FileType rust nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
 " C
 autocmd FileType c nnoremap ;;c @='I//<C-V><Esc>j'<CR> 
-autocmd FileType tex nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
+autocmd FileType c nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
 " C++
 autocmd FileType cpp nnoremap ;;c @='I//<C-V><Esc>j'<CR> 
-autocmd FileType tex nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
+autocmd FileType cpp nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
 " Python
 autocmd FileType py nnoremap ;;c @='I#<C-V><Esc>j'<CR> 
 autocmd FileType py nnoremap ;;u @='^x<C-V><Esc>j'<CR> 
@@ -97,3 +100,9 @@ autocmd FileType tex inoremap ;;i \textit{} <++><Esc>F{a
 autocmd FileType tex inoremap ;;b \textbf{} <++><Esc>F{a
 " Create new command
 autocmd FileType tex inoremap ;;nc \newcommand{\}[<++>]{<++>}<Esc>F}i
+
+
+
+
+" Rust files (.rs)
+autocmd FileType rust inoremap ;F <Esc>:RustFmt<CR>

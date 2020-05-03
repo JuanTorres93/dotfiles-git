@@ -12,3 +12,5 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -27,6 +27,8 @@ fi
 
 #list
 alias ls='ls --color=auto'  
+alias diff='diff --color=auto'  
+
 alias ll='ls -lh --color=auto'  
 alias la='ls -lhA --color=auto'  
 
