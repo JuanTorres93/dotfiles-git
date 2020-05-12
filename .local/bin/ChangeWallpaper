@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Directory from which the wallpapers are going to be extracted
-wallDirectory="/usr/share/backgrounds"
+wallDirectory="$HOME/.wallpapers/"
 
 # Reads the images and picks one at random
-newWallpaper=$(find "$wallDirectory" -name "[!.]*.*" | shuf -n 1)
+#newWallpaper=$(find "$wallDirectory" -name "[!.]*" | shuf -n 1)
+newWallpaper=$(find "$wallDirectory" -maxdepth 1 -type f | shuf -n 1)
 
 # Set the image as wallpaper
 xwallpaper --zoom "$newWallpaper"

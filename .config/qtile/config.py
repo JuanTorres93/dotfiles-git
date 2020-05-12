@@ -23,83 +23,20 @@ control = "control"
 #================ KEYS ================
 keys = [
 # Switch between windows in current stack pane
-Key([mod], "h", lazy.layout.left()),
 Key([mod], "j", lazy.layout.down()),
 Key([mod], "k", lazy.layout.up()),
-Key([mod], "l", lazy.layout.right()),
-
-Key([mod], "Left", lazy.layout.left()),
-Key([mod], "Down", lazy.layout.down()),
-Key([mod], "Up", lazy.layout.up()),
-Key([mod], "Right", lazy.layout.right()),
 
 # Move windows up or down in current stack
-Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
 Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
 Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
-
-Key([mod, "shift"], "Left", lazy.layout.shuffle_left()),
-Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
-Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
-Key([mod, "shift"], "Right", lazy.layout.shuffle_right()),
 
 # RESIZE
-Key([mod, "control"], "h", 
-lazy.layout.grow_left(),
-lazy.layout.grow(),
-lazy.layout.increase_ratio(),
-lazy.layout.delete(),
-),
-
-Key([mod, "control"], "l", 
-lazy.layout.grow_right(),
-lazy.layout.shrink(),
-lazy.layout.decrease_ratio(),
-lazy.layout.add(),
-),
-
-Key([mod, "control"], "j", 
-lazy.layout.grow_up(),
-lazy.layout.grow(),
-lazy.layout.increase_nmaster(),
-),
-
-Key([mod, "control"], "k", 
-lazy.layout.grow_down(),
-lazy.layout.shrink(),
-lazy.layout.decrease_nmaster(),
-),
-
-Key([mod, "control"], "Left", 
-lazy.layout.grow_left(),
-lazy.layout.grow(),
-lazy.layout.increase_ratio(),
-lazy.layout.delete(),
-),
-
-Key([mod, "control"], "Right", 
-lazy.layout.grow_right(),
-lazy.layout.shrink(),
-lazy.layout.decrease_ratio(),
-lazy.layout.add(),
-),
-
-Key([mod, "control"], "Up", 
-lazy.layout.grow_up(),
-lazy.layout.grow(),
-lazy.layout.increase_nmaster(),
-),
-
-Key([mod, "control"], "Down", 
-lazy.layout.grow_down(),
-lazy.layout.shrink(),
-lazy.layout.decrease_nmaster(),
-),
+Key([mod], "l", lazy.layout.grow()),
+Key([mod], "h", lazy.layout.shrink()),
 
 # Switch window focus to other pane(s) of stack
-
 # SUPER + KEYS
+Key([mod], "v", lazy.cmd_swap_main()),
 Key([mod], "e", lazy.spawn('thunar')),
 Key([mod], "r", lazy.spawn("alacritty -e ranger")),
 Key([mod], "Return", lazy.spawn("alacritty")),
@@ -108,7 +45,6 @@ Key([mod], "f", lazy.window.toggle_fullscreen()),
 # Toggle between different layouts as defined below
 Key([mod], "space", lazy.next_layout()),
 Key([mod, "shift"], "space", lazy.prev_layout()),
-Key([mod, "shift"], "q", lazy.window.kill()),
 Key([mod], "q", lazy.window.kill()),
 
 Key([mod, "shift"], "r", lazy.restart()),
@@ -141,7 +77,7 @@ Key([alt, control], "l", lazy.spawn("texstudio")),
 Key([alt, control], "t", lazy.spawn("thunderbird")),
 
 # SUPER + SHIFT KEYS
-Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -fn 'DroidSansMono:bold:pixelsize=18'")),
+Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#501620'")),
 ]
 
 #================ GROUPS ================
@@ -179,19 +115,19 @@ for i in groups:
 groups[6]
 #================ LAYOUTS ================
 colors=[
-	"FF9401",	#0 - Color of the active border	(windows)
-	"55445E",	#1 - Color of the NON active border (windows)
-	"6E41B0",	#2 - Color of the active group	(bar)
-	"1f232f",	#3 - Color of the bar's background	(bar)
-	"f3f4f5",	#4 - Color of NON empty group	(bar)
-	"a9a9a9",	#5 - Color of empty group	(bar)
-	"1B275C",	#6 - Color 2 of powerline       (bar)
-	"265061",	#7 - Color 1 of powerline	(bar)
-	"B82C32"	#8 - Color of urgent message    (bar)
+	"#FF9401",	#0 - Color of the active border	(windows)
+	"#55445E",	#1 - Color of the NON active border (windows)
+	"#6E49BF",	#2 - Color of the active group	(bar)
+	"#1f232f",	#3 - Color of the bar's background	(bar)
+	"#f3f4f5",	#4 - Color of NON empty group	(bar)
+	"#a9a9a9",	#5 - Color of empty group	(bar)
+	"#1B275C",	#6 - Color 2 of powerline       (bar)
+	"#265061",	#7 - Color 1 of powerline	(bar)
+	"#B82C32"	#8 - Color of urgent message    (bar)
 	]
 
 def init_layout_theme():
-	return {"margin":9, 
+	return {"margin":6, 
 		"border_width":2, 
 		"border_focus": colors[0],
 		"border_normal": colors[1]
@@ -200,7 +136,7 @@ def init_layout_theme():
 layout_theme = init_layout_theme()
 
 layouts = [
-	layout.MonadTall(**layout_theme),
+        layout.MonadTall(**layout_theme, ratio = 0.55),
 	layout.RatioTile(**layout_theme),
 	layout.MonadWide(**layout_theme),
 ]
