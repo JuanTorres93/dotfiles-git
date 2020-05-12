@@ -14,6 +14,7 @@ let g:airline_theme='onedark'
 colo iceberg
 "colo minimalist
 let g:livepreview_previewer = 'zathura'
+let g:cssColorVimDoNotMessMyUpdatetime = 1
 "======= End plugin configurations ======= 
 
 set number
@@ -105,4 +106,4 @@ autocmd FileType tex inoremap ;;nc \newcommand{\}[<++>]{<++>}<Esc>F}i
 
 
 " Rust files (.rs)
-autocmd FileType rust inoremap ;F <Esc>:RustFmt<CR>
+autocmd FileType rust nnoremap ;F :RustFmt<CR>
