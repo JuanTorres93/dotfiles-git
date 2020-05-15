@@ -12,7 +12,6 @@ syntax on
 " vim-airline-themes
 let g:airline_theme='onedark'
 colo alduin
-"colo minimalist
 let g:livepreview_previewer = 'zathura'
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 "======= End plugin configurations ======= 
@@ -49,7 +48,7 @@ nnoremap ** "*P
 " Go to place holder
 inoremap <Space><Space> <Esc>/<++><Return>"_c4l
 " Write  place holder
-inoremap ;;ph <++>
+inoremap ;ph <++>
 imap ww <Esc>
 vmap ww <Esc>
 
@@ -67,8 +66,8 @@ autocmd FileType c nnoremap ;;u @='^2x<C-V><Esc>j'<CR>
 autocmd FileType cpp nnoremap ;;c @='I//<C-V><Esc>j'<CR> 
 autocmd FileType cpp nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
 " Python
-autocmd FileType py nnoremap ;;c @='I#<C-V><Esc>j'<CR> 
-autocmd FileType py nnoremap ;;u @='^x<C-V><Esc>j'<CR> 
+autocmd FileType python nnoremap ;;c @='I#<C-V><Esc>j'<CR> 
+autocmd FileType python nnoremap ;;u @='^x<C-V><Esc>j'<CR> 
 " Bash
 autocmd FileType sh nnoremap ;;c @='I#<C-V><Esc>j'<CR> 
 autocmd FileType sh nnoremap ;;u @='^x<C-V><Esc>j'<CR> 
