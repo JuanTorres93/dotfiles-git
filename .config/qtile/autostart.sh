@@ -16,7 +16,7 @@ run numlockx on &
 run volumeicon &
 run udiskie &
 #run nm-applet &
-redshift &
+redshift -b 1:0.7 &
 parcellite -n &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

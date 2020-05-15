@@ -30,9 +30,14 @@ Key([mod], "k", lazy.layout.up()),
 Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
 Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
 
+# Send window to master
+Key([mod], "BackSpace", lazy.layout.swap_main()),
+
 # RESIZE
-Key([mod], "l", lazy.layout.grow()),
-Key([mod], "h", lazy.layout.shrink()),
+Key([mod], "i", lazy.layout.grow()),
+Key([mod], "m", lazy.layout.shrink()),
+Key([mod], "l", lazy.layout.grow_main()),
+Key([mod], "h", lazy.layout.shrink_main()),
 
 # Switch window focus to other pane(s) of stack
 # SUPER + KEYS
@@ -77,7 +82,7 @@ Key([alt, control], "l", lazy.spawn("texstudio")),
 Key([alt, control], "t", lazy.spawn("thunderbird")),
 
 # SUPER + SHIFT KEYS
-Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#501620'")),
+Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")),
 ]
 
 #================ GROUPS ================
@@ -115,9 +120,9 @@ for i in groups:
 groups[6]
 #================ LAYOUTS ================
 colors=[
-	"#FF9401",	#0 - Color of the active border	(windows)
+	"#FF7C00",	#0 - Color of the active border	(windows)
 	"#55445E",	#1 - Color of the NON active border (windows)
-	"#6E49BF",	#2 - Color of the active group	(bar)
+	"#FF7C00",	#2 - Color of the active group	(bar)
 	"#1f232f",	#3 - Color of the bar's background	(bar)
 	"#f3f4f5",	#4 - Color of NON empty group	(bar)
 	"#a9a9a9",	#5 - Color of empty group	(bar)
@@ -160,26 +165,26 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-		widget.Sep(
-			linewidth = 0,
-			padding = 2,
-			foreground = colors[4]
-			),
+		#widget.Sep(
+			#linewidth = 0,
+			#padding = 2,
+			#foreground = colors[4]
+			#),
 
                 widget.GroupBox(
-			font="Droid Sans Bold",
-			fontsize = 13,
-			center_aligned=True,
-			padding_x = 3,
-			borderwidth=0,
-			disable_drag = True,
-			highlight_method = "block",
-			this_current_screen_border = colors[2],
 			active = colors[4],
+			borderwidth=3,
+			center_aligned=True,
+			disable_drag = True,
+			font="awesome",
+			hide_unused = True,
+			highlight_method = "line",
+			this_current_screen_border = colors[2],
+			highlight_color = "#555555",    #Background color when highliht_method = line
 			inactive = colors[5],
-			urgent_border = colors[8],
 			rounded = False,
-			hide_unused = True),
+			urgent_border = colors[8],
+                        ),
 
 		widget.Sep(
 			linewidth = sep_linewidth,
@@ -248,7 +253,7 @@ screens = [
 
             ],
             24,
-            opacity=0.97
+            opacity=0.93
         ),
     ),
 ]
