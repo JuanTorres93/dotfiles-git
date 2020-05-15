@@ -91,7 +91,7 @@ groups = []
 
 groups_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-groups_labels = ["", "", "", "", "", "", "", "", "", ""]	#Margin_y is used to align the group labels, the margin differs...
+groups_labels = ["", "", "", "", "", "", "", "", "", ""]	#Margin_y is used to align the group labels, the margin differs...
 # https://fontawesome.com/cheatsheet  
 
 groups_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
@@ -141,7 +141,7 @@ def init_layout_theme():
 layout_theme = init_layout_theme()
 
 layouts = [
-        layout.MonadTall(**layout_theme, ratio = 0.55),
+        layout.MonadTall(**layout_theme, ratio = 0.55, new_at_current = True),
 	layout.RatioTile(**layout_theme),
 	layout.MonadWide(**layout_theme),
 ]
@@ -152,7 +152,8 @@ sep_padding = 10
 sep_linewidth = 1
 
 widget_defaults = dict(
-    font='Droid Sans Mono',
+    font='awesome',
+    #font='Droid Sans Mono',
     fontsize=13,
     padding=2,
     background=colors[3]

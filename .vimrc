@@ -1,3 +1,11 @@
+"     _                     _____
+"    | |_   _  __ _ _ __   |_   _|__  _ __ _ __ ___  ___
+" _  | | | | |/ _` | '_ \    | |/ _ \| '__| '__/ _ \/ __|
+"| |_| | |_| | (_| | | | |   | | (_) | |  | | |  __/\__ \
+" \___/ \__,_|\__,_|_| |_|   |_|\___/|_|  |_|  \___||___/
+"
+"						~/.vimrc
+
 " This two lines are needed in order to get pathogen functional
 execute pathogen#infect()
 " In addition, filetype allows the detection of different file types

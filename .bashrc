@@ -1,23 +1,15 @@
+#     _                     _____
+#    | |_   _  __ _ _ __   |_   _|__  _ __ _ __ ___  ___
+# _  | | | | |/ _` | '_ \    | |/ _ \| '__| '__/ _ \/ __|
+#| |_| | |_| | (_| | | | |   | | (_) | |  | | |  __/\__ \
+# \___/ \__,_|\__,_|_| |_|   |_|\___/|_|  |_|  \___||___/
 #
-# ~/.bashrc
-#
+#						~/.bashrc
 
-#Ibus settings if you need them
-#type ibus-setup in terminal to change settings and start the daemon
-#delete the hashtags of the next lines and restart
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=dbus
-#export QT_IM_MODULE=ibus
-
-# If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
-
-#export HISTCONTROL=ignoreboth:erasedups
 
 # Make pywal persisten between instances. Import colorscheme from 'wal' asynchronously
 #(cat ~/.cache/wal/sequences &)
 
-#PS1='[\u@\h \W]\$ '
 #Terminal prompt accent
 PS1='\[\e[1;35m\][\u@\h \W]\$ \[\e[m\]'
 
