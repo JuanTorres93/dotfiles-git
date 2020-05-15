@@ -22,10 +22,11 @@ git clone https://github.com/JuanTorres93/wallpapers
 rm -rf ./*/.git
 
 # Create Background folder
-sudo mkdir /usr/share/backgrounds
+wallpapersDir="$HOME"/.wallpapers
+sudo mkdir "$wallpapersDir"
 
 # Move the wallpapers to the backgrounds folder created above
-sudo mv wallpapers/* /usr/share/backgrounds
+sudo mv wallpapers/* "$wallpapersDir"
 # Remove the wallpapers folder, downloaded from repository
 rm -rf wallpapers
 
@@ -37,12 +38,14 @@ sudo mv lightdmPictures/ /usr/share/
 # Dot files configuration
 ./SoftLinkFiles
 
+# Vim configuration
+./vimSetUp.sh
+
 # Set keyboard layout as Spanish
 sudo localectl set-x11-keymap es
 # Enable the display manager
 sudo systemctl enable lightdm
 
-#sudo vim -c %s/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s /etc/systemd/system.conf
 sudo sed -i s/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/ /etc/systemd/system.conf
 sudo systemctl daemon-reload
 # Enable clock sync

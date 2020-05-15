@@ -5,7 +5,7 @@
 function GetFiles {
 	# This function gets the files in a directory which is passed through $1, then stores its value in $2. $2 MUST BE PASSED AS ITS NAME VARIABLE, WITHOUT QUOTES AND ITS NAME SHOULD NOT BE THE SAME THAN ANY OF THE PARAMETERS IN THIS VERY FUNCTION.
 	local directory_Content=$(ls -AF "$1")
-	local files_in_dir=$(echo "$directory_Content" | sed "/.*[/,=,>,@,|]/d ; /README.md/ d ; /SoftLinkFiles\*/ d ; /ArchSetUp.*/ d ; /^$/ d ; s/\*//g; s/$/\//g")
+	local files_in_dir=$(echo "$directory_Content" | sed "/.*[/,=,>,@,|]/d ; /README.md/ d ; /SoftLinkFiles\*/ d ; /ArchSetUp.*/ d ; /vimSetUp.sh/ d ; /^$/ d ; s/\*//g; s/$/\//g")
 	#The last sed has the purpose of filtrating in following steps with IFS env.variable
 	local -n ret=$2
 	ret="$files_in_dir"
