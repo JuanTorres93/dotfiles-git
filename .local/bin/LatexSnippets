@@ -6,6 +6,12 @@ sel="$1"
 # List of possible options for environment mode
 env_list=$(echo -e "center\nitemize\nenumerate\nbmatrix\ndocument\nfigure\nverbatim\nthebibliography")
 
+# Dmenu color configuration
+dmenu_math="-sb #CC0000"
+dmenu_env="-sb #629C2C"
+dmenu_img="-sb #C76A3C"
+dmenu_fig="-sb #AB9F30"
+
 # Function to create an environment that needs no label
 function environment {
 	echo "\begin{$1}"
@@ -70,8 +76,13 @@ function section {
 }
 
 function images {
-	imageName=$(ls ./Images/ | dmenu -i -l 10)
+	imageName=$(ls ./Images/ | dmenu $dmenu_img -i -l 10)
 	echo "\IncludeImage{Images/$imageName}[0.9][<++>][fig:<++>]"
+}
+
+function figures {
+	imageName=$(ls ./Images/ | dmenu $dmenu_fig -i -l 10)
+	echo "\includegraphics[width=<++>\linewidth]{Images/$imageName}"
 }
 
 function references {
@@ -99,16 +110,19 @@ function tables {
 
 case "$sel" in
 	"env")
-		environment $(echo "$env_list" | dmenu -i -l 10)
+		environment $(echo "$env_list" | dmenu $dmenu_env -i -l 10)
 		;;
 	"mat")
-		mathematics $(echo "$mat_list" | dmenu -i -l 10)
+		mathematics $(echo "$mat_list" | dmenu $dmenu_math -i -l 10)
 		;;
 	"sec")
 		section $(echo "$sec_list" | dmenu -i -l 10)
 		;;
 	"img")
 		images	
+		;;
+	"fig")
+		figures	
 		;;
 	"ref")
 		references	

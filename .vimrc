@@ -11,7 +11,7 @@ syntax on
 "======== Plugin configurations =========
 " vim-airline-themes
 let g:airline_theme='onedark'
-colo iceberg
+colo alduin
 "colo minimalist
 let g:livepreview_previewer = 'zathura'
 let g:cssColorVimDoNotMessMyUpdatetime = 1
@@ -80,27 +80,28 @@ autocmd FileType tex nnoremap ;prev :LLPStartPreview
 " Compilation with texlive
 autocmd FileType tex nnoremap ;comp :!pdflatex -synctex=1 -interaction=nonstopmode *.tex
 " LaTeX environment snippets (WORK IN PROGRESS)
-autocmd FileType tex inoremap ;env <Esc>:r !LatexSnippets env<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;EE <Esc>:r !LatexSnippets env<Return><Esc><Esc>i
 " LaTeX mathematic snippets (WORK IN PROGRESS)
 "autocmd FileType tex inoremap ;mat <Esc>:r !LatexSnippets mat<Return><Esc><Esc>i
-autocmd FileType tex inoremap ;mat <Return><Esc>:-1r !LatexSnippets mat<Return>kA<Del><Esc>A<Del><Esc><Esc>i
+autocmd FileType tex inoremap ;MM <Return><Esc>:-1r !LatexSnippets mat<Return>kA<Del><Esc>A<Del><Esc><Esc>i
 " LaTeX section snippets (WORK IN PROGRESS)
-autocmd FileType tex inoremap ;sec <Esc>:r !LatexSnippets sec<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;SS <Esc>:r !LatexSnippets sec<Return><Esc><Esc>i
 " LaTeX image snippets (WORK IN PROGRESS)
-autocmd FileType tex inoremap ;img <Esc>:r !LatexSnippets img<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;II <Esc>:r !LatexSnippets img<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;FF <Esc>:r !LatexSnippets fig<Return><Esc><Esc>i
 " LaTeX Reference snippets (WORK IN PROGRESS)
-autocmd FileType tex inoremap ;ref <Return><Esc>:-1r !LatexSnippets ref<Return>kA<Del><Esc>A<Del><Esc><Esc>i
+autocmd FileType tex inoremap ;RR <Return><Esc>:-1r !LatexSnippets ref<Return>kA<Del><Esc>A<Del><Esc><Esc>i
 " LaTeX table snippets (WORK IN PROGRESS)
-autocmd FileType tex inoremap ;tab <Esc>:r !LatexSnippets tab<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;TT <Esc>:r !LatexSnippets tab<Return><Esc><Esc>i
 autocmd FileType tex inoremap ;;<Space> \;<Space>
 autocmd FileType tex inoremap ;ni \item 
 autocmd FileType tex inoremap ;nb \bibitem{bib:<++>}<Space>\textsc{<++>}<Space>\textit{<++>}
 "" Italics
-autocmd FileType tex inoremap ;;i \textit{} <++><Esc>F{a
+autocmd FileType tex inoremap ;i \textit{} <++><Esc>F{a
 " Bold text
-autocmd FileType tex inoremap ;;b \textbf{} <++><Esc>F{a
+autocmd FileType tex inoremap ;b \textbf{} <++><Esc>F{a
 " Create new command
-autocmd FileType tex inoremap ;;nc \newcommand{\}[<++>]{<++>}<Esc>F}i
+autocmd FileType tex inoremap ;nc \newcommand{\}[<++>]{<++>}<Esc>F}i
 
 
 
