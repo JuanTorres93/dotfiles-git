@@ -11,6 +11,7 @@ dmenu_math="-sb #CC0000"
 dmenu_env="-sb #629C2C"
 dmenu_img="-sb #C76A3C"
 dmenu_fig="-sb #AB9F30"
+dmenu_ref="-sb #119920"
 
 # Function to create an environment that needs no label
 function environment {
@@ -52,7 +53,7 @@ function mathematics {
 			echo "\displaystyle\int_{<++>}^{<++>}"
 			;;
 		"sqrt")
-			echo "\displaystyle\sqrt"
+			echo "\displaystyle\sqrt{<++>}"
 			;;
 		"sum")
 			echo "\displaystyle\sum"
@@ -75,8 +76,10 @@ function section {
 	echo "\\$1{<++>}\label{$1:<++>}" | sed "s/tion:/:/"
 }
 
+
 function images {
-	imageName=$(ls ./Images/ | dmenu $dmenu_img -i -l 10)
+	imDir="./Images/"
+	imageName=$(ls "$imDir" | dmenu $dmenu_img -i -l 10)
 	echo "\IncludeImage{Images/$imageName}[0.9][<++>][fig:<++>]"
 }
 
@@ -91,7 +94,7 @@ function references {
 	figure_labels=$(grep -E "\[fig:.*\]" "$current_dir" | sed "s/.*\[//g ; s/\].*//g ; s/#.*//g ; /^$/ d" | cat)
 	
 	final_label=$(echo -e "$general_labels" "\n" "$figure_labels")
-	final_label=$(echo "$final_label" | sed "s/\s*//g" | dmenu -i -l 12)
+	final_label=$(echo "$final_label" | sed "s/\s*//g" | dmenu $dmenu_ref -i -l 12)
 	echo "\ref{$final_label}"
 }
 

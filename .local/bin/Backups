@@ -1,0 +1,20 @@
+#!/bin/bash
+
+selection=$(printf "Create\nRestore" | dmenu -i -p "Create or restore image?")
+
+
+case "$selection" in
+	"Create")
+		$TERMINAL -e sudo rsync -aAX --progress --delete --dry-run --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/media/* --exclude=/mnt/* --exclude=/tmp/* --exclude=/run/* --exclude=/home/* --exclude=/lost+found --exclude=/var/cache/* --exclude=/var/games/* --exclude=/var/lock/* --exclude=/var/run/* --exclude=/var/tmp/* --exclude=/var/log/timeshift/* --exclude=/swapfile --exclude=/var/lib/dhcpcd/* --exclude=/usr/share/icons/* --exclude=/usr/share/themes/* --exclude=/usr/share/backgrounds/* / /home/juan/hdd/rsync
+		;;
+
+	"Restore")
+		# Restore
+		#sudo rsync -aAX --progress --delete /backup /system
+		;;
+	*)
+		;;
+
+
+
+esac
