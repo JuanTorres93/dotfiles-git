@@ -7,7 +7,7 @@
 #						~/.bashrc
 
 
-# Make pywal persisten between instances. Import colorscheme from 'wal' asynchronously
+# Make pywal persistent between instances. Import colorscheme from 'wal' asynchronously
 #(cat ~/.cache/wal/sequences &)
 
 #Terminal prompt accent
@@ -17,25 +17,23 @@ if [ -d "$HOME/.bin" ] ;
 	then PATH="$HOME/.bin:$PATH"
 fi
 
-#list
+# ----- ALIASES -----
+# adding flags
 alias ls='ls --color=auto'  
-alias diff='diff --color=auto'  
-
 alias ll='ls -lh --color=auto'  
 alias la='ls -lhA --color=auto'  
 
+alias diff='diff --color=auto'  
 alias ..='cd ..'  
-
 alias lns='ln -srfi'  
 alias mv='mv -i'  
 alias cp='cp -i'  
 
-
-## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
-
-#readable output
 alias df='df -h'
+
+alias yta="youtube-dl -ic --extract-audio --audio-format mp3 "
+alias yt="youtube-dl -ic "
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -43,9 +41,6 @@ alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/p
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
-#youtube-dl
-alias yta="youtube-dl -ic --extract-audio --audio-format mp3 "
-alias yt="youtube-dl -ic "
 
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
