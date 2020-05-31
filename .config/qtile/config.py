@@ -141,7 +141,9 @@ def init_layout_theme():
 layout_theme = init_layout_theme()
 
 layouts = [
-        layout.MonadTall(**layout_theme, ratio = 0.55, new_at_current = True),
+        layout.MonadTall(**layout_theme, ratio = 0.55, 
+                         #new_at_current = True,
+                         ),
 	layout.RatioTile(**layout_theme),
 	layout.MonadWide(**layout_theme),
 ]

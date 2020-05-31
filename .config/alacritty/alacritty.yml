@@ -103,30 +103,30 @@
 font:
   # Normal (roman) font face
   normal:
-    family: Droid Sans Mono
+    family: Ubuntu Mono
 
     style: Regular
 
   # Bold font face
   bold:
-    family: Droid Sans Mono
+    family: Ubuntu Mono
 
     style: Bold
 
   # Italic font face
   italic:
-    family: Droid Sans Mono
+    family: Ubuntu Mono
 
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Droid Sans Mono
+    family: Ubuntu Mono
 
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
