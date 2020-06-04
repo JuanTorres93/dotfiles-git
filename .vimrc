@@ -56,7 +56,7 @@ nnoremap ** "*P
 " Go to place holder
 inoremap <Space><Space> <Esc>/<++><Return>"_c4l
 " Write  place holder
-inoremap ;ph <++>
+inoremap ;PH <++>
 "imap ww <Esc>
 "vmap ww <Esc>
 
@@ -86,16 +86,16 @@ autocmd FileType sh nnoremap ;;u @='^x<C-V><Esc>j'<CR>
 autocmd FileType tex nnoremap ;prev :LLPStartPreview
 " Compilation with texlive
 autocmd FileType tex nnoremap ;comp :!pdflatex -synctex=1 -interaction=nonstopmode *.tex
-" LaTeX environment snippets (WORK IN PROGRESS)
+" LaTeX environment snippets 
 autocmd FileType tex inoremap ;EE <Esc>:r !LatexSnippets env<Return><Esc><Esc>i
-" LaTeX mathematic snippets (WORK IN PROGRESS)
-"autocmd FileType tex inoremap ;mat <Esc>:r !LatexSnippets mat<Return><Esc><Esc>i
+" LaTeX mathematic snippets
 autocmd FileType tex inoremap ;MM <Return><Esc>:-1r !LatexSnippets mat<Return>kA<Del><Esc>A<Del><Esc><Esc>i
-" LaTeX section snippets (WORK IN PROGRESS)
+" LaTeX section snippets
 autocmd FileType tex inoremap ;SS <Esc>:r !LatexSnippets sec<Return><Esc><Esc>i
-" LaTeX image snippets (WORK IN PROGRESS)
+" LaTeX image snippets
 autocmd FileType tex inoremap ;II <Esc>:r !LatexSnippets img<Return><Esc><Esc>i
 autocmd FileType tex inoremap ;FF <Esc>:r !LatexSnippets fig<Return><Esc><Esc>i
+autocmd FileType tex inoremap ;WF <Esc>:r !LatexSnippets wrapfig<Return><Esc><Esc>i
 " LaTeX Reference snippets (WORK IN PROGRESS)
 autocmd FileType tex inoremap ;RR <Return><Esc>:-1r !LatexSnippets ref<Return>kA<Del><Esc>A<Del><Esc><Esc>i
 " LaTeX table snippets (WORK IN PROGRESS)

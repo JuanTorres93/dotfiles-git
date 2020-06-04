@@ -88,6 +88,15 @@ function figures {
 	echo "\includegraphics[width=<++>\linewidth]{Images/$imageName}"
 }
 
+function wrapfigure {
+	imageName=$(ls ./Images/ | dmenu $dmenu_fig -i -l 10)
+	echo "\begin{wrapfigure}{<++>}{<++>\linewidth}"
+	echo "\includegraphics[width=\linewidth]{Images/$imageName}"
+	echo "\caption{<++>}"
+	echo "\label{fig:<++>}"
+	echo "\end{wrapfigure}"
+}
+
 function references {
 	current_dir=$(ls *.tex)
 	general_labels=$(grep -E "label{.*}" "$current_dir" | sed "s/.*{//g ; s/}.*//g ; s/#.*//g ; /^$/ d" | cat)
@@ -132,6 +141,9 @@ case "$sel" in
 		;;
 	"tab")
 		tables	
+		;;
+	"wrapfig")
+		wrapfigure	
 		;;
 	*)
 		;;
