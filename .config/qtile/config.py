@@ -57,6 +57,9 @@ Key([mod, "shift"], "minus", lazy.shutdown()),
 Key([mod, "shift"], "period", lazy.spawn("shutdown_confirmation_qtile poweroff")),
 Key([mod, "shift"], "comma", lazy.spawn("shutdown_confirmation_qtile reboot")),
 
+# SPECIALL KEYS
+Key([], "F1", lazy.spawn("ChangeWallpaper")),
+
 # MULTIMEDIA KEYS
 
 # INCREASE/DECREASE BRIGHTNESS
@@ -80,6 +83,7 @@ Key([alt, control], "s", lazy.spawn("xfce4-screenshooter -r")),
 Key([alt, control], "f", lazy.spawn("firefox")),
 Key([alt, control], "l", lazy.spawn("texstudio")),
 Key([alt, control], "t", lazy.spawn("thunderbird")),
+Key([], "Print", lazy.spawn("ScreenCapture")),
 
 # SUPER + SHIFT KEYS
 Key([mod, "shift"], "d", lazy.spawn("dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")),

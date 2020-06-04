@@ -1,0 +1,5 @@
+#!/bin/bash
+
+name="$HOME/scrot-captures/$( date )"
+
+scrot "$name.png"

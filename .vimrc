@@ -57,8 +57,8 @@ nnoremap ** "*P
 inoremap <Space><Space> <Esc>/<++><Return>"_c4l
 " Write  place holder
 inoremap ;ph <++>
-imap ww <Esc>
-vmap ww <Esc>
+"imap ww <Esc>
+"vmap ww <Esc>
 
 " Comments for each fileType
 " LaTeX

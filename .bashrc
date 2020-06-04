@@ -18,10 +18,15 @@ if [ -d "$HOME/.bin" ] ;
 fi
 
 # ----- ALIASES -----
+# changing programs
+alias ls='exa --color=auto'  
+alias ll='exa -l --color=auto'  
+alias la='exa -la --color=auto'  
+
 # adding flags
-alias ls='ls --color=auto'  
-alias ll='ls -lh --color=auto'  
-alias la='ls -lhA --color=auto'  
+#alias ls='ls --color=auto'  
+#alias ll='ls -lh --color=auto'  
+#alias la='ls -lhA --color=auto'  
 
 alias diff='diff --color=auto'  
 alias ..='cd ..'  
