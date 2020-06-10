@@ -14,3 +14,4 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export MY_RUST_PROJECTS_DIRECTORY="$HOME/hdd/rust"

@@ -136,7 +136,7 @@ colors=[
 	]
 
 def init_layout_theme():
-	return {"margin":6, 
+	return {"margin":8, 
 		"border_width":2, 
 		"border_focus": colors[0],
 		"border_normal": colors[1]
