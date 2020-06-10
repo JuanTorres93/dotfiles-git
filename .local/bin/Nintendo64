@@ -1,0 +1,7 @@
+#!/bin/bash
+
+romsDirectory="$HOME/hdd/Roms N64/"
+
+chosenRom=$( ls "$romsDirectory" | dmenu -i )
+
+mupen64plus --resolution 1280x720 --noosd --fullscreen --gfx mupen64plus-video-glide64mk2  --saveoptions "$romsDirectory$chosenRom"
