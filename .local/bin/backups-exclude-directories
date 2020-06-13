@@ -1,0 +1,17 @@
+/dev/
+/proc/
+/sys/
+/media/
+/mnt/
+/tmp/
+/run/
+/home/
+/lost+found
+/var/cache/
+/var/games/
+/var/lock/
+/var/run/
+/var/tmp/
+/var/log/timeshift/
+/swapfile
+/var/lib/dhcpcd/
