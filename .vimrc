@@ -60,7 +60,7 @@ nnoremap ** "*P
 " Write  place holder
 inoremap ;PH <++>
 " Go to place holder
-inoremap <Space><Space> <Esc>/<++><Return>"_c4l
+inoremap <Space><BackSpace> <Esc>/<++><Return>"_c4l
 
 " Comments for each fileType
 " LaTeX

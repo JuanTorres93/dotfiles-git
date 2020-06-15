@@ -1,5 +1,11 @@
 [[  -f ~/.bashrc ]] && . ~/.bashrc
 
+# Remap escape to caps lock and viceversa
+setxkbmap -option caps:swapescape
+# xset -b quiets down the bios beep
+xset -b
+
+
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim
 export BROWSER=firefox
@@ -9,7 +15,6 @@ export TERMINAL=alacritty
 export QT_STYLE_OVERRIDE=kvantum
 # Icons in qt5 applications
 export QT_QPA_PLATFORMTHEME="qt5ct"
-
 
 
 
