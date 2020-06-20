@@ -76,13 +76,13 @@ Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
 Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
 Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
 
-# CONTROL + ALT KEYS
+# SUPER + CONTROL KEYS
 
-Key([alt, control], "a", lazy.spawn("xfce4-appfinder")),
-Key([alt, control], "s", lazy.spawn("xfce4-screenshooter -r")),
-Key([alt, control], "f", lazy.spawn("firefox")),
-Key([alt, control], "l", lazy.spawn("texstudio")),
-Key([alt, control], "t", lazy.spawn("thunderbird")),
+Key([mod, control], "a", lazy.spawn("xfce4-appfinder")),
+Key([mod, control], "s", lazy.spawn("xfce4-screenshooter -r")),
+Key([mod, control], "f", lazy.spawn("firefox")),
+Key([mod, control], "l", lazy.spawn("texstudio")),
+Key([mod, control], "t", lazy.spawn("thunderbird")),
 Key([], "Print", lazy.spawn("ScreenCapture")),
 
 # SUPER + SHIFT KEYS
