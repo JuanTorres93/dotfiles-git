@@ -67,3 +67,4 @@ alias listServices='systemctl list-units --type=service'
 #Shenanigans
 alias StarWars="telnet towel.blinkenlights.nl"
 alias tiempo="curl wttr.in"
+alias listfonts="fc-list"

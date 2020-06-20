@@ -5,6 +5,8 @@ setxkbmap -option caps:swapescape
 # xset -b quiets down the bios beep
 xset -b
 
+numlockx on
+
 
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim

@@ -60,18 +60,3 @@ while IFS='/' read -ra DIRECTORIES; do
 	done
 
 done <<< "$directoriesGitFolder"
-
-
-
-#while IFS='/' read -ra ADDR; do
-	#for directory in "${ADDR[@]}"; do
-		#subdirectoriesContent=$(ls -AF "$directory")
-		#subdirectoriesDirectories=$(echo "$subdirectoriesContent" | sed "/.*[/]/!d ; /README.md/ d ; /.git/ d ; /^$/ d")
-#
-		#while IFS='/' read -ra ADDR; do
-			#for sub in "${ADDR[@]}"; do
-				#echo "$sub"
-			#done
-		#done <<< "$subdirectoriesDirectories"
-	#done
-#done <<< "$directories"
