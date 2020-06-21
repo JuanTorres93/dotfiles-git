@@ -1,12 +1,13 @@
 [[  -f ~/.bashrc ]] && . ~/.bashrc
 
+
 # Remap escape to caps lock and viceversa
 setxkbmap -option caps:swapescape
 # xset -b quiets down the bios beep
 xset -b
 
 numlockx on
-
+xsetroot -cursor_name left_ptr
 
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=vim

@@ -3,7 +3,7 @@
 sudo pacman -Syu
 # Install needed packages
 sudo pacman -S --needed tar gzip unzip unrar xarchiver git base-devel networkmanager network-manager-applet alsa-firmware pulseaudio pasystray pavucontrol xorg ttf-font-awesome alsa-utils ranger papirus-icon-theme parcellite zathura zathura-pdf-poppler
-sudo pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xterm firefox geany dmenu lxappearance xwallpaper thunar thunar-archive-plugin picom qtile ttf-droid numlockx feh polkit-gnome cronie gvim ttf-ubuntu-font-family exa
+sudo pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xterm firefox geany dmenu lxappearance xwallpaper thunar thunar-archive-plugin picom qtile ttf-droid numlockx feh polkit-gnome cronie gvim ttf-ubuntu-font-family exa xmonad xmonad-contrib xmonad-utils xmobar
 sudo pacman -S --needed xfce4-appfinder volumeicon gvfs thunar-volman noto-fonts udisks2 udiskie alsa-utils alacritty xfce4-notifyd kvantum-qt5 qt5ct capitaine-cursors youtube-dl redshift arc-solid-gtk-theme kvantum-theme-arc arc-icon-theme subdl rsync
 
 # Check processor vendor and install xf86 accordingly (probably useless)
