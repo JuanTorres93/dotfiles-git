@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:Awesome:size=9:regular:antialias=true"
+     font =         "xft:DroidSansMono:size=9:Bold:antialias=true"
    , bgColor =      "#112211"
    , fgColor =      "#A8A8A8"
    , position =     Top

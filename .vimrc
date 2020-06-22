@@ -75,6 +75,9 @@ autocmd FileType c nnoremap ;;u @='^2x<C-V><Esc>j'<CR>
 " C++
 autocmd FileType cpp nnoremap ;;c @='I//<C-V><Esc>j'<CR> 
 autocmd FileType cpp nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
+" Haskell
+autocmd FileType haskell nnoremap ;;c @='I--<C-V><Esc>j'<CR> 
+autocmd FileType haskell nnoremap ;;u @='^2x<C-V><Esc>j'<CR> 
 " Python
 autocmd FileType python nnoremap ;;c @='I#<C-V><Esc>j'<CR> 
 autocmd FileType python nnoremap ;;u @='^x<C-V><Esc>j'<CR> 

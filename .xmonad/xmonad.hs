@@ -11,13 +11,16 @@ import qualified Data.Map        as M
 -- Extra imports
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
+
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-
-import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
 
-import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Grid
+
+
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -45,7 +48,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["www","work","job","files","virt","aux","media","term","mail"]
+myWorkspaces    = ["web","work","job","files","virt","aux","media","term","mail"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -77,6 +80,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch thunderbird
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
+    , ((0, xK_F1                       ), spawn "ChangeWallpaper")
 
     -- close focused window
     , ((modm ,                xK_q     ), kill)
@@ -130,7 +134,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    , ((modm              , xK_b     ),  spawn "killall trayer && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &")
+    , ((modm              , xK_b     ),  spawn "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_minus     ), io (exitWith ExitSuccess))
@@ -196,7 +200,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
-myLayout = mySpacing 5 $ avoidStruts( tiled ||| Mirror tiled ||| Full )
+myLayout = 
+        mySpacing 5 (avoidStruts(tiled)) |||
+        mySpacing 5 (avoidStruts(Grid)) |||
+        noBorders Full 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -205,7 +212,7 @@ myLayout = mySpacing 5 $ avoidStruts( tiled ||| Mirror tiled ||| Full )
      nmaster = 1
 
      -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
+     ratio   = 0.55
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
@@ -247,41 +254,41 @@ myEventHook = mempty
 -- Startup hook
 
 myStartupHook = do
-	spawnOnce "ChangeWallpaper"
-	spawnOnce "picom &"
-	spawnOnce "volumeicon &"
-	--spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &"
-	spawnOnce "udiskie &"
-	--spawnOnce "run nm-applet &"
-	spawnOnce "redshift -b 1:0.7 &"
-	spawnOnce "parcellite -n &"
+       spawnOnce "ChangeWallpaper"
+       spawnOnce "picom &"
+       spawnOnce "volumeicon &"
+       --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &"
+       spawnOnce "udiskie &"
+       --spawnOnce "run nm-applet &"
+       spawnOnce "redshift -b 1:0.7 &"
+       spawnOnce "parcellite -n &"
 
 ------------------------------------------------------------------------
 
 main = do
-	xmproc0 <- spawnPipe "xmobar -d -x 0 /home/juan/.config/xmobar/xmobarrc" -- -x 0 means "Launch xmobar in monitor 1"
+       xmproc0 <- spawnPipe "xmobar -d -x 0 /home/juan/.config/xmobar/xmobarrc" -- -x 0 means "Launch xmobar in monitor 1"
 
-	xmonad $ docks $ ewmh def 
-		{
-		manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
-      		,   terminal           = myTerminal
-      		,   focusFollowsMouse  = myFocusFollowsMouse
-      		,   clickJustFocuses   = myClickJustFocuses
-      		,   borderWidth        = myBorderWidth
-      		,   modMask            = myModMask
-      		,   workspaces         = myWorkspaces
-      		,   normalBorderColor  = myNormalBorderColor
-      		,   focusedBorderColor = myFocusedBorderColor
-      		,   keys               = myKeys
-      		,   mouseBindings      = myMouseBindings
-      		,   layoutHook         = myLayout
-      		,   handleEventHook    = myEventHook
-      		,   startupHook        = myStartupHook
-		
-        	-- this adds Xmobar to Xmonad
-		, logHook = dynamicLogWithPP xmobarPP 
-	   	{ --ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-	   	 ppOutput = hPutStrLn xmproc0
+       xmonad $ docks def 
+              {
+              manageHook = myManageHook 
+                    ,   terminal           = myTerminal
+                    ,   focusFollowsMouse  = myFocusFollowsMouse
+                    ,   clickJustFocuses   = myClickJustFocuses
+                    ,   borderWidth        = myBorderWidth
+                    ,   modMask            = myModMask
+                    ,   workspaces         = myWorkspaces
+                    ,   normalBorderColor  = myNormalBorderColor
+                    ,   focusedBorderColor = myFocusedBorderColor
+                    ,   keys               = myKeys
+                    ,   mouseBindings      = myMouseBindings
+                    ,   layoutHook         = myLayout
+                    ,   handleEventHook    = myEventHook
+                    ,   startupHook        = myStartupHook
+              
+               -- this adds Xmobar to Xmonad
+              , logHook = dynamicLogWithPP xmobarPP 
+                 { --ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
+                  ppOutput = hPutStrLn xmproc0
                 , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
                 , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
                 , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar

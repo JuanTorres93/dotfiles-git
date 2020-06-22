@@ -59,6 +59,7 @@ Key([mod, "shift"], "comma", lazy.spawn("shutdown_confirmation_qtile reboot")),
 
 # SPECIALL KEYS
 Key([], "F1", lazy.spawn("ChangeWallpaper")),
+Key([], "F5", lazy.spawn("zathura /home/juan/Segundo\ cuatrimestre/Sistemas\ de\ energía\ eléctrica/Indice/Indice.pdf")),
 
 # MULTIMEDIA KEYS
 
