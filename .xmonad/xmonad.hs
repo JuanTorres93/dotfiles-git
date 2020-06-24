@@ -9,8 +9,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 -- Extra imports
-import XMonad.Util.SpawnOnce
-import XMonad.Util.Run
+import XMonad.Actions.CycleWS
 
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -19,6 +18,10 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
+
+import XMonad.Util.SpawnOnce
+import XMonad.Util.Run
+
 
 
 
@@ -94,8 +97,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Resize viewed windows to the correct size
     , ((modm,                 xK_n     ), refresh)
 
-    -- Move focus to the next window
-    , ((modm,                 xK_Tab   ), windows W.focusDown)
+    -- Move focus to the next workspace
+    , ((modm,                 xK_Tab   ), nextWS)
+
+    -- Move focus to the previous workspace
+    , ((modm .|. shiftMask,   xK_Tab   ), prevWS)
 
     -- Move focus to the next window
     , ((modm,                 xK_j     ), windows W.focusDown)
