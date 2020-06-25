@@ -22,7 +22,9 @@ import XMonad.Layout.Grid
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
-
+import qualified DBus as D
+import qualified DBus.Client as D
+import qualified Codec.Binary.UTF8.String as UTF8
 
 
 -- The preferred terminal program, which is used in a binding below and by
@@ -51,7 +53,8 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["web","work","job","files","virt","aux","media","term","mail"]
+myWorkspaces = ["\62845", "\62744", "\62824", "\62580", "\62972", "\61573", "\61875", "\61684", "\61728", "\61664"]
+--myWorkspaces    = ["web","work","job","files","virt","aux","\61757","term","mail"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -140,7 +143,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    , ((modm              , xK_b     ),  spawn "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_minus     ), io (exitWith ExitSuccess))
@@ -152,7 +154,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_comma     ),  spawn "shutdown_confirmation_qtile reboot")
 
     -- Restart xmonad
-    , ((modm .|. shiftMask, xK_r     ), spawn "killall xmobar; xmonad --recompile; xmonad --restart")
+    , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")
     ]
     ++
 
@@ -161,7 +163,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) ([xK_1 .. xK_9] ++ [xK_0])
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -261,9 +263,9 @@ myEventHook = mempty
 
 myStartupHook = do
        spawnOnce "ChangeWallpaper"
+       spawnOnce "polybar xmonad &"
        spawnOnce "picom &"
        spawnOnce "volumeicon &"
-       --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --expand true --transparent true --alpha 35 --tint 0x0B160B --height 18 &"
        spawnOnce "udiskie &"
        --spawnOnce "run nm-applet &"
        spawnOnce "redshift -b 1:0.7 &"
@@ -271,10 +273,14 @@ myStartupHook = do
 
 ------------------------------------------------------------------------
 
+main :: IO ()
 main = do
-       xmproc0 <- spawnPipe "xmobar -d -x 0 /home/juan/.config/xmobar/xmobarrc" -- -x 0 means "Launch xmobar in monitor 1"
+    dbus <- D.connectSession
+    -- Request access to the DBus name
+    D.requestName dbus (D.busName_ "org.xmonad.Log")
+        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-       xmonad $ docks def 
+    xmonad $ docks def 
               {
               manageHook = myManageHook 
                     ,   terminal           = myTerminal
@@ -291,18 +297,34 @@ main = do
                     ,   handleEventHook    = myEventHook
                     ,   startupHook        = myStartupHook
               
-               -- this adds Xmobar to Xmonad
-              , logHook = dynamicLogWithPP xmobarPP 
-                 { --ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-                  ppOutput = hPutStrLn xmproc0
-                , ppCurrent = xmobarColor "#c3e88d" ""                -- Current workspace in xmobar
-                , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-                , ppHidden = xmobarColor "#82AAFF" ""                 -- Hidden workspaces in xmobar
-                , ppHiddenNoWindows = xmobarColor "#445566" ""        -- Hidden workspaces (no windows)
-                , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
-                , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-                , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
-                , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-
-                }
+              , logHook = dynamicLogWithPP (myLogHook dbus) 
             } 
+
+colorVisible       = "#3c3836"
+colorCurrent       = "#504945"
+colorUrgent       = "#fb4934"
+-- Override the PP values as you would otherwise, adding colors etc depending
+-- on  the statusbar used
+myLogHook :: D.Client -> PP
+myLogHook dbus = def
+                   { ppOutput = dbusOutput dbus 
+                    , ppCurrent = wrap ("%{B" ++ colorCurrent ++ "} ") " %{B-}"
+                    , ppVisible = wrap ("%{B" ++ colorVisible ++ "} ") " %{B-}"
+                    , ppUrgent = wrap ("%{F" ++ colorUrgent ++ "} ") " %{F-}"
+                    , ppHidden = wrap " " " "
+                    , ppWsSep = ""
+                    , ppSep = " : "
+                    , ppTitle = shorten 40
+                    }
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+            D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
