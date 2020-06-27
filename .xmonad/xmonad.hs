@@ -59,7 +59,7 @@ myWorkspaces = ["\62845", "\62744", "\62824", "\62580", "\62972", "\61573", "\61
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#636363"
-myFocusedBorderColor = "#789789"
+myFocusedBorderColor = "#B294BB"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -70,7 +70,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run")
+    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i")
 
     -- launch firefox
     , ((modm .|. controlMask, xK_f     ), spawn "firefox")
@@ -87,6 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch thunderbird
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
+    , ((0, xK_Print                    ), spawn "ScreenCapture")
 
     -- close focused window
     , ((modm ,                xK_q     ), kill)
@@ -301,8 +302,8 @@ main = do
             } 
 
 colorVisible       = "#3c3836"
-colorCurrent       = "#504945"
-colorUrgent       = "#fb4934"
+colorCurrent       = "#907299"
+colorUrgent       = "#CC6666"
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
 myLogHook :: D.Client -> PP
@@ -314,7 +315,7 @@ myLogHook dbus = def
                     , ppHidden = wrap " " " "
                     , ppWsSep = ""
                     , ppSep = " : "
-                    , ppTitle = shorten 40
+                    , ppTitle = shorten 60
                     }
 
 -- Emit a DBus signal on log updates

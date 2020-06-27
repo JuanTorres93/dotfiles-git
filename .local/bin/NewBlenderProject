@@ -1,0 +1,11 @@
+#!/bin/bash
+
+projectName="$1"
+projectsDirectory="$HOME/hdd/Blender projects/"
+
+cd "$projectsDirectory"
+mkdir "$projectName"
+cd "$projectName"
+
+mkdir textures images hdri
+blender
