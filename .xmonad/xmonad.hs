@@ -14,6 +14,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
@@ -281,7 +282,7 @@ main = do
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-    xmonad $ docks def 
+    xmonad . ewmh $ docks def 
               {
               manageHook = myManageHook 
                     ,   terminal           = myTerminal
@@ -297,35 +298,4 @@ main = do
                     ,   layoutHook         = myLayout
                     ,   handleEventHook    = myEventHook
                     ,   startupHook        = myStartupHook
-              
-              , logHook = dynamicLogWithPP (myLogHook dbus) 
             } 
-
-colorVisible       = "#3c3836"
-colorCurrent       = "#907299"
-colorUrgent       = "#CC6666"
--- Override the PP values as you would otherwise, adding colors etc depending
--- on  the statusbar used
-myLogHook :: D.Client -> PP
-myLogHook dbus = def
-                   { ppOutput = dbusOutput dbus 
-                    , ppCurrent = wrap ("%{B" ++ colorCurrent ++ "} ") " %{B-}"
-                    , ppVisible = wrap ("%{B" ++ colorVisible ++ "} ") " %{B-}"
-                    , ppUrgent = wrap ("%{F" ++ colorUrgent ++ "} ") " %{F-}"
-                    , ppHidden = wrap " " " "
-                    , ppWsSep = ""
-                    , ppSep = " : "
-                    , ppTitle = shorten 60
-                    }
-
--- Emit a DBus signal on log updates
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str = do
-    let signal = (D.signal objectPath interfaceName memberName) {
-            D.signalBody = [D.toVariant $ UTF8.decodeString str]
-        }
-    D.emit dbus signal
-  where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
-    interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
