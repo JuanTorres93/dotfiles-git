@@ -59,7 +59,6 @@ Key([mod, "shift"], "comma", lazy.spawn("shutdown_confirmation_qtile reboot")),
 
 # SPECIALL KEYS
 Key([], "F1", lazy.spawn("ChangeWallpaper")),
-Key([], "F5", lazy.spawn("zathura /home/juan/Segundo\ cuatrimestre/Sistemas\ de\ energía\ eléctrica/Indice/Indice.pdf")),
 
 # MULTIMEDIA KEYS
 
@@ -84,6 +83,7 @@ Key([mod, control], "s", lazy.spawn("xfce4-screenshooter -r")),
 Key([mod, control], "f", lazy.spawn("firefox")),
 Key([mod, control], "l", lazy.spawn("texstudio")),
 Key([mod, control], "t", lazy.spawn("thunderbird")),
+Key([mod, control], "r", lazy.spawn("firefox https://doc.rust-lang.org/book/ch09-00-error-handling.html")),
 Key([], "Print", lazy.spawn("ScreenCapture")),
 
 # SUPER + SHIFT KEYS
@@ -274,7 +274,7 @@ mouse = [
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None

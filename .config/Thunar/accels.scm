@@ -30,6 +30,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/close-tab" "<Primary>w")
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-side-pane-tree" "<Primary>e")
 ; (gtk_accel_path "<Actions>/ThunarWindow/help-menu" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/5c4b6334c5c3955a0b37991de516000b" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-home" "<Alt>Home")
 ; (gtk_accel_path "<Actions>/ThunarLauncher/open-with-other-in-menu" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-templates" "")
