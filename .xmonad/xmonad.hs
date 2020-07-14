@@ -54,7 +54,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["\62845", "\62744", "\62824", "\62580", "\62972", "\61573", "\61875", "\61684", "\61728", "\61664"]
+myWorkspaces = ["\62845", "\61899", "\61635", "\62580", "\62972", "\61573", "\61912", "\61684", "\61728", "\61664"]
 --myWorkspaces    = ["web","work","job","files","virt","aux","\61757","term","mail"]
 
 -- Border colors for unfocused and focused windows, respectively.
@@ -71,7 +71,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i")
+    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
 
     -- launch firefox
     , ((modm .|. controlMask, xK_f     ), spawn "firefox")
