@@ -104,6 +104,8 @@ autocmd FileType tex inoremap ;FF <Esc>:r !LatexSnippets fig<Return><Esc><Esc>i
 autocmd FileType tex inoremap ;WF <Esc>:r !LatexSnippets wrapfig<Return><Esc><Esc>i
 " LaTeX Reference snippets 
 autocmd FileType tex inoremap ;RR <Return><Esc>:-1r !LatexSnippets ref<Return>kA<Del><Esc>A<Del><Esc><Esc>i
+" LaTeX Bibliography Reference snippets 
+autocmd FileType tex inoremap ;RB <Return><Esc>:-1r !LatexSnippets bib<Return>kA<Del><Esc>A<Del><Esc><Esc>i
 " LaTeX table snippets 
 autocmd FileType tex inoremap ;TT <Esc>:r !LatexSnippets tab<Return><Esc><Esc>i
 

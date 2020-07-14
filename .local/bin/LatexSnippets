@@ -107,6 +107,14 @@ function references {
 	echo "\ref{$final_label}"
 }
 
+function references_bib {
+	current_dir=$(ls *.tex)
+	general_labels=$(grep -E "bibitem{.*}" "$current_dir" | sed "s/[\]bibitem{//g ; s/}.*$//g ; /^$/ d" | cat)
+	
+	final_label=$(echo "$general_labels" | sed "s/\s*//g" | dmenu $dmenu_ref -i -l 12)
+	echo "\cite{$final_label}"
+}
+
 function tables {
 	echo "\begin{table}[h!]"	
 	echo "\caption{<++>}"	
@@ -138,6 +146,9 @@ case "$sel" in
 		;;
 	"ref")
 		references	
+		;;
+	"bib")
+		references_bib
 		;;
 	"tab")
 		tables	
