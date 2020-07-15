@@ -17,6 +17,9 @@ if [ -d "$HOME/.bin" ] ;
 	then PATH="$HOME/.bin:$PATH"
 fi
 
+# Activate vi mode
+set -o vi
+
 # ----- ALIASES -----
 # changing programs
 alias ls='exa --color=auto'  
