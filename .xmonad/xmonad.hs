@@ -9,6 +9,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 -- Extra imports
+import XMonad.Actions.UpdateFocus	-- Provides adjustEventInput and focusOnMouseMove. I use this for my LaTeX dmenu snippets. In this way, vim can be used as soon as dmenu is closed.
 import XMonad.Actions.CycleWS
 
 import XMonad.Hooks.ManageDocks
@@ -296,6 +297,6 @@ main = do
                     ,   keys               = myKeys
                     ,   mouseBindings      = myMouseBindings
                     ,   layoutHook         = myLayout
-                    ,   handleEventHook    = myEventHook
-                    ,   startupHook        = myStartupHook
+                    ,   handleEventHook    = myEventHook <+> focusOnMouseMove
+                    ,   startupHook        = myStartupHook <+> adjustEventInput
             } 
