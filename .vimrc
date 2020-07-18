@@ -122,5 +122,12 @@ autocmd FileType tex inoremap ;NC \newcommand{\}[<++>]{<++>}<Esc>F}i
 
 
 
+"======== Rust bindings configuration =========
 " Rust files (.rs)
 autocmd FileType rust nnoremap ;F :RustFmt<CR>
+" Create function
+autocmd FileType rust inoremap ;FN fn (<++>) -> <++> {<Return><++><Return>}<Esc>2k0ea<Space>
+" Insert println!
+autocmd FileType rust inoremap ;PR println!("");<Esc>2hi
+" Create struct
+autocmd FileType rust inoremap ;ST struct {<Return><++>,<Return>}<Return><Return>impl <++> {<Return><++><Return>}<Esc>6k0ea<Space>
