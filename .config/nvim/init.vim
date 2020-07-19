@@ -85,7 +85,7 @@ autocmd FileType sh nnoremap ;;u @='^x<C-V><Esc>j'<CR>
 
 "======== LaTeX bindings configuration =========
 " Preview with vim-latex-live-preview
-autocmd FileType tex nnoremap ;PREV :LLPStartPreview<Return>
+autocmd FileType tex nnoremap ;PREV :VimtexCompile<Return>
 " Compilation with texlive
 autocmd FileType tex nnoremap ;COMP :!pdflatex -synctex=1 -interaction=nonstopmode *.tex<Return>
 
