@@ -4,7 +4,7 @@
 "| |_| | |_| | (_| | | | |   | | (_) | |  | | |  __/\__ \
 " \___/ \__,_|\__,_|_| |_|   |_|\___/|_|  |_|  \___||___/
 "
-"						~/.vimrc
+"				~/.config/nvim/init.vim
 
 
 " This two lines are needed in order to get pathogen functional
@@ -20,7 +20,7 @@ syntax on
 "======== Plugins configuration =========
 " vim-airline-themes
 let g:airline_theme='onedark'
-colo alduin
+colo deus
 let g:livepreview_previewer = 'zathura'
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
@@ -128,3 +128,9 @@ autocmd FileType rust inoremap ;FN fn (<++>) -> <++> {<Return><++><Return>}<Esc>
 autocmd FileType rust inoremap ;PR println!("");<Esc>2hi
 " Create struct
 autocmd FileType rust inoremap ;ST struct {<Return><++>,<Return>}<Esc>2k0ea<Space>
+" Insert for
+autocmd FileType rust inoremap ;FOR for in <++> {<Return><++><Return>}<Esc>2k0ea<Space>
+" Insert if
+autocmd FileType rust inoremap ;IF if {<Return><++><Return>}<Esc>2k0ea<Space>
+" Create match
+autocmd FileType rust inoremap ;MATCH match {<Return><++> => <++>,<Return>}<Esc>2k0ea<Space>
