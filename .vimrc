@@ -42,7 +42,7 @@ set viminfo+=n~/.vim/viminfo
 set splitbelow splitright
 set clipboard=unnamedplus
 
-"set lazyredraw	" Don't update screen during macro and script execution
+set lazyredraw	" Don't update screen during macro and script execution
 
 "======== General bindings configuration =========
 " Move between splits with Crtl+key
@@ -123,6 +123,16 @@ autocmd FileType tex inoremap ;NC \newcommand{\}[<++>]{<++>}<Esc>F}i
 
 
 "======== Rust bindings configuration =========
+" Compile code
+autocmd FileType rust nnoremap ;CB :!cargo build<Return>
+" Compile and run code
+autocmd FileType rust nnoremap ;CR :!cargo run<Return>
+" Run tests
+autocmd FileType rust nnoremap ;CT :!cargo test<Return>
+" Save session
+autocmd FileType rust nnoremap ;SS :mks! ~/.vim/sessions/rust-session.vim<Return>
+" Load session
+autocmd FileType rust nnoremap ;LS :source ~/.vim/sessions/rust-session.vim<Return>
 " Rust files (.rs)
 autocmd FileType rust nnoremap ;F :RustFmt<CR>
 " Create function
