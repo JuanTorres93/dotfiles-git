@@ -73,6 +73,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
+    , ((modm .|. controlMask,   xK_e     ), spawn "emacs")
 
     -- launch firefox
     , ((modm .|. controlMask, xK_f     ), spawn "firefox")
