@@ -125,9 +125,9 @@ for i in groups:
 groups[6]
 #================ LAYOUTS ================
 colors=[
-	"#FF7C00",	#0 - Color of the active border	(windows)
+	"#B294BB",	#0 - Color of the active border	(windows)
 	"#55445E",	#1 - Color of the NON active border (windows)
-	"#FF7C00",	#2 - Color of the active group	(bar)
+	"#B294BB",	#2 - Color of the active group	(bar)
 	"#1f232f",	#3 - Color of the bar's background	(bar)
 	"#f3f4f5",	#4 - Color of NON empty group	(bar)
 	"#a9a9a9",	#5 - Color of empty group	(bar)
