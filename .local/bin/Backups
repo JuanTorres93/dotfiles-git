@@ -8,12 +8,12 @@ exclusionsFile="/home/juan/.local/bin/backups-exclude-directories"
 
 case "$selection" in
 	"Create")
-		sudo rsync -aAX --progress --delete --dry-run --exclude-from "$exclusionsFile" "$systemDir" "$backupDir"
+		sudo rsync -aAX --progress --delete --exclude-from "$exclusionsFile" "$systemDir" "$backupDir"
 		;;
 
 	"Restore")
 		# Restore
-		sudo rsync -aAX --progress --delete --dry-run --exclude-from "$exclusionsFile" "$backupDir" "$systemDir"
+		sudo rsync -aAX --progress --delete --exclude-from "$exclusionsFile" "$backupDir" "$systemDir"
 		;;
 	*)
 		;;

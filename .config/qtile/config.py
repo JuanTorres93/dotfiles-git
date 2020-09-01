@@ -131,8 +131,8 @@ colors=[
 	"#1f232f",	#3 - Color of the bar's background	(bar)
 	"#f3f4f5",	#4 - Color of NON empty group	(bar)
 	"#a9a9a9",	#5 - Color of empty group	(bar)
-	"#1B275C",	#6 - Color 2 of powerline       (bar)
-	"#265061",	#7 - Color 1 of powerline	(bar)
+	"#31569A",	#6 - Color 2 of powerline       (bar)
+	"#A183AA",	#7 - Color 1 of powerline	(bar)
 	"#B82C32"	#8 - Color of urgent message    (bar)
 	]
 

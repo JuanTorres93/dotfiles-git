@@ -9,7 +9,7 @@ xset -b
 numlockx on
 xsetroot -cursor_name left_ptr
 
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
 export EDITOR=vim
 export BROWSER=firefox
 export TRUEBROWSER=firefox

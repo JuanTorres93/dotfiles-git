@@ -48,6 +48,7 @@ alias subdl-name="subdl --existing=overwrite --force-filename "
 
 # Useful aliases
 alias cdr="cd $MY_RUST_PROJECTS_DIRECTORY"
+alias TFM="cd $MY_RUST_PROJECTS_DIRECTORY/TFM && vim -c 'source ~/.vim/sessions/rust-session.vim' ./src/main.rs"
 
 alias gs="git status "
 alias ga="git add "
