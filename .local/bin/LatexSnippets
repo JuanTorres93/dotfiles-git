@@ -80,7 +80,15 @@ function section {
 function images {
 	imDir="./Images/"
 	imageName=$(ls "$imDir" | dmenu $dmenu_img -i -l 10)
-	echo "\IncludeImage{Images/$imageName}[0.9][<++>][fig:<++>]"
+	# The line just below is the original version, it uses a custom function.
+	#echo "\IncludeImage{Images/$imageName}[0.9][<++>][fig:<++>]"
+
+	echo "\begin{figure}[h!]"
+	echo "	\centering"
+	echo "	\includegraphics[width=0.9\linewidth]{Images/$imageName}"
+	echo "	\caption{<++>}"
+	echo "	\label{fig:<++>}"
+	echo "\end{figure}"
 }
 
 function figures {
