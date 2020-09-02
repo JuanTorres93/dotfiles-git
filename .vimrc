@@ -33,7 +33,7 @@ set ruler
 set hlsearch
 set ignorecase
 set title
-set foldlevel=0
+set foldlevel=10
 set foldmethod=indent
 set backup
 set backupdir=~/.vim/backups
