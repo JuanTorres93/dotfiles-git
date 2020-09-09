@@ -147,3 +147,5 @@ autocmd FileType rust inoremap ;FOR for in <++> {<Return><++><Return>}<Esc>2k0ea
 autocmd FileType rust inoremap ;IF if {<Return><++><Return>}<Esc>2k0ea<Space>
 " Create match
 autocmd FileType rust inoremap ;MATCH match {<Return><++> => <++>,<Return>}<Esc>2k0ea<Space>
+" Insert arg from clap crate
+autocmd FileType rust inoremap ;ARG .arg(<Return>Arg::with_name("<++>")<Return>.short("<++>")<Return>.long("<++>")<Return>.multiple(<++>)<Return>.takes_value(<++>)<Return>.help("<++>")<Return>.required(<++>)<Return>)

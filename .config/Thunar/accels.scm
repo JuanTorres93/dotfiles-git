@@ -9,6 +9,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/empty-trash" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/zoom-in-alt" "<Primary>equal")
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-side-pane-menu" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/159ee6e4faffd1017b04faa94bcd0007" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-network" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/4174d416c29ca306a30e2659de4fb892" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/switch-next-tab" "<Primary>Page_Down")

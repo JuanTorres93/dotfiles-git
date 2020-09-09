@@ -18,7 +18,7 @@ if [ -d "$HOME/.bin" ] ;
 fi
 
 # Activate vi mode
-set -o vi
+# set -o vi
 
 # ----- ALIASES -----
 # changing programs
