@@ -7,13 +7,28 @@
 "						~/.vimrc
 
 
-" This two lines are needed in order to get pathogen functional
-execute pathogen#infect()
-" In addition, filetype allows the detection of different file types
-filetype plugin indent on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Do not make compatible with vi
-set nocompatible              
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'AlessandroYorba/Alduin'
+Plugin 'rust-lang/rust.vim'
+Plugin 'xuhdev/vim-latex-live-preview'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 " Enable systax highliting
 syntax on
 
@@ -21,8 +36,12 @@ syntax on
 " vim-airline-themes
 let g:airline_theme='onedark'
 colo alduin
+
+" vim-latex-live-preview
 let g:livepreview_previewer = 'zathura'
-let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+" vimtex
+" let g:tex_flavor ='latex'
 
 "======== Vim parameters configuration =========
 set number
@@ -35,8 +54,6 @@ set ignorecase
 set title
 set foldlevel=10
 set foldmethod=indent
-set backup
-set backupdir=~/.vim/backups
 set viminfo+=n~/.vim/viminfo
 
 set splitbelow splitright
