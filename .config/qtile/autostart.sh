@@ -18,7 +18,7 @@ picom --config ~/.config/picom/picom.conf --focus-exclude "x = 0 && y = 0 && ove
 run numlockx on &
 run volumeicon &
 run udiskie &
-#run nm-applet &
+run nm-applet &
 redshift -b 1:0.7 &
 parcellite -n &
 
