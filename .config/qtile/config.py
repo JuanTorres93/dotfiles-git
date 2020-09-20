@@ -126,14 +126,14 @@ for i in groups:
 groups[6]
 #================ LAYOUTS ================
 colors=[
-	"#B294BB",	#0 - Color of the active border	(windows)
-	"#55445E",	#1 - Color of the NON active border (windows)
-	"#B294BB",	#2 - Color of the active group	(bar)
+	"#4D7B8C",	#0 - Color of the active border	(windows)
+	"#112233",	#1 - Color of the NON active border (windows)
+	"#33859d",	#2 - Color of the active group	(bar)
 	"#1f232f",	#3 - Color of the bar's background	(bar)
 	"#f3f4f5",	#4 - Color of NON empty group	(bar)
 	"#a9a9a9",	#5 - Color of empty group	(bar)
-	"#31569A",	#6 - Color 2 of powerline       (bar)
-	"#A183AA",	#7 - Color 1 of powerline	(bar)
+	"#245361",	#6 - Color 2 of powerline       (bar)
+	"#081F2D",	#7 - Color 1 of powerline	(bar)
 	"#B82C32"	#8 - Color of urgent message    (bar)
 	]
 
@@ -147,9 +147,7 @@ def init_layout_theme():
 layout_theme = init_layout_theme()
 
 layouts = [
-        layout.MonadTall(**layout_theme, ratio = 0.55, 
-                         #new_at_current = True,
-                         ),
+        layout.MonadTall(**layout_theme, ratio = 0.55),
 	layout.RatioTile(**layout_theme),
 	layout.MonadWide(**layout_theme),
 ]
@@ -160,13 +158,49 @@ sep_padding = 10
 sep_linewidth = 1
 
 widget_defaults = dict(
-    font='awesome',
-    #font='Droid Sans Mono',
+    font='Droid Sans Mono',
     fontsize=13,
     padding=2,
     background=colors[3]
 )
 extension_defaults = widget_defaults.copy()
+
+def TextBoxSeparator(color):
+    font='awesome',
+    font_size = 60
+    PADDING = 0
+    separator = ""
+
+    if color == 1:
+        return widget.TextBox(
+            separator,
+            fontsize = font_size,
+            padding = PADDING,
+            foreground = colors[6],
+            background = colors[7])
+    elif color == 2:
+        return widget.TextBox(
+            separator,
+            fontsize = font_size,
+            padding = PADDING,
+            foreground = colors[7],
+            background = colors[6])
+    elif color == 3:
+        return widget.TextBox(
+            separator,
+            fontsize = font_size,
+            padding = PADDING,
+            foreground = colors[7],
+            background = colors[3])
+    else:
+        return widget.TextBox(
+            separator,
+            fontsize = font_size,
+            padding = PADDING,
+            foreground = colors[6],
+            background = colors[3])
+    
+
 
 
 #================ SCREENS ================
@@ -203,35 +237,41 @@ screens = [
 
                 widget.WindowName(),
 
+                #TextBoxSeparator(4),
+#
+                #widget.MemoryGraph(
+                        #graph_color = 'bb1111',
+                        #border_color = '888888',
+                        #border_width = 1,
+                        #foreground = colors[7],
+                        #background = colors[6]
+                #),
+#
+                #TextBoxSeparator(2),
+#
+                #widget.CPUGraph(
+                        #graph_color = '1111bb',
+                        #border_color = '888888',
+                        #border_width = 1,
+                        #foreground = colors[6],
+                        #background = colors[7]
+                #),
+
                 #widget.TextBox(
                         #"",
                         #fontsize = 40,
                         #padding = -1,
-                        #foreground = colors[7],
-                        #background = colors[3]),
-
-                #widget.Pacman(
-                        #execute = "alacritty -e sudo pacman -Syu && cleanup",
-                        #background = colors[7]),
-
-                widget.TextBox(
-                        "",
-                        fontsize = 40,
-                        padding = -1,
-                        foreground = colors[6],
+                        #foreground = colors[6],
                         #background = colors[7]
-                        ),
+                        #),
+
+                TextBoxSeparator(4),
 
                 widget.Clock(
                         format='%d-%m-%Y',
                         background = colors[6]),
 
-                widget.TextBox(
-                        "",
-                        fontsize = 40,
-                        padding = -1,
-                        foreground = colors[7],
-                        background = colors[6]),
+                TextBoxSeparator(2),
 
                 widget.Clock(format='%H:%M:%S',
                         background = colors[7]),
@@ -242,12 +282,7 @@ screens = [
 			#foreground = colors[4]
 			#),
 #
-                widget.TextBox(
-                        "",
-                        fontsize = 40,
-                        padding = -1,
-                        foreground = colors[6],
-                        background = colors[7]),
+                TextBoxSeparator(1),
 
                 widget.Systray(
                         padding = 9,
@@ -261,8 +296,8 @@ screens = [
 			),
 
             ],
-            24,
-            opacity=0.93
+            22,
+            opacity=0.95
         ),
     ),
 ]
