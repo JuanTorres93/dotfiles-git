@@ -97,8 +97,7 @@ groups = []
 
 groups_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-groups_labels = ["", "", "", "", "", "", "", "", "", ""]	#Margin_y is used to align the group labels, the margin differs...
-# https://fontawesome.com/cheatsheet  
+groups_labels = ["", "", "", "", "", "", "", "", "", ""]	#Margin_y is used to align the group labels, the margin differs...
 
 groups_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
@@ -158,7 +157,7 @@ sep_padding = 10
 sep_linewidth = 1
 
 widget_defaults = dict(
-    font='Droid Sans Mono',
+    font='ttf-nerd-terminus',
     fontsize=13,
     padding=2,
     background=colors[3]
@@ -166,9 +165,9 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 def TextBoxSeparator(color):
-    font='awesome',
-    font_size = 60
-    PADDING = 0
+    font='ttf-nerd-terminus',
+    font_size = 75
+    PADDING = -13
     separator = ""
 
     if color == 1:
@@ -208,18 +207,12 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-		#widget.Sep(
-			#linewidth = 0,
-			#padding = 2,
-			#foreground = colors[4]
-			#),
-
                 widget.GroupBox(
 			active = colors[4],
+                        fontsize=25,
 			borderwidth=3,
 			center_aligned=True,
 			disable_drag = True,
-			font="awesome",
 			hide_unused = True,
 			highlight_method = "line",
 			this_current_screen_border = colors[2],
@@ -276,12 +269,6 @@ screens = [
                 widget.Clock(format='%H:%M:%S',
                         background = colors[7]),
 
-                #widget.Sep(
-			#linewidth = sep_linewidth,
-			#padding = sep_padding,
-			#foreground = colors[4]
-			#),
-#
                 TextBoxSeparator(1),
 
                 widget.Systray(
