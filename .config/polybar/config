@@ -19,14 +19,20 @@
 [colors]
 background = #F71C2023
 background-modules = #F7253442
+background-active = #525252
 
 foreground = #dfdfdf
 foreground-alt = #555
+foreground-active = #8CA0D7
+foreground-occupied = foreground
 
 underline-default = #2222FF
+underline-active = #91C4F2
 
 secondary = #e60053
 alert = #bd2c40
+occupied-foreground = #8CA0D7
+empty-foreground = #666666
 
 [bar/xmonad]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -58,7 +64,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = "TerminessTTF Nerd Font Mono:pixelsize=20;3"
 
 modules-left = ewmh xwindow
-modules-center = mpd
+modules-center = 
 modules-right = filesystem cpu memory date
 
 tray-position = right
@@ -76,15 +82,19 @@ enable-click=true
 enable-scroll=false
 
 format=<label-state>
+format-foreground=${colors.foreground}
+format-background=${colors.background}
+
 label-monitor = %name%
 
 label-active=%name%
-label-active-foreground=${colors.foreground}
-label-active-background=#525252
-label-active-underline=#B294BB
+label-active-foreground=${colors.foreground-active}
+label-active-background=${colors.background-active}
+label-active-underline=${colors.underline-active}
 label-active-padding=2
 
 label-occupied=%name%
+label-occupied-foreground=${colors.foreground-occupied}
 label-occupied-background=${colors.background}
 label-occupied-padding=2
 
@@ -95,11 +105,9 @@ label-urgent-underline=${colors.alert}
 label-urgent-padding=2
 
 label-empty=%name%
-label-empty-foreground=${colors.foreground}
+label-empty-foreground=${colors.empty-foreground}
 label-empty-padding=2
 
-format-foreground=${colors.foreground}
-format-background=${colors.background}
 
 [module/xwindow]
 type = internal/xwindow
