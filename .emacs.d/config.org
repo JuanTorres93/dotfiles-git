@@ -1,0 +1,45 @@
+* Built-in config
+** Disable menu bar, tool bar and scroll bar
+#+begin_src emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+** Disable splash screen
+#+begin_src emacs-lisp
+(setq inhibit-splash-screen t)
+#+end_src
+
+** Line numbers configuration
+#+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
+#+end_src
+
+** Current line highlight
+#+begin_src emacs-lisp
+(global-hl-line-mode t)
+#+end_src
+
+** Natura scroll when going beyond the screen
+#+begin_src emacs-lisp
+(setq scroll-conservatively 100)
+#+end_src
+
+* MELPA packages
+** which-key
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode))
+#+end_src
+
+** beacon
+#+begin_src emacs-lisp
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode 1))
+#+end_src
