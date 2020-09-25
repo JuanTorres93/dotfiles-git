@@ -17,6 +17,10 @@
 (setq display-line-numbers-type 'relative)
 #+end_src
 
+** Column number
+#+begin_src emacs-lisp
+(column-number-mode 1)
+#+end_src
 ** Current line highlight
 #+begin_src emacs-lisp
 (global-hl-line-mode t)
@@ -27,6 +31,17 @@
 (setq scroll-conservatively 100)
 #+end_src
 
+** IDO
+#+begin_src emacs-lisp
+  (setq ido-enable-flex-matching nil)
+  (setq ido-enable-create-new-buffer 'always)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+#+end_src
+** Enable ibuffer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+end_src
 * MELPA packages
 ** which-key
 #+begin_src emacs-lisp
@@ -42,4 +57,119 @@
   :ensure t
   :init
   (beacon-mode 1))
+#+end_src
+** org-bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+** ido-vertical-mode
+#+begin_src emacs-lisp
+  (use-package ido-vertical-mode
+    :ensure t
+    :init
+    (ido-vertical-mode 1))
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+end_src
+** smex
+This package acts like ido but for the M-x prompt.
+#+begin_src emacs-lisp
+  (use-package smex
+    :ensure t
+    :init
+    (smex-initialize)
+    :bind
+    ("M-x" . smex))
+#+end_src
+** avy
+#+begin_src emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    ("M-s" . avy-goto-char))
+#+end_src
+** Raimbow packages
+*** rainbow-mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :ensure t
+    :init (rainbow-mode 1))
+#+end_src
+*** raimbow-delimiter
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    (rainbow-delimiters-mode 1))
+#+end_src
+** sudo-edit
+Provides a way of editting files as sudo. Currently I don't see the need of assing it a keybinding.
+#+begin_src emacs-lisp
+  (use-package sudo-edit
+    :ensure t)
+#+end_src
+** dashboard
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((recents . 10)))
+    ;(setq dashboard-banner-logo-title "Initial screen")
+)
+#+end_src
+** company
+Autocompletion
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode))
+#+end_src
+* My custom functions
+** Edit config file (org mode)
+#+begin_src emacs-lisp
+  (defun edit-config-file-org ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+
+  (global-set-key (kbd "C-c e") 'edit-config-file-org)
+#+end_src
+** Reload config file
+#+begin_src emacs-lisp
+  (defun config-reload ()
+    (interactive)
+    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+
+  (global-set-key (kbd "C-c r") 'config-reload)
+#+end_src
+** Split windows
+When making a vertical or horizontal split, the cursor will follow and make the new window the active one
+#+begin_src emacs-lisp
+  (defun split-and-follow-horizontally ()
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1))
+
+  (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+
+  (defun split-and-follow-vertically ()
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1))
+
+  (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+
+#+end_src
+** kill current buffer
+#+begin_src emacs-lisp
+  (defun kill-current-buffer ()
+    (interactive)
+    (kill-buffer (current-buffer)))
+
+  (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+end_src
