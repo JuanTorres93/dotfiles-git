@@ -27,7 +27,7 @@
  '(custom-safe-themes
    '("e6ff132edb1bfa0645e2ba032c44ce94a3bd3c15e3929cdf6c049802cf059a2a" default))
  '(package-selected-packages
-   '(company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes)))
+   '(powerline company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

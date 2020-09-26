@@ -42,6 +42,23 @@
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
+** Org mode configuration
+*** Enable line wrapping
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook '(lambda () (visual-line-mode 1)))
+#+end_src
+*** Agenda files
+#+begin_src emacs-lisp
+  (setq org-agenda-files (append
+			  (file-expand-wildcards "~/org-agenda/*.org")))
+#+end_src
+*** Agenda shows higher levels
+#+begin_src emacs-lisp
+  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s %b")
+   (todo . " %i %-12:c")
+   (tags . " %i %-12:c")
+   (search . " %i %-12:c")))
+#+end_src
 * MELPA packages
 ** which-key
 #+begin_src emacs-lisp
@@ -128,6 +145,13 @@ Autocompletion
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
+** powerline
+#+begin_src emacs-lisp
+  (use-package powerline
+    :ensure t
+    :init
+    (powerline-center-theme))
+#+end_src
 * My custom functions
 ** Edit config file (org mode)
 #+begin_src emacs-lisp
@@ -173,3 +197,4 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 
   (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+end_src
+
