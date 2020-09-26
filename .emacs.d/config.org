@@ -138,13 +138,18 @@ Provides a way of editting files as sudo. Currently I don't see the need of assi
 #+end_src
 ** dashboard
 #+begin_src emacs-lisp
-  (use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook)
-    (setq dashboard-items '((recents . 10)))
-    ;(setq dashboard-banner-logo-title "Initial screen")
-)
+      (use-package dashboard
+        :ensure t
+        :config
+        (dashboard-setup-startup-hook)
+    )
+
+  (setq dashboard-items '((agenda)
+                          (recents . 10)))
+  (setq show-week-agenda-p t)
+  (setq dashboard-startup-banner 'logo)
+  ;(setq dashboard-banner-logo-title (emacs-version))
+  ;(setq dashboard-center-content t)
 #+end_src
 ** company
 Autocompletion
