@@ -45,6 +45,10 @@ Currently, this configuration has only been tested in arch-based systems. It is 
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
 ** Org mode configuration
+*** Indentation
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook 'org-indent-mode)
+#+end_src
 *** Enable line wrapping
 #+begin_src emacs-lisp
   (add-hook 'org-mode-hook '(lambda () (visual-line-mode 1)))
@@ -117,7 +121,7 @@ This package acts like ido but for the M-x prompt.
 #+begin_src emacs-lisp
   (use-package rainbow-mode
     :ensure t
-    :init (rainbow-mode 1))
+    :init (add-hook 'prog-mode-hook 'rainbow-mode))
 #+end_src
 *** raimbow-delimiter
 #+begin_src emacs-lisp
@@ -147,8 +151,21 @@ Autocompletion
 #+begin_src emacs-lisp
   (use-package company
     :ensure t
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 3)
     :init
     (add-hook 'after-init-hook 'global-company-mode))
+
+  ;; Remap the navigation to C-n and C-p instead of M-n and M-p
+  (with-eval-after-load 'company
+    (define-key-after company-active-map (kbd "M-n") nil)
+    (define-key-after company-active-map (kbd "M-p") nil)
+
+
+    (define-key-after company-active-map (kbd "C-n") #'company-select-next)
+    (define-key-after company-active-map (kbd "C-p") #'company-select-previous)
+    )
 #+end_src
 ** powerline-evil
 #+begin_src emacs-lisp
@@ -177,6 +194,23 @@ Better emacs search
   (use-package swiper
     :ensure t
     :bind ("C-s" . swiper))
+#+end_src
+** yasnippets
+Installation
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :config
+    (use-package yasnippet-snippets
+      :ensure t)
+    (yas-reload-all))
+#+end_src
+
+Initialization
+#+begin_src emacs-lisp
+  (add-hook 'latex-mode-hook 'yas-minor-mode)
+  (add-hook 'rust-mode-hook 'yas-minor-mode)
+  (add-hook 'org-mode-hook 'yas-minor-mode)
 #+end_src
 * My custom functions
 ** Edit config file (org mode)
@@ -232,4 +266,9 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 
   (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+end_src
+
+** Show snippets
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c s") 'yas-describe-tables)
+#+END_SRC
 
