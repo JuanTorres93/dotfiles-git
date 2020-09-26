@@ -1,3 +1,5 @@
+* Dependencies
+Currently, this configuration has only been tested in arch-based systems. It is needed the package nerd-fonts-mononoki for the correct display of the font.
 * Built-in config
 ** Disable menu bar, tool bar and scroll bar
 #+begin_src emacs-lisp
@@ -49,8 +51,7 @@
 #+end_src
 *** Agenda files
 #+begin_src emacs-lisp
-  (setq org-agenda-files (append
-			  (file-expand-wildcards "~/org-agenda/*.org")))
+  (setq org-agenda-files (list "~/org-agenda"))
 #+end_src
 *** Agenda shows higher levels
 #+begin_src emacs-lisp
@@ -59,6 +60,10 @@
    (tags . " %i %-12:c")
    (search . " %i %-12:c")))
 #+end_src
+** Enable parenthesis matching highlight
+   #+begin_src emacs-lisp
+     (show-paren-mode 1)
+   #+end_src
 * MELPA packages
 ** which-key
 #+begin_src emacs-lisp
@@ -145,12 +150,33 @@ Autocompletion
     :init
     (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
-** powerline
+** powerline-evil
 #+begin_src emacs-lisp
-  (use-package powerline
+  (use-package powerline-evil
     :ensure t
     :init
-    (powerline-center-theme))
+    (powerline-evil-vim-color-theme))
+#+end_src
+** popup-kill-ring
+This package shows the kill-ring when cycling through it
+#+begin_src emacs-lisp
+  (use-package popup-kill-ring
+    :ensure t
+    :bind ("M-y" . popup-kill-ring))
+#+end_src
+** evil-mode
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure t
+    :init
+    (evil-mode 1))
+#+end_src
+** swiper
+Better emacs search
+#+begin_src emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind ("C-s" . swiper))
 #+end_src
 * My custom functions
 ** Edit config file (org mode)
@@ -159,7 +185,16 @@ Autocompletion
     (interactive)
     (find-file "~/.emacs.d/config.org"))
 
-  (global-set-key (kbd "C-c e") 'edit-config-file-org)
+  (global-set-key (kbd "C-c c") 'edit-config-file-org)
+#+end_src
+** Edit agenda
+#+begin_src emacs-lisp
+  (defun edit-my-org-agenda ()
+    (interactive)
+    (find-file "~/org-agenda/universidad.org"))
+
+  (global-set-key (kbd "C-c a") 'edit-my-org-agenda)
+  (global-set-key (kbd "C-c A") 'org-agenda)
 #+end_src
 ** Reload config file
 #+begin_src emacs-lisp
