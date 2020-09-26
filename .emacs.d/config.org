@@ -1,6 +1,26 @@
 * Dependencies
 Currently, this configuration has only been tested in arch-based systems. It is needed the package nerd-fonts-mononoki for the correct display of the font.
 * Built-in config
+** Org mode configuration
+*** Indentation
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook 'org-indent-mode)
+#+end_src
+*** Enable line wrapping
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook '(lambda () (visual-line-mode 1)))
+#+end_src
+*** Agenda files
+#+begin_src emacs-lisp
+  (setq org-agenda-files (list "~/org-agenda"))
+#+end_src
+*** Agenda shows higher levels
+#+begin_src emacs-lisp
+  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s %b")
+   (todo . " %i %-12:c")
+   (tags . " %i %-12:c")
+   (search . " %i %-12:c")))
+#+end_src
 ** Disable menu bar, tool bar and scroll bar
 #+begin_src emacs-lisp
 (tool-bar-mode -1)
@@ -28,7 +48,7 @@ Currently, this configuration has only been tested in arch-based systems. It is 
 (global-hl-line-mode t)
 #+end_src
 
-** Natura scroll when going beyond the screen
+** Natural scroll when going beyond the screen
 #+begin_src emacs-lisp
 (setq scroll-conservatively 100)
 #+end_src
@@ -43,26 +63,6 @@ Currently, this configuration has only been tested in arch-based systems. It is 
 ** Enable ibuffer
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
-#+end_src
-** Org mode configuration
-*** Indentation
-#+begin_src emacs-lisp
-  (add-hook 'org-mode-hook 'org-indent-mode)
-#+end_src
-*** Enable line wrapping
-#+begin_src emacs-lisp
-  (add-hook 'org-mode-hook '(lambda () (visual-line-mode 1)))
-#+end_src
-*** Agenda files
-#+begin_src emacs-lisp
-  (setq org-agenda-files (list "~/org-agenda"))
-#+end_src
-*** Agenda shows higher levels
-#+begin_src emacs-lisp
-  (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s %b")
-   (todo . " %i %-12:c")
-   (tags . " %i %-12:c")
-   (search . " %i %-12:c")))
 #+end_src
 ** Enable parenthesis matching highlight
    #+begin_src emacs-lisp
