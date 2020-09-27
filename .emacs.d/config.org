@@ -21,6 +21,22 @@ Currently, this configuration has only been tested in arch-based systems. It is 
    (tags . " %i %-12:c")
    (search . " %i %-12:c")))
 #+end_src
+*** Do not prompt for code execution
+#+begin_src emacs-lisp
+   (setq org-confirm-babel-evaluate nil)
+#+end_src
+*** Code evaluation
+#+begin_src emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((emacs-lisp . t)
+                               (lisp . t)
+                               (octave . t)
+                               ))
+#+end_src
+*** Weeks in calendar starts in Mondays
+#+begin_src emacs-lisp
+  (setq calendar-week-start-day 1)
+#+end_src
 ** Disable menu bar, tool bar and scroll bar
 #+begin_src emacs-lisp
 (tool-bar-mode -1)
@@ -33,6 +49,15 @@ Currently, this configuration has only been tested in arch-based systems. It is 
 (setq inhibit-splash-screen t)
 #+end_src
 
+** Disable backups and automatic save
+#+begin_src emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+#+end_src
+** Follow symlinks for version control
+#+begin_src emacs-lisp
+  (setq vc-follow-symlinks nil)
+#+end_src
 ** Line numbers configuration
 #+begin_src emacs-lisp
 (global-display-line-numbers-mode 1)
