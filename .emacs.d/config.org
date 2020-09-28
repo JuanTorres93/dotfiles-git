@@ -55,8 +55,9 @@ Currently, this configuration has only been tested in arch-based systems. It is 
   (setq auto-save-default nil)
 #+end_src
 ** Follow symlinks for version control
+This is done at startup in order not to get emacs asking to load its own configuration.
 #+begin_src emacs-lisp
-  (setq vc-follow-symlinks nil)
+  ;(add-hook 'after-init-hook (lambda () (vc-follow-symlinks nil)))
 #+end_src
 ** Line numbers configuration
 #+begin_src emacs-lisp
@@ -221,9 +222,9 @@ This package shows the kill-ring when cycling through it
 ** swiper
 Better emacs search
 #+begin_src emacs-lisp
-  (use-package swiper
-    :ensure t
-    :bind ("C-s" . swiper))
+;  (use-package swiper
+;    :ensure t
+;    :bind ("C-s" . swiper))
 #+end_src
 ** yasnippets
 Installation
@@ -238,9 +239,55 @@ Installation
 
 Initialization
 #+begin_src emacs-lisp
-  (add-hook 'latex-mode-hook 'yas-minor-mode)
+  (add-hook 'LaTeX-mode-hook 'yas-minor-mode)
   (add-hook 'rust-mode-hook 'yas-minor-mode)
   (add-hook 'org-mode-hook 'yas-minor-mode)
+#+end_src
+** auctex
+Paquete base
+#+begin_src emacs-lisp
+  (use-package auctex
+    :defer t
+    :ensure t
+    :config
+    ((require 'tex-site)
+    (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+    (setq reftex-plug-into-AUCTex t)
+    (global-font-lock-mode t)))
+#+end_src
+
+Electric dollar symbols
+#+begin_src emacs-lisp
+  (add-hook 'LaTeX-mode-hook
+             (lambda () (set (make-local-variable 'TeX-electric-math)
+                             (cons "$" "$"))))
+#+end_src
+
+Electric left and right
+#+begin_src emacs-lisp
+  (setq TeX-arg-right-insert-p t)
+  (setq LaTeX-electric-left-right-brace t)
+#+end_src
+
+Math mode enabled (C-c ~)
+#+begin_src emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+#+end_src
+
+Automatic braces when using ^ or _
+#+begin_src emacs-lisp
+  (setq TeX-electric-sub-and-superscript t)
+#+end_src
+
+Autofill mode
+#+begin_src emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+#+end_src
+
+Prettify symbols
+#+begin_src emacs-lisp
+  (add-hook 'LaTeX-mode-hook
+            (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
 #+end_src
 * My custom functions
 ** Edit config file (org mode)
@@ -259,6 +306,14 @@ Initialization
 
   (global-set-key (kbd "C-c a") 'edit-my-org-agenda)
   (global-set-key (kbd "C-c A") 'org-agenda)
+#+end_src
+** Edit TFM
+#+begin_src emacs-lisp
+  (defun edit-my-TFM ()
+    (interactive)
+    (find-file "~/hdd/University/Master/2020-2021/Primer cuatrimestre/Trabajo fin de máster/TFM Memoria/TFM.tex"))
+
+  (global-set-key (kbd "C-c t") 'edit-my-TFM)
 #+end_src
 ** Reload config file
 #+begin_src emacs-lisp
@@ -301,4 +356,15 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c s") 'yas-describe-tables)
 #+END_SRC
+
+** Goto placeholder
+#+begin_src emacs-lisp
+  (defun my-goto-place-holder ()
+    (interactive)
+    (search-forward "<++>")
+    (backward-char 4)
+    (delete-char 4))
+
+  (global-set-key (kbd "C-ñ SPC") 'my-goto-place-holder)
+#+end_src
 

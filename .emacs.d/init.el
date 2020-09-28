@@ -23,11 +23,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-view-program-selection
+   '(((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Zathura")
+     (output-html "xdg-open")))
  '(custom-enabled-themes '(doom-dracula))
  '(custom-safe-themes
    '("e6ff132edb1bfa0645e2ba032c44ce94a3bd3c15e3929cdf6c049802cf059a2a" default))
  '(package-selected-packages
-   '(yasnippet-snippets yasnippet yasnippets swiper powerline-evil evil evil-mode popup-kill-ring powerline company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes)))
+   '(auctex yasnippet-snippets yasnippet yasnippets swiper powerline-evil evil evil-mode popup-kill-ring powerline company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
