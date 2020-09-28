@@ -300,13 +300,27 @@ Prettify symbols
 #+end_src
 ** Edit agenda
 #+begin_src emacs-lisp
+  ; University
   (defun edit-my-org-agenda ()
     (interactive)
     (find-file "~/org-agenda/universidad.org"))
 
   (global-set-key (kbd "C-c a") 'edit-my-org-agenda)
+
+  ; Personal
+  (defun edit-my-personal-org-agenda ()
+    (interactive)
+    (find-file "~/org-agenda/personal.org"))
+
+  (global-set-key (kbd "C-c p") 'edit-my-personal-org-agenda)
+
+  ; Show agenda
   (global-set-key (kbd "C-c A") 'org-agenda)
 #+end_src
+
+#+RESULTS:
+: org-agenda
+
 ** Edit TFM
 #+begin_src emacs-lisp
   (defun edit-my-TFM ()
