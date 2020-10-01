@@ -142,7 +142,7 @@ This package acts like ido but for the M-x prompt.
     :bind
     ("M-s" . avy-goto-char))
 #+end_src
-** Raimbow packages
+** Rainbow packages
 *** rainbow-mode
 #+begin_src emacs-lisp
   (use-package rainbow-mode
@@ -183,10 +183,10 @@ Autocompletion
   (use-package company
     :ensure t
     :config
-    (setq company-idle-delay 0)
+    (setq company-idle-delay 1)
     (setq company-minimum-prefix-length 3)
     :init
-    (add-hook 'after-init-hook 'global-company-mode))
+    (add-hook 'prog-init-hook 'global-company-mode))
 
   ;; Remap the navigation to C-n and C-p instead of M-n and M-p
   (with-eval-after-load 'company
@@ -244,7 +244,7 @@ Initialization
   (add-hook 'org-mode-hook 'yas-minor-mode)
 #+end_src
 ** auctex
-Paquete base
+Base package
 #+begin_src emacs-lisp
   (use-package auctex
     :defer t
@@ -254,6 +254,12 @@ Paquete base
     (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
     (setq reftex-plug-into-AUCTex t)
     (global-font-lock-mode t)))
+#+end_src
+
+References
+#+begin_src emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'reftex-mode)
+  (setq reftex-plug-into-AUCTeX t)
 #+end_src
 
 Electric dollar symbols
@@ -286,8 +292,32 @@ Autofill mode
 
 Prettify symbols
 #+begin_src emacs-lisp
-  (add-hook 'LaTeX-mode-hook
-            (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
+  ;(add-hook 'LaTeX-mode-hook
+  ;          (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
+#+end_src
+** rust-mode
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :ensure t
+    )
+
+  (require 'rust-mode)
+#+end_src
+
+Indentation
+#+begin_src emacs-lisp
+  (add-hook 'rust-mode-hook
+            (lambda () (setq indent-tabs-mode nil)))
+#+end_src
+
+Code formatting on save (Default C-c C-f)
+#+begin_src emacs-lisp
+  (setq rust-format-on-save t)
+#+end_src
+
+Cargo run
+#+begin_src emacs-lisp
+  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 #+end_src
 * My custom functions
 ** Edit config file (org mode)
@@ -380,5 +410,26 @@ When making a vertical or horizontal split, the cursor will follow and make the 
     (delete-char 4))
 
   (global-set-key (kbd "C-ñ SPC") 'my-goto-place-holder)
+#+end_src
+
+** Change dictionary
+In order this function to work, some dictionaries must have been downloaded with the names between the quotation marks. The ones that I use are downloaded from libreoffice.
+#+begin_src emacs-lisp
+  (defun change-dictionary-to-english ()
+    (interactive)
+    (ispell-change-dictionary "en_GB")
+    (setq flyspell-mode t)
+    (flyspell-buffer)
+    )
+
+  (defun change-dictionary-to-spanish ()
+    (interactive)
+    (ispell-change-dictionary "es_ANY")
+    (setq flyspell-mode t)
+    (flyspell-buffer)
+    )
+
+  (global-set-key (kbd "<f12>") 'change-dictionary-to-spanish)
+  (global-set-key (kbd "C-<f12>") 'change-dictionary-to-english)
 #+end_src
 
