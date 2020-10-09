@@ -183,7 +183,7 @@ Autocompletion
   (use-package company
     :ensure t
     :config
-    (setq company-idle-delay 1)
+    (setq company-idle-delay 0)
     (setq company-minimum-prefix-length 3)
     :init
     (add-hook 'prog-init-hook 'global-company-mode))
@@ -415,6 +415,8 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 ** Change dictionary
 In order this function to work, some dictionaries must have been downloaded with the names between the quotation marks. The ones that I use are downloaded from libreoffice.
 #+begin_src emacs-lisp
+  (setq ispell-program-name "hunspell")
+
   (defun change-dictionary-to-english ()
     (interactive)
     (ispell-change-dictionary "en_GB")
