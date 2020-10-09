@@ -68,26 +68,23 @@ myFocusedBorderColor = "#B294BB"
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    -- launch a terminal
+	-- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
-
-    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
-    , ((modm .|. controlMask,   xK_e     ), spawn "emacs")
-
-    , ((modm .|. controlMask, xK_f     ), spawn "firefox")
-    , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
-
-    -- launch xkill
     , ((modm,                 xK_Delete), spawn "xkill")
-
-    -- launch thunar
     , ((modm,                 xK_e     ), spawn "thunar")
-
-    -- launch ranger
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
 
-    -- launch thunderbird
+	-- Super + Shift + key
+    , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
+
+	-- Super + Control + key
+    , ((modm .|. controlMask,   xK_e     ), spawn "emacs")
+    , ((modm .|. controlMask, xK_f     ), spawn "firefox")
+    , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
+    , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
+
+	-- Single key
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 

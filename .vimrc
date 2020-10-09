@@ -22,9 +22,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'AlessandroYorba/Alduin'
+Plugin 'mhartington/oceanic-next'
 Plugin 'rust-lang/rust.vim'
 Plugin 'xuhdev/vim-latex-live-preview'
-
+Plugin 'kalafut/vim-taskjuggler'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -35,7 +36,7 @@ syntax on
 "======== Plugins configuration =========
 " vim-airline-themes
 let g:airline_theme='onedark'
-colo alduin
+colo OceanicNext
 
 " vim-latex-live-preview
 let g:livepreview_previewer = 'zathura'
