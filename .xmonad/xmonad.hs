@@ -83,6 +83,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
+    , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
 
 	-- Single key
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
