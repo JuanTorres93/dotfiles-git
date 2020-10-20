@@ -2,4 +2,4 @@
 # name: sum
 # key: sum
 # --
-\displaystyle\sum_{$1}^{$2}$0
+\displaystyle\sum_{${1:bottom_limit}}^{${2:top_limit}}$0
