@@ -22,12 +22,31 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'AlessandroYorba/Alduin'
+Plugin 'dracula/vim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'rust-lang/rust.vim'
 Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'kalafut/vim-taskjuggler'
+Plugin 'habamax/vim-godot'
+" Consult YouCompleteMe github page in order to install it correctly
+Plugin 'ycm-core/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+" Godot YouCompleteMe Configuration
+if !has_key( g:, 'ycm_language_server' )
+  let g:ycm_language_server = []
+endif
+
+let g:ycm_language_server += [
+  \   {
+  \     'name': 'godot',
+  \     'filetypes': [ 'gdscript' ],
+  \     'project_root_files': [ 'project.godot' ],
+  \     'port': 6008
+  \   }
+  \ ]
+
 filetype plugin indent on    " required
 
 " Enable systax highliting
@@ -36,7 +55,7 @@ syntax on
 "======== Plugins configuration =========
 " vim-airline-themes
 let g:airline_theme='onedark'
-colo OceanicNext
+colo dracula
 
 " vim-latex-live-preview
 let g:livepreview_previewer = 'zathura'
@@ -167,3 +186,8 @@ autocmd FileType rust inoremap ;IF if {<Return><++><Return>}<Esc>2k0ea<Space>
 autocmd FileType rust inoremap ;MATCH match {<Return><++> => <++>,<Return>}<Esc>2k0ea<Space>
 " Insert arg from clap crate
 autocmd FileType rust inoremap ;ARG .arg(<Return>Arg::with_name("<++>")<Return>.short("<++>")<Return>.long("<++>")<Return>.multiple(<++>)<Return>.takes_value(<++>)<Return>.help("<++>")<Return>.required(<++>)<Return>)
+
+
+
+"========  TaskJuggler bindings configuration =========
+autocmd FileType tjp inoremap ;T task <++> "<++>" {<Return><++><Return>}
