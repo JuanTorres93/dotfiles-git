@@ -89,6 +89,7 @@ function images {
 	echo "	\caption{<++>}"
 	echo "	\label{fig:<++>}"
 	echo "\end{figure}"
+	echo "\FloatBarrier"
 }
 
 function figures {
