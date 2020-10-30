@@ -84,6 +84,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
+    , ((modm .|. controlMask, xK_l     ), spawn "lmms")
+    , ((modm .|. controlMask, xK_g     ), spawn "godot")
 
 	-- Single key
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
