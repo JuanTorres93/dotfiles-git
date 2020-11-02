@@ -124,6 +124,8 @@ autocmd FileType sh nnoremap ;;u @='^x<C-V><Esc>j'<CR>
 
 
 "======== LaTeX bindings configuration =========
+" Show Latex configuration defined in this file
+autocmd FileType tex nnoremap <F8> :!grep "FileType tex" ~/.vimrc<Return>
 " Preview with vim-latex-live-preview
 autocmd FileType tex nnoremap ;PREV :LLPStartPreview<Return>
 " Compilation with texlive
