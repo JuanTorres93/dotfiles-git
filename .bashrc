@@ -29,6 +29,7 @@ alias ll='exa -l --color=auto'
 alias la='exa -la --color=auto'  
 
 alias manchunkin='godot ~/Manchunkin/source/project.godot & vim ~/Manchunkin/source/scripts/'  
+alias ggg='cd $HOME/Manchunkin/ && vim -c G'
 
 # adding flags
 #alias ls='ls --color=auto'  
