@@ -30,6 +30,8 @@ alias la='exa -la --color=auto'
 
 alias manchunkin='godot ~/Manchunkin/source/project.godot & vim ~/Manchunkin/source/scripts/'  
 alias ggg='cd $HOME/Manchunkin/ && vim -c G'
+alias pmiasma='cd $HOME/hdd/taskjuggler/ && tj3 miasma_project.tjp && firefox $HOME/hdd/taskjuggler/*.html'
+alias vmiasma='vim $HOME/hdd/taskjuggler/miasma_project.tjp'
 
 # adding flags
 #alias ls='ls --color=auto'  

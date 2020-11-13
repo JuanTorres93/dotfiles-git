@@ -131,3 +131,9 @@ navigator navbar {
   hidereport 0
 }
 
+taskreport breakdown "ProjectBreakdown.html" {
+  formats html
+  caption "Project Breakdown Structure"
+  headline "Project Breakdown"
+  columns name, start, end, effort, cost, chart
+}
