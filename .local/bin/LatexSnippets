@@ -100,7 +100,8 @@ function figures {
 function wrapfigure {
 	imageName=$(ls ./Images/ | dmenu $dmenu_fig -i -l 10)
 	echo "\begin{wrapfigure}{<++>}{<++>\linewidth}"
-	echo "\includegraphics[width=\linewidth]{Images/$imageName}"
+	echo "\centering"
+	echo "\includegraphics[width=0.9\linewidth]{Images/$imageName}"
 	echo "\caption{<++>}"
 	echo "\label{fig:<++>}"
 	echo "\end{wrapfigure}"
