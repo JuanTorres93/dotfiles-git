@@ -270,7 +270,7 @@ myStartupHook = do
        spawnOnce "picom &"
        spawnOnce "volumeicon &"
        spawnOnce "udiskie &"
-       --spawnOnce "run nm-applet &"
+       spawnOnce "nm-applet &"
        spawnOnce "redshift -b 1:0.7 &"
        spawnOnce "parcellite -n &"
 
