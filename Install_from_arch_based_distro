@@ -2,6 +2,5 @@ sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libr
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
-git clone https://github.com/JuanTorres93/dotfiles-git
 
 yay -S nerd-fonts-terminus nerd-fonts-mononoki
