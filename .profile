@@ -9,6 +9,8 @@ xset -b
 numlockx on
 xsetroot -cursor_name left_ptr
 
+ChangeWallpaper
+
 export PATH=$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
 export EDITOR=vim
 export BROWSER=firefox

@@ -29,7 +29,7 @@ Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'kalafut/vim-taskjuggler'
 Plugin 'habamax/vim-godot'
 " Consult YouCompleteMe github page in order to install it correctly
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
