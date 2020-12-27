@@ -15,6 +15,7 @@ Currently, this configuration has only been tested in arch-based systems. It is 
   (setq org-agenda-files (list "~/org-agenda"))
 #+end_src
 *** Agenda shows higher levels
+This option allows the visualization of different "asterisks" levels in the agenda view
 #+begin_src emacs-lisp
   (setq org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s %b")
    (todo . " %i %-12:c")
@@ -64,7 +65,6 @@ This is done at startup in order not to get emacs asking to load its own configu
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 #+end_src
-
 ** Column number
 #+begin_src emacs-lisp
 (column-number-mode 1)
@@ -73,13 +73,13 @@ This is done at startup in order not to get emacs asking to load its own configu
 #+begin_src emacs-lisp
 (global-hl-line-mode t)
 #+end_src
-
 ** Natural scroll when going beyond the screen
 #+begin_src emacs-lisp
 (setq scroll-conservatively 100)
 #+end_src
-
 ** IDO
+The ido.el package by KimStorm lets you interactively do things with buffers and files. As an example, while searching for a file with C-x C-f, ido can helpfully suggest the files whose paths are closest to your current string, allowing you to find your files more quickly.
+
 #+begin_src emacs-lisp
   (setq ido-enable-flex-matching nil)
   (setq ido-enable-create-new-buffer 'always)
@@ -87,6 +87,7 @@ This is done at startup in order not to get emacs asking to load its own configu
   (ido-mode 1)
 #+end_src
 ** Enable ibuffer
+Ibuffer is an advanced replacement for BufferMenu, which lets you operate on buffers much in the same manner as Dired. The most important Ibuffer features are highlighting and various alternate layouts.
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
@@ -96,14 +97,18 @@ This is done at startup in order not to get emacs asking to load its own configu
    #+end_src
 * MELPA packages
 ** which-key
+which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup. For example, after enabling the minor mode if you enter C-x and wait for the default of 1 second the minibuffer will expand with all of the available key bindings that follow C-x (or as many as space allows given your settings).
+[[https://github.com/justbur/emacs-which-key][github page]]
+
 #+begin_src emacs-lisp
 (use-package which-key
   :ensure t
   :init
   (which-key-mode))
 #+end_src
-
 ** beacon
+Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
+[[https://github.com/Malabarba/beacon][github page]]
 #+begin_src emacs-lisp
 (use-package beacon
   :ensure t
@@ -111,6 +116,8 @@ This is done at startup in order not to get emacs asking to load its own configu
   (beacon-mode 1))
 #+end_src
 ** org-bullets
+Show org-mode bullets as UTF-8 characters.
+[[https://github.com/sabof/org-bullets][github page]]
 #+begin_src emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -118,6 +125,8 @@ This is done at startup in order not to get emacs asking to load its own configu
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
 ** ido-vertical-mode
+Makes ido-mode display vertically.
+[[https://github.com/creichert/ido-vertical-mode.el][github page]]
 #+begin_src emacs-lisp
   (use-package ido-vertical-mode
     :ensure t
@@ -126,7 +135,13 @@ This is done at startup in order not to get emacs asking to load its own configu
   (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+end_src
 ** smex
+- My comment:
 This package acts like ido but for the M-x prompt.
+
+- Official comment:
+Smex is a M-x enhancement for Emacs. Built on top of Ido, it provides a convenient interface to your recently and most frequently used commands. And to all the other commands, too.
+
+[[https://github.com/nonsequitur/smex][github page]]
 #+begin_src emacs-lisp
   (use-package smex
     :ensure t
@@ -136,6 +151,8 @@ This package acts like ido but for the M-x prompt.
     ("M-x" . smex))
 #+end_src
 ** avy
+avy is a GNU Emacs package for jumping to visible text using a char-based decision tree.
+[[https://github.com/abo-abo/avy][github page]]
 #+begin_src emacs-lisp
   (use-package avy
     :ensure t
@@ -144,12 +161,17 @@ This package acts like ido but for the M-x prompt.
 #+end_src
 ** Rainbow packages
 *** rainbow-mode
+This minor mode sets background color to strings that match color
+names, e.g. #0000ff is displayed in white with a blue background.
+[[https://elpa.gnu.org/packages/rainbow-mode.html][gnu elpa page]]
 #+begin_src emacs-lisp
   (use-package rainbow-mode
     :ensure t
     :init (add-hook 'prog-mode-hook 'rainbow-mode))
 #+end_src
-*** raimbow-delimiter
+*** raimbow-delimiters
+rainbow-delimiters is a "rainbow parentheses"-like mode which highlights delimiters such as parentheses, brackets or braces according to their depth. Each successive level is highlighted in a different color. This makes it easy to spot matching delimiters, orient yourself in the code, and tell which statements are at a given depth.
+[[https://github.com/Fanael/rainbow-delimiters][github page]]
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
@@ -158,11 +180,22 @@ This package acts like ido but for the M-x prompt.
 #+end_src
 ** sudo-edit
 Provides a way of editting files as sudo. Currently I don't see the need of assing it a keybinding.
+[[https://github.com/nflath/sudo-edit][github page]]
 #+begin_src emacs-lisp
   (use-package sudo-edit
     :ensure t)
 #+end_src
 ** dashboard
+An extensible emacs startup screen showing you what’s most important.
+
+FEATURES:
+- Displays an awesome Emacs banner!
+- Recent files
+- Bookmarks list
+- Recent projects list (Depends on `projectile` or `project.el` package)
+- Org mode agenda
+- Register list
+[[https://github.com/emacs-dashboard/emacs-dashboard][github page]]
 #+begin_src emacs-lisp
       (use-package dashboard
         :ensure t
@@ -178,7 +211,16 @@ Provides a way of editting files as sudo. Currently I don't see the need of assi
   ;(setq dashboard-center-content t)
 #+end_src
 ** company
+- My comment:
 Autocompletion
+
+- Official comment:
+Company is a text completion framework for Emacs. The name stands for "complete anything". It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
+
+It comes with several back-ends such as Elisp, Clang, Semantic, Eclim, Ropemacs, Ispell, CMake, BBDB, Yasnippet, dabbrev, etags, gtags, files, keywords and a few others.
+
+The CAPF back-end provides a bridge to the standard completion-at-point-functions facility, and thus works with any major mode that defines a proper completion function.
+[[https://company-mode.github.io/][Official page]]
 #+begin_src emacs-lisp
   (use-package company
     :ensure t
@@ -199,6 +241,8 @@ Autocompletion
     )
 #+end_src
 ** powerline-evil
+Utilities for better Evil support for Powerline.
+[[https://github.com/johnson-christopher/powerline-evil][github page]]
 #+begin_src emacs-lisp
   (use-package powerline-evil
     :ensure t
@@ -206,18 +250,38 @@ Autocompletion
     (powerline-evil-vim-color-theme))
 #+end_src
 ** popup-kill-ring
+- My comment:
 This package shows the kill-ring when cycling through it
+
+- Official comment:
+browse your emacs kill ring in an autocomplete style popup menu 
+
+[[https://github.com/waymondo/popup-kill-ring][github page]]
 #+begin_src emacs-lisp
   (use-package popup-kill-ring
     :ensure t
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 ** evil-mode
+Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions.
+[[https://github.com/emacs-evil/evil][github page]]
 #+begin_src emacs-lisp
   (use-package evil
     :ensure t
     :init
     (evil-mode 1))
+#+end_src
+** evil-org
+Supplemental evil-mode key-bindings to Emacs org-mode.
+[[https://github.com/Somelauw/evil-org-mode][github page]]
+#+begin_src emacs-lisp
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 #+end_src
 ** swiper
 Better emacs search
@@ -226,7 +290,10 @@ Better emacs search
 ;    :ensure t
 ;    :bind ("C-s" . swiper))
 #+end_src
-** yasnippets
+** yasnippet
+YASnippet is a template system for Emacs. It allows you to type an abbreviation and automatically expand it into function templates. Bundled language templates include: C, C++, C#, Perl, Python, Ruby, SQL, LaTeX, HTML, CSS and more. 
+[[https://github.com/joaotavora/yasnippet][github page]]
+
 Installation
 #+begin_src emacs-lisp
   (use-package yasnippet
@@ -319,6 +386,29 @@ Cargo run
 #+begin_src emacs-lisp
   (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 #+end_src
+** gdscript-mode
+This package adds support for the GDScript programming language from the Godot game engine in Emacs.
+[[https://github.com/godotengine/emacs-gdscript-mode][github page]]
+#+begin_src emacs-lisp
+  (use-package gdscript-mode
+    :ensure t
+    )
+
+  (require 'gdscript-mode)
+#+end_src
+** magit
+Magit is an interface to the version control system Git, implemented as an Emacs package. 
+[[https://github.com/magit/magit][github page]]
+[[https://magit.vc/][Their website]]
+[[https://emacsair.me/2017/09/01/magit-walk-through/][Tutorial 1]]
+[[https://emacsair.me/2017/09/01/the-magical-git-interface/][Tutorial 2]]
+
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t
+    )
+#+end_src
+
 * My custom functions
 ** Edit config file (org mode)
 #+begin_src emacs-lisp
@@ -330,7 +420,7 @@ Cargo run
 #+end_src
 ** Edit agenda
 #+begin_src emacs-lisp
-  ; University
+; University
   (defun edit-my-org-agenda ()
     (interactive)
     (find-file "~/org-agenda/universidad.org"))
@@ -395,13 +485,12 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 
   (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+end_src
-
 ** Show snippets
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c s") 'yas-describe-tables)
 #+END_SRC
-
 ** Goto placeholder
+Probably I will delete this in favour of yasnippets
 #+begin_src emacs-lisp
   (defun my-goto-place-holder ()
     (interactive)
@@ -411,8 +500,9 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 
   (global-set-key (kbd "C-ñ SPC") 'my-goto-place-holder)
 #+end_src
-
 ** Change dictionary
+*I plan to take a look for a better way of implementing this*
+
 In order this function to work, some dictionaries must have been downloaded with the names between the quotation marks. The ones that I use are downloaded from libreoffice.
 #+begin_src emacs-lisp
   (setq ispell-program-name "hunspell")
