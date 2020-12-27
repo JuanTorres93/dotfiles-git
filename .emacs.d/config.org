@@ -1,5 +1,8 @@
 * Dependencies
 Currently, this configuration has only been tested in arch-based systems. It is needed the package nerd-fonts-mononoki for the correct display of the font.
+
+
+Once installed it is needed to run: M-x all-the-icons-install-fonts in order to get the status bar with appealing icons.
 * Built-in config
 ** Org mode configuration
 *** Indentation
@@ -241,13 +244,31 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     )
 #+end_src
 ** powerline-evil
+I'm currently using instead doom-modeline
+
 Utilities for better Evil support for Powerline.
 [[https://github.com/johnson-christopher/powerline-evil][github page]]
 #+begin_src emacs-lisp
-  (use-package powerline-evil
-    :ensure t
-    :init
-    (powerline-evil-vim-color-theme))
+;  (use-package powerline-evil
+;    :ensure t
+;    :init
+;    (powerline-evil-vim-color-theme))
+#+end_src
+** doom-modeline
+The package all-the-icons is needed for this package to be visually appealing
+
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+#+end_src
+
+** all-the-icons
+Once installed it is needed to run: M-x all-the-icons-install-fonts
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :ensure t
+  )
 #+end_src
 ** popup-kill-ring
 - My comment:
@@ -395,6 +416,21 @@ This package adds support for the GDScript programming language from the Godot g
     )
 
   (require 'gdscript-mode)
+#+end_src
+** lsp-mode
+I use this package to allow for autocompletion in gdscript mode.
+
+Client for Language Server Protocol (v3.14). lsp-mode aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like company, flycheck and projectile.
+
+[[https://emacs-lsp.github.io/lsp-mode/page/installation/][Their website]]
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    )
+
+  (require 'lsp-mode)
+  (add-hook 'gdscript-mode-hook #'lsp)
 #+end_src
 ** magit
 Magit is an interface to the version control system Git, implemented as an Emacs package. 
