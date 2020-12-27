@@ -444,6 +444,30 @@ Magit is an interface to the version control system Git, implemented as an Emacs
     :ensure t
     )
 #+end_src
+** centaur-tabs
+Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customization options
+[[https://github.com/ema2159/centaur-tabs][github page]]
+
+#+begin_src emacs-lisp
+  (use-package centaur-tabs
+    :ensure t
+    :config
+    (centaur-tabs-mode t)
+    )
+
+  (require 'centaur-tabs)
+  
+;style of the tabs: if they're rounded, square, etc.
+(setq centaur-tabs-style "chamfer")
+;Height of the bar
+(setq centaur-tabs-height 32)
+;Show icons in the tabs (all-the-icons package needed)
+(setq centaur-tabs-set-icons t)
+;Gray out icons for the unseleted tabs
+(setq centaur-tabs-gray-out-icons 'buffer)
+;Display a colored bar at the left of the selected tab
+(setq centaur-tabs-set-bar 'left)
+#+end_src
 
 * My custom functions
 ** Edit config file (org mode)
