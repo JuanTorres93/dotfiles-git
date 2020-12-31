@@ -80,14 +80,14 @@ This is done at startup in order not to get emacs asking to load its own configu
 #+begin_src emacs-lisp
 (setq scroll-conservatively 100)
 #+end_src
-** IDO
+** [NOT USED] IDO
 The ido.el package by KimStorm lets you interactively do things with buffers and files. As an example, while searching for a file with C-x C-f, ido can helpfully suggest the files whose paths are closest to your current string, allowing you to find your files more quickly.
 
 #+begin_src emacs-lisp
-  (setq ido-enable-flex-matching nil)
-  (setq ido-enable-create-new-buffer 'always)
-  (setq ido-everywhere t)
-  (ido-mode 1)
+;  (setq ido-enable-flex-matching nil)
+;  (setq ido-enable-create-new-buffer 'always)
+;  (setq ido-everywhere t)
+;  (ido-mode 1)
 #+end_src
 ** Enable ibuffer
 Ibuffer is an advanced replacement for BufferMenu, which lets you operate on buffers much in the same manner as Dired. The most important Ibuffer features are highlighting and various alternate layouts.
@@ -131,17 +131,70 @@ Show org-mode bullets as UTF-8 characters.
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
-** ido-vertical-mode
+** [NOT USED] ido-vertical-mode
 Makes ido-mode display vertically.
 [[https://github.com/creichert/ido-vertical-mode.el][github page]]
 #+begin_src emacs-lisp
-  (use-package ido-vertical-mode
+;  (use-package ido-vertical-mode
+;    :ensure t
+;    :init
+;    (ido-vertical-mode 1))
+;  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+#+end_src
+** ivy
+#+begin_src emacs-lisp
+  (use-package ivy
+    :ensure t
+    :diminish
+    :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-alt-done)	
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :init
+    (ivy-mode 1))
+#+end_src
+** counsel
+#+begin_src emacs-lisp
+  (use-package counsel
+    :ensure t
+    :config
+    (setq ivy-initial-inputs-alist nil) ; Don't start searches with ^
+    (counsel-mode 1))
+
+  ;; Switch buffer functionality
+  (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
+#+end_src
+** ivy-rich
+#+begin_src emacs-lisp
+  (use-package ivy-rich
     :ensure t
     :init
-    (ido-vertical-mode 1))
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+    (ivy-rich-mode 1))
 #+end_src
-** smex
+** helpful
+#+begin_src emacs-lisp
+  (use-package helpful
+    :ensure t
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-hey] . helpful-key)
+    )
+#+end_src
+** [NOT USED] smex
 - My comment:
 This package acts like ido but for the M-x prompt.
 
@@ -150,12 +203,12 @@ Smex is a M-x enhancement for Emacs. Built on top of Ido, it provides a convenie
 
 [[https://github.com/nonsequitur/smex][github page]]
 #+begin_src emacs-lisp
-  (use-package smex
-    :ensure t
-    :init
-    (smex-initialize)
-    :bind
-    ("M-x" . smex))
+;  (use-package smex
+;    :ensure t
+;    :init
+;    (smex-initialize)
+;    :bind
+;    ("M-x" . smex))
 #+end_src
 ** avy
 avy is a GNU Emacs package for jumping to visible text using a char-based decision tree.
@@ -247,7 +300,7 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     (define-key-after company-active-map (kbd "C-p") #'company-select-previous)
     )
 #+end_src
-** powerline-evil
+** [NOT USED] powerline-evil
 I'm currently using instead doom-modeline
 
 Utilities for better Evil support for Powerline.
