@@ -104,10 +104,14 @@ which-key is a minor mode for Emacs that displays the key bindings following you
 [[https://github.com/justbur/emacs-which-key][github page]]
 
 #+begin_src emacs-lisp
-(use-package which-key
-  :ensure t
-  :init
-  (which-key-mode))
+  (use-package which-key
+    :ensure t
+    :init
+    (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 1)
+    )
 #+end_src
 ** beacon
 Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
@@ -296,20 +300,20 @@ Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, 
 Supplemental evil-mode key-bindings to Emacs org-mode.
 [[https://github.com/Somelauw/evil-org-mode][github page]]
 #+begin_src emacs-lisp
-(use-package evil-org
-  :ensure t
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+;(use-package evil-org
+;  :ensure t
+;  :after org
+;  :hook (org-mode . (lambda () evil-org-mode))
+;  :config
+;  (require 'evil-org-agenda)
+;  (evil-org-agenda-set-keys))
 #+end_src
 ** swiper
 Better emacs search
 #+begin_src emacs-lisp
-;  (use-package swiper
-;    :ensure t
-;    :bind ("C-s" . swiper))
+  (use-package swiper
+    :ensure t
+    :bind ("C-s" . swiper))
 #+end_src
 ** yasnippet
 YASnippet is a template system for Emacs. It allows you to type an abbreviation and automatically expand it into function templates. Bundled language templates include: C, C++, C#, Perl, Python, Ruby, SQL, LaTeX, HTML, CSS and more. 

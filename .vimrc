@@ -152,9 +152,9 @@ autocmd FileType tex inoremap ;;<Space> \;<Space>
 autocmd FileType tex inoremap ;NI \item 
 autocmd FileType tex inoremap ;NB \bibitem{bib:<++>}<Space>\textsc{<++>}<Space>\textit{<++>}
 "" Italics
-autocmd FileType tex inoremap ;IT \textit{} <++><Esc>F{a
+autocmd FileType tex inoremap ;IF \textit{} <++><Esc>F{a
 " Bold text
-autocmd FileType tex inoremap ;BO \textbf{} <++><Esc>F{a
+autocmd FileType tex inoremap ;BF \textbf{} <++><Esc>F{a
 " Create new command
 autocmd FileType tex inoremap ;NC \newcommand{\}[<++>]{<++>}<Esc>F}i
 
