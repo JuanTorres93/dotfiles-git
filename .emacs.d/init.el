@@ -1,13 +1,17 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/")
+	     '("org" . "https://orgmode.org/elpa/") ;; This repo assures the latest version of org-mode
+	     )
 (package-initialize)
 
 ; MELPA packages
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(setq use-package-always-ensure t)
 
 (unless (package-installed-p 'doom-themes)
   (package-refresh-contents)
@@ -42,7 +46,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#1E2029" "#565761"))
  '(objed-cursor-color "#ff5555")
  '(package-selected-packages
-   '(centaur-tabs doom-modeline lsp-mode magit evil-org-mode gdscript-mode evil-org ## rust-mode auctex yasnippet-snippets yasnippet yasnippets swiper powerline-evil evil evil-mode popup-kill-ring powerline company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes))
+   '(lsp-gdscript-port evil-nerd-commenter lsp-ui company-box undo-tree evil-magit counsel-projectile projectile helpful counsel ivy-rich centaur-tabs doom-modeline lsp-mode magit evil-org-mode gdscript-mode evil-org ## rust-mode auctex yasnippet-snippets yasnippet yasnippets swiper powerline-evil evil evil-mode popup-kill-ring powerline company dashboard rainbow-delimiters sudo-edit rainbow-mode avy smex ido-vertical-mode org-ac beacon which-key use-package doom-themes))
  '(pdf-view-midnight-colors (cons "#f8f8f2" "#282a36"))
  '(rustic-ansi-faces
    ["#282a36" "#ff5555" "#50fa7b" "#f1fa8c" "#61bfff" "#ff79c6" "#8be9fd" "#f8f8f2"])
