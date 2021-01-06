@@ -1,8 +1,9 @@
 * Dependencies
 Currently, this configuration has only been tested in arch-based systems. It is needed the package nerd-fonts-mononoki for the correct display of the font.
 
-
 Once installed it is needed to run: M-x all-the-icons-install-fonts in order to get the status bar with appealing icons.
+
+Sometimes packages can't be downloaded, this may be due to a lack of syncronism, try sunning package-refresh-contents or list-packages
 * Built-in config
 ** Org mode configuration
 *** Updates to org-mode and some customization
@@ -558,6 +559,16 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
 
   (require 'lsp-mode)
   (add-hook 'gdscript-mode-hook #'lsp)
+#+end_src
+** dap-mode
+Used to debug functionality.
+[[https://emacs-lsp.github.io/dap-mode/page/configuration/][Configuration for each language]]
+
+#+begin_src emacs-lisp
+  (use-package dap-mode
+    :config
+    (dap-ui-mode 1)
+    )
 #+end_src
 
 ** gdscript-mode
