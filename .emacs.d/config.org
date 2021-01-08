@@ -325,13 +325,13 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     :hook (lsp-mode . company-mode)
     ;:hook (prog-mode . company-mode)
     :custom
-    (company-minimum-prefix-length 0)
+    (company-minimum-prefix-length 1)
     (company-idle-delay 0.0)
 
     :bind (:map company-active-map
                 ("<tab>" . company-complete-selection))
           (:map lsp-mode-map
-                ("<tab>" . companyindent-or-complete-common))
+                ("<tab>" . company-indent-or-complete-common))
     )
 
   (use-package company-box
