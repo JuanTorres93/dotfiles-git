@@ -323,17 +323,29 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
   (use-package company
     :after lsp-mode
     :hook (lsp-mode . company-mode)
+    ;:hook (prog-mode . company-mode)
+    :custom
+    (company-minimum-prefix-length 0)
+    (company-idle-delay 0.0)
+
     :bind (:map company-active-map
                 ("<tab>" . company-complete-selection))
           (:map lsp-mode-map
                 ("<tab>" . companyindent-or-complete-common))
-          :custom
-          (company-minimum-prefix-lenght 1)
-          (company-idle-delay 0.0)
     )
 
   (use-package company-box
     :hook (company-mode . company-box-mode))
+
+  ;; Remap the navigation to C-n and C-p instead of M-n and M-p
+  (with-eval-after-load 'company
+    (define-key-after company-active-map (kbd "M-n") nil)
+    (define-key-after company-active-map (kbd "M-p") nil)
+
+
+    (define-key-after company-active-map (kbd "C-j") #'company-select-next)
+    (define-key-after company-active-map (kbd "C-k") #'company-select-previous)
+    )
 #+end_src
 
 
