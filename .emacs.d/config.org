@@ -325,13 +325,15 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     :hook (lsp-mode . company-mode)
     ;:hook (prog-mode . company-mode)
     :custom
-    (company-minimum-prefix-length 1)
     (company-idle-delay 0.0)
 
-    :bind (:map company-active-map
-                ("<tab>" . company-complete-selection))
-          (:map lsp-mode-map
-                ("<tab>" . company-indent-or-complete-common))
+    :config
+    (setq company-minimum-prefix-length 1)
+
+    ;:bind (:map company-active-map
+    ;            ("<tab>" . company-complete-selection))
+    ;      (:map lsp-mode-map
+    ;            ("<tab>" . company-indent-or-complete-common))
     )
 
   (use-package company-box
@@ -456,13 +458,17 @@ Installation
     :config
     (use-package yasnippet-snippets
       :ensure t)
-    (yas-reload-all))
+    (yas-reload-all)
+    :bind
+    (:map yas-minor-mode-map
+          ([C-tab] . yas-expand-from-trigger-key))
+    )
 #+end_src
 
 Initialization
 #+begin_src emacs-lisp
   (add-hook 'LaTeX-mode-hook 'yas-minor-mode)
-  (add-hook 'rust-mode-hook 'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'org-mode-hook 'yas-minor-mode)
 #+end_src
 ** auctex
@@ -571,6 +577,16 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
 
   (require 'lsp-mode)
   (add-hook 'gdscript-mode-hook #'lsp)
+#+end_src
+** lsp-python-ms
+#+begin_src emacs-lisp
+  (use-package lsp-python-ms
+    :ensure t
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-python-ms)
+                           (lsp)))
+    :init
+    (setq lsp-python-ms-executable (executable-find "python-language-server")))
 #+end_src
 ** dap-mode
 Used to debug functionality.
