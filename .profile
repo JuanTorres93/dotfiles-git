@@ -23,6 +23,10 @@ export QT_STYLE_OVERRIDE=kvantum
 # Icons in qt5 applications
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
+export PATH="/opt/cuda-10.2/nsight-compute-2019.5.0:$PATH"
+export PATH="/opt/cuda-10.2/bin:$PATH"
+export CUDA_HOME="/opt/cuda-10.2"
+export LD_LIBRARY_PATH="/opt/cuda-10.2/lib64":$LD_LIBRARY_PATH
 
 
 export PATH="$HOME/.cargo/bin:$PATH"

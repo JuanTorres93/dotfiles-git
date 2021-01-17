@@ -1,0 +1,27 @@
+* Make nvidia cuda work for blender in arch-based distros
+
+I have only tried this for NVIDIA GeForce GTX 770.
+
+** Install cuda-tools dependencies
+It is important not to install directly the cuda-tools package from the repositories due to the fact that it is going to install the latest version of cuda. Install the following packages (dependencies in [[https://archlinux.org/packages/community/x86_64/cuda-tools/][arch repos]]):
+
+#+begin_src bash
+sudo pacman -S jre8-openjdk nss gdb
+#+end_src
+
+As far as I know, this installs the compiler for cuda, now, the following command will download the cuda version compatible for NVIDIA GeForce GTX 770 graphics card.
+
+#+begin_src bash
+sudo pacman -S cuda-10.2
+#+end_src
+
+If we try now to enable cuda toolkit in blender and go to render view, it will through the following error "nvcc fatal : Path to libdevice library not specified".
+
+To solve it, add the following to the ~/.profile file:
+
+#+begin_src bash
+export PATH="/opt/cuda-10.2/nsight-compute-2019.5.0:$PATH"
+export PATH="/opt/cuda-10.2/bin:$PATH"
+export CUDA_HOME="/opt/cuda-10.2"
+export LD_LIBRARY_PATH="/opt/cuda-10.2/lib64":$LD_LIBRARY_PATH
+#+end_src
