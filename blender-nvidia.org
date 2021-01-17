@@ -3,6 +3,8 @@
 I have only tried this for NVIDIA GeForce GTX 770.
 
 ** Install cuda-tools dependencies
+When trying to render any scene using GPU compute and cuda, this error pops up: "nvcc fatal : Value 'sm_30' is not defined for option 'gpu-architecture'". I solved it in this way. (Thanks to [[https://bbs.archlinux.org/viewtopic.php?id=259714][these people]])
+
 It is important not to install directly the cuda-tools package from the repositories due to the fact that it is going to install the latest version of cuda. Install the following packages (dependencies in [[https://archlinux.org/packages/community/x86_64/cuda-tools/][arch repos]]):
 
 #+begin_src bash
@@ -17,7 +19,7 @@ yay -S cuda-10.2
 
 If we try now to enable cuda toolkit in blender and go to render view, it will through the following error "nvcc fatal : Path to libdevice library not specified".
 
-To solve it, add the following to the ~/.profile file:
+To solve it, add the following to the ~/.profile file ([[https://askubuntu.com/questions/1254849/nvcc-fatal-path-to-libdevice-library-not-specified][source]]):
 
 #+begin_src bash
 export PATH="/opt/cuda-10.2/nsight-compute-2019.5.0:$PATH"
@@ -25,3 +27,13 @@ export PATH="/opt/cuda-10.2/bin:$PATH"
 export CUDA_HOME="/opt/cuda-10.2"
 export LD_LIBRARY_PATH="/opt/cuda-10.2/lib64":$LD_LIBRARY_PATH
 #+end_src
+
+The above information relative to the cuda directory can be found running the following command:
+
+#+begin_src bash
+whereis nvvc
+#+end_src
+
+
+
+
