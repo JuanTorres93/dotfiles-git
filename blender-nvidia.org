@@ -12,7 +12,7 @@ sudo pacman -S jre8-openjdk nss gdb
 As far as I know, this installs the compiler for cuda, now, the following command will download the cuda version compatible for NVIDIA GeForce GTX 770 graphics card.
 
 #+begin_src bash
-sudo pacman -S cuda-10.2
+yay -S cuda-10.2
 #+end_src
 
 If we try now to enable cuda toolkit in blender and go to render view, it will through the following error "nvcc fatal : Path to libdevice library not specified".
