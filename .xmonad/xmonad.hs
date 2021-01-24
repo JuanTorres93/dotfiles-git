@@ -9,7 +9,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 -- Extra imports
-import XMonad.Actions.UpdateFocus	-- Provides adjustEventInput and focusOnMouseMove. I use this for my LaTeX dmenu snippets. In this way, vim can be used as soon as dmenu is closed.
+import XMonad.Actions.UpdateFocus        -- Provides adjustEventInput and focusOnMouseMove. I use this for my LaTeX dmenu snippets. In this way, vim can be used as soon as dmenu is closed.
 import XMonad.Actions.CycleWS
 
 import XMonad.Hooks.ManageDocks
@@ -45,6 +45,7 @@ myClickJustFocuses = False
 myBorderWidth   = 2
 
 myModMask       = mod4Mask
+altMask       = mod1Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -61,24 +62,26 @@ myWorkspaces = ["\59205", "\58923", "\59173", "\59152", "\62060", "\59289", "\61
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#636363"
-myFocusedBorderColor = "#B294BB"
+--myFocusedBorderColor = "#B294BB"
+myFocusedBorderColor = "#C2483A"
+
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-	-- Super + key
+        -- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,                 xK_Delete), spawn "xkill")
     , ((modm,                 xK_e     ), spawn "thunar")
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
 
-	-- Super + Shift + key
+        -- Super + Shift + key
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
 
-	-- Super + Control + key
-    , ((modm .|. controlMask,   xK_e     ), spawn "emacs")
+        -- Super + Control + key
+    , ((modm .|. controlMask, xK_e     ), spawn "emacs")
     , ((modm .|. controlMask, xK_f     ), spawn "firefox")
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
@@ -87,7 +90,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
     , ((modm .|. controlMask, xK_g     ), spawn "godot")
 
-	-- Single key
+    
+    -- Run every morning
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox distrotoot.com youtube.com/feed/subscriptions linkedin.com && thunderbird")
+
+        -- Single key
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 
@@ -272,7 +279,8 @@ myStartupHook = do
        spawnOnce "udiskie &"
        spawnOnce "nm-applet &"
        spawnOnce "redshift -b 1:0.7 &"
-       spawnOnce "parcellite -n &"
+       --spawnOnce "parcellite -n &"
+       spawnOnce "xfce4-clipman &"
 
 ------------------------------------------------------------------------
 
