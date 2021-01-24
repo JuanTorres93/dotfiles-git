@@ -1,4 +1,4 @@
-sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libreoffice texlive-most thunderbird dmenu parcellite thunar ranger picom gvim celluloid kdeconnect capitaine-cursors youtube-dl
+sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libreoffice texlive-most thunderbird dmenu xfce4-clipman-plugin thunar ranger picom gvim celluloid kdeconnect capitaine-cursors youtube-dl
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
