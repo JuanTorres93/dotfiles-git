@@ -11,6 +11,7 @@ import qualified Data.Map        as M
 -- Extra imports
 import XMonad.Actions.UpdateFocus        -- Provides adjustEventInput and focusOnMouseMove. I use this for my LaTeX dmenu snippets. In this way, vim can be used as soon as dmenu is closed.
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CopyWindow         -- dwm-like tagging functionality
 
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -76,6 +77,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,                 xK_Delete), spawn "xkill")
     , ((modm,                 xK_e     ), spawn "thunar")
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
+    , ((modm,                 xK_s     ), windows copyToAll)    -- Window no longer sticky
 
         -- Super + Shift + key
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
@@ -87,19 +89,23 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
-    , ((modm .|. controlMask, xK_l     ), spawn "lmms")
+    , ((modm .|. controlMask, xK_b     ), spawn "blender")
     , ((modm .|. controlMask, xK_g     ), spawn "godot")
+    , ((modm .|. controlMask, xK_l     ), spawn "lmms")
+    , ((modm .|. shiftMask,   xK_s     ), killAllOtherCopies)    -- Window no longer sticky
 
     
     -- Run every morning
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox distrotoot.com youtube.com/feed/subscriptions linkedin.com && thunderbird")
+    -- Launch oryx live training for ergodox-Ez
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
 
         -- Single key
     , ((0, xK_F1                       ), spawn "ChangeWallpaper")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 
     -- close focused window
-    , ((modm ,                xK_q     ), kill)
+    , ((modm ,                xK_q     ), kill1)        -- kill1 in order to tagged window only close in current worskspace. Otherwise use kill
 
      -- Rotate through the available layout algorithms
     , ((modm,                 xK_space ), sendMessage NextLayout)
