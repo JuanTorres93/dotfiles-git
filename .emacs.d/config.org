@@ -90,15 +90,6 @@ This is done at startup in order not to get emacs asking to load its own configu
 #+begin_src emacs-lisp
 (setq scroll-conservatively 100)
 #+end_src
-** [NOT USED] IDO
-The ido.el package by KimStorm lets you interactively do things with buffers and files. As an example, while searching for a file with C-x C-f, ido can helpfully suggest the files whose paths are closest to your current string, allowing you to find your files more quickly.
-
-#+begin_src emacs-lisp
-;  (setq ido-enable-flex-matching nil)
-;  (setq ido-enable-create-new-buffer 'always)
-;  (setq ido-everywhere t)
-;  (ido-mode 1)
-#+end_src
 ** Enable ibuffer
 Ibuffer is an advanced replacement for BufferMenu, which lets you operate on buffers much in the same manner as Dired. The most important Ibuffer features are highlighting and various alternate layouts.
 #+begin_src emacs-lisp
@@ -149,16 +140,6 @@ Show org-mode bullets as UTF-8 characters.
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+end_src
-** [NOT USED] ido-vertical-mode
-Makes ido-mode display vertically.
-[[https://github.com/creichert/ido-vertical-mode.el][github page]]
-#+begin_src emacs-lisp
-;  (use-package ido-vertical-mode
-;    :ensure t
-;    :init
-;    (ido-vertical-mode 1))
-;  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 #+end_src
 ** ivy
 #+begin_src emacs-lisp
@@ -212,22 +193,6 @@ Makes ido-mode display vertically.
     ([remap describe-variable] . counsel-describe-variable)
     ([remap describe-hey] . helpful-key)
     )
-#+end_src
-** [NOT USED] smex
-- My comment:
-This package acts like ido but for the M-x prompt.
-
-- Official comment:
-Smex is a M-x enhancement for Emacs. Built on top of Ido, it provides a convenient interface to your recently and most frequently used commands. And to all the other commands, too.
-
-[[https://github.com/nonsequitur/smex][github page]]
-#+begin_src emacs-lisp
-;  (use-package smex
-;    :ensure t
-;    :init
-;    (smex-initialize)
-;    :bind
-;    ("M-x" . smex))
 #+end_src
 ** avy
 avy is a GNU Emacs package for jumping to visible text using a char-based decision tree.
@@ -330,10 +295,10 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     :config
     (setq company-minimum-prefix-length 1)
 
-    ;:bind (:map company-active-map
-    ;            ("<tab>" . company-complete-selection))
-    ;      (:map lsp-mode-map
-    ;            ("<tab>" . company-indent-or-complete-common))
+    :bind (:map company-active-map
+                ("<tab>" . company-complete-selection))
+          (:map lsp-mode-map
+                ("<tab>" . company-indent-or-complete-common))
     )
 
   (use-package company-box
@@ -370,17 +335,6 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
 ;    (define-key-after company-active-map (kbd "C-n") #'company-select-next)
 ;    (define-key-after company-active-map (kbd "C-p") #'company-select-previous)
 ;    )
-#+end_src
-** [NOT USED] powerline-evil
-I'm currently using instead doom-modeline
-
-Utilities for better Evil support for Powerline.
-[[https://github.com/johnson-christopher/powerline-evil][github page]]
-#+begin_src emacs-lisp
-;  (use-package powerline-evil
-;    :ensure t
-;    :init
-;    (powerline-evil-vim-color-theme))
 #+end_src
 ** doom-modeline
 The package all-the-icons is needed for this package to be visually appealing
@@ -547,6 +501,14 @@ Cargo run
 #+begin_src emacs-lisp
   (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 #+end_src
+** haskell-mode
+#+begin_src emacs-lisp
+  (use-package haskell-mode
+    :ensure t
+    )
+
+  (require 'haskell-mode)
+#+end_src
 ** lsp-mode
 I use this package to allow for autocompletion in gdscript mode.
 
@@ -587,6 +549,14 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
                            (lsp)))
     :init
     (setq lsp-python-ms-executable (executable-find "python-language-server")))
+#+end_src
+** pyenv
+Adds support for python virtual environments (venv)
+#+begin_src emacs-lisp
+  (use-package pyvenv
+    :ensure t
+    :config
+    (pyvenv-mode 1))
 #+end_src
 ** dap-mode
 Used to debug functionality.
@@ -773,5 +743,22 @@ In order this function to work, some dictionaries must have been downloaded with
 
   (global-set-key (kbd "<f12>") 'change-dictionary-to-spanish)
   (global-set-key (kbd "C-<f12>") 'change-dictionary-to-english)
+#+end_src
+** Set font
+[[https://www.youtube.com/watch?v=ZjCRxAMPdNc&t=857s][Original code 16:10]]
+#+begin_src emacs-lisp
+  (defun jtn/set-font-faces()
+    (message "setting faces!")
+    ;; Set default font
+    (set-face-attribute 'default nil :font "Ubuntu Mono" :height 130))
+
+  ;; Configure fonts when in daemon mode
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  ;;(setq doom-modeline-icon t)
+                  (with-selected-frame frame
+                    (jtn/set-font-faces))))
+    (jtn/set-font-faces))
 #+end_src
 
