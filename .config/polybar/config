@@ -23,11 +23,14 @@ background-active = #525252
 
 foreground = #dfdfdf
 foreground-alt = #555
-foreground-active = #8CA0D7
+;foreground-active = #8CA0D7
+foreground-active = #FC7C90
 foreground-occupied = foreground
 
-underline-default = #2222FF
-underline-active = #91C4F2
+underline-default = #BA4DEB
+;#2222FF
+;underline-active = #91C4F2
+underline-active = #E6412E
 
 secondary = #e60053
 alert = #bd2c40
