@@ -638,7 +638,8 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 #+end_src
 
 * My custom functions
-** Edit config file (org mode)
+** General
+*** Edit config file (org mode)
 #+begin_src emacs-lisp
   (defun edit-config-file-org ()
     (interactive)
@@ -646,7 +647,7 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 
   (global-set-key (kbd "C-c c") 'edit-config-file-org)
 #+end_src
-** Edit agenda
+*** Edit agenda
 #+begin_src emacs-lisp
   ; University
     (defun edit-my-org-agenda ()
@@ -669,7 +670,7 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 #+RESULTS:
 : org-agenda
 
-** Edit TFM
+*** Edit TFM
 #+begin_src emacs-lisp
   (defun edit-my-TFM ()
     (interactive)
@@ -677,7 +678,7 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 
   (global-set-key (kbd "C-c t") 'edit-my-TFM)
 #+end_src
-** Reload config file
+*** Reload config file
 #+begin_src emacs-lisp
   (defun config-reload ()
     (interactive)
@@ -685,7 +686,7 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 
   (global-set-key (kbd "C-c r") 'config-reload)
 #+end_src
-** Split windows
+*** Split windows
 When making a vertical or horizontal split, the cursor will follow and make the new window the active one
 #+begin_src emacs-lisp
   (defun split-and-follow-horizontally ()
@@ -705,7 +706,7 @@ When making a vertical or horizontal split, the cursor will follow and make the 
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 
 #+end_src
-** kill current buffer
+*** kill current buffer
 #+begin_src emacs-lisp
   (defun kill-current-buffer ()
     (interactive)
@@ -713,11 +714,11 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 
   (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+end_src
-** Show snippets
+*** Show snippets
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c s") 'yas-describe-tables)
 #+END_SRC
-** Goto placeholder
+*** Goto placeholder
 Probably I will delete this in favour of yasnippets
 #+begin_src emacs-lisp
   (defun my-goto-place-holder ()
@@ -728,7 +729,7 @@ Probably I will delete this in favour of yasnippets
 
     (global-set-key (kbd "C-c C-SPC") 'my-goto-place-holder)
 #+end_src
-** Change dictionary
+*** Change dictionary
 *I plan to take a look for a better way of implementing this*
 
 In order this function to work, some dictionaries must have been downloaded with the names between the quotation marks. The ones that I use are downloaded from libreoffice.
@@ -752,7 +753,7 @@ In order this function to work, some dictionaries must have been downloaded with
   (global-set-key (kbd "<f12>") 'change-dictionary-to-spanish)
   (global-set-key (kbd "C-<f12>") 'change-dictionary-to-english)
 #+end_src
-** Set font
+*** Set font
 [[https://www.youtube.com/watch?v=ZjCRxAMPdNc&t=857s][Original code 16:10]]
 #+begin_src emacs-lisp
   (defun jtn/set-font-faces()
@@ -769,4 +770,28 @@ In order this function to work, some dictionaries must have been downloaded with
                     (jtn/set-font-faces))))
     (jtn/set-font-faces))
 #+end_src
+** LaTeX
+*** Insert image
+#+begin_src emacs-lisp
+    (defun jtn/insert-graphics ()
+      (interactive)
+      (setq loop-counter 1)
+      (setq current-directory-string "")
+      (setq separate-folders (split-string (buffer-file-name) "/"))
+      (setq folder-counter (- (length separate-folders) 1))
 
+      (while (< loop-counter folder-counter)
+        (setq current-directory-string (concat current-directory-string "/"))
+        (setq current-directory-string (concat current-directory-string (nth loop-counter separate-folders)))
+        (setq loop-counter (+ loop-counter 1)))
+
+        (setq current-directory-string (concat current-directory-string "/"))
+
+        (setq images-selection (directory-files (concat current-directory-string "Images/")))
+
+        (setq chosen-image (let ((choices images-selection))
+          (ivy-read "Open bookmark:" choices )))
+
+        (insert (concat "\\includegraphics[width=0.9\\linewidth]{Images/" chosen-image "}"))
+  )
+#+end_src
