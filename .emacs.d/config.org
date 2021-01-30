@@ -108,6 +108,10 @@ Ibuffer is an advanced replacement for BufferMenu, which lets you operate on buf
     )
 
 #+end_src
+** Do not save X clipboard when closing emacs
+#+begin_src emacs-lisp
+  (setq x-select-enable-clipboard-manager nil)
+#+end_src
 * MELPA packages
 ** which-key
 which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup. For example, after enabling the minor mode if you enter C-x and wait for the default of 1 second the minibuffer will expand with all of the available key bindings that follow C-x (or as many as space allows given your settings).
@@ -273,10 +277,7 @@ FEATURES:
     )
 #+end_src
 ** company
-- My comment:
-Autocompletion
-
-- Official comment:
+*** company
 Company is a text completion framework for Emacs. The name stands for "complete anything". It uses pluggable back-ends and front-ends to retrieve and display completion candidates.
 
 It comes with several back-ends such as Elisp, Clang, Semantic, Eclim, Ropemacs, Ispell, CMake, BBDB, Yasnippet, dabbrev, etags, gtags, files, keywords and a few others.
@@ -300,10 +301,34 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
           (:map lsp-mode-map
                 ("<tab>" . company-indent-or-complete-common))
     )
+#+end_src
+*** company-lsp
+[[https://github.com/tigersoldier/company-lsp][github page]]
+It provides features that are not available by using company-capf + lsp-mode:
 
+    Support trigger characters. For example typing . will trigger completion for TypeScript.
+    Use completion item's label as completion labels and replace it with its insertText if available.
+    Fetch completion candidates asynchronously (Thanks @sebastiencs).
+    Apply text edits specified by completion candidates after completion.
+    Do not cache the completion candidates if they are incomplete.
+    Expand snippets on completion (requires yasnippet).
+
+#+begin_src emacs-lisp
+  (use-package company-lsp
+    :ensure t
+    )
+#+end_src
+
+*** company-box
+A company front-end with icons.
+#+begin_src emacs-lisp
   (use-package company-box
+    :ensure t
     :hook (company-mode . company-box-mode))
+#+end_src
 
+*** remap some keys
+#+begin_src emacs-lisp
   ;; Remap the navigation to C-n and C-p instead of M-n and M-p
   (with-eval-after-load 'company
     (define-key-after company-active-map (kbd "M-n") nil)
@@ -315,27 +340,6 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
     )
 #+end_src
 
-
-
-#+begin_src emacs-lisp
-;  (use-package company
-;    :ensure t
-;    :config
-;    (setq company-idle-delay 0)
-;    (setq company-minimum-prefix-length 3)
-;    :init
-;    (add-hook 'prog-init-hook 'global-company-mode))
-;
-;  ;; Remap the navigation to C-n and C-p instead of M-n and M-p
-;  (with-eval-after-load 'company
-;    (define-key-after company-active-map (kbd "M-n") nil)
-;    (define-key-after company-active-map (kbd "M-p") nil)
-;
-;
-;    (define-key-after company-active-map (kbd "C-n") #'company-select-next)
-;    (define-key-after company-active-map (kbd "C-p") #'company-select-previous)
-;    )
-#+end_src
 ** doom-modeline
 The package all-the-icons is needed for this package to be visually appealing
 
@@ -510,36 +514,39 @@ Cargo run
   (require 'haskell-mode)
 #+end_src
 ** lsp-mode
-I use this package to allow for autocompletion in gdscript mode.
-
+*** lsp-mode
 Client for Language Server Protocol (v3.14). lsp-mode aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like company, flycheck and projectile.
 
-IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRED T USE.
+IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRED TO USE.
 
 [[https://emacs-lsp.github.io/lsp-mode/page/installation/][Their website]]
 
 [[https://youtu.be/E-NAM9U5JYE][Configure languages 12:58]]
 
 #+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :hook (prog-mode . lsp-mode)
-;    :commands (lsp lsp-deferred);Both commands activate lsp-mode when called
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t)
-    )
+    (use-package lsp-mode
+      :ensure t
 
-  (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode)
-    :custom
-    (lsp-ui-doc-position 'bottom)
-    )
-
-  (require 'lsp-mode)
-  (add-hook 'gdscript-mode-hook #'lsp)
+      :hook (prog-mode . lsp-mode)
+  ;    :commands (lsp lsp-deferred);Both commands activate lsp-mode when called
+      :init
+      (setq lsp-keymap-prefix "C-c l")
+      :config
+      (lsp-enable-which-key-integration t)
+      )
 #+end_src
+
+*** lsp-ui
+#+begin_src emacs-lisp
+    (use-package lsp-ui
+      :hook (lsp-mode . lsp-ui-mode)
+      :custom
+      (lsp-ui-doc-position 'bottom)
+      )
+
+    (require 'lsp-mode)
+#+end_src
+
 ** lsp-python-ms
 #+begin_src emacs-lisp
   (use-package lsp-python-ms
@@ -555,8 +562,9 @@ Adds support for python virtual environments (venv)
 #+begin_src emacs-lisp
   (use-package pyvenv
     :ensure t
-    :config
-    (pyvenv-mode 1))
+    )
+
+  (require 'pyvenv)
 #+end_src
 ** dap-mode
 Used to debug functionality.
