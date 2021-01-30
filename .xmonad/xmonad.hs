@@ -101,7 +101,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
 
         -- Single key
-    , ((0, xK_F1                       ), spawn "ChangeWallpaper")
+    , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 
     -- close focused window
