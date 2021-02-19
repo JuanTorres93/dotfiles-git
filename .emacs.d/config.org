@@ -5,6 +5,23 @@ Once installed it is needed to run: M-x all-the-icons-install-fonts in order to 
 
 Sometimes packages can't be downloaded, this may be due to a lack of syncronism, try sunning package-refresh-contents or list-packages
 * Built-in config
+** dired
+#+begin_src emacs-lisp
+  (use-package dired
+    :ensure nil
+    :after evil-collection
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump))
+    :custom ((dired-listing-switches "-agho --group-directories-first"))
+    :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+      "h" 'dired-single-up-directory
+      "l" 'dired-single-buffer))
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package dired-single)
+#+end_src
 ** Org mode configuration
 *** Updates to org-mode and some customization
 #+begin_src emacs-lisp
@@ -370,33 +387,38 @@ browse your emacs kill ring in an autocomplete style popup menu
     :bind ("M-y" . popup-kill-ring))
 #+end_src
 ** evil-mode
+*** evil-mode
 Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions.
 [[https://github.com/emacs-evil/evil][github page]]
 #+begin_src emacs-lisp
   (use-package evil
     :ensure t
     :init
-    (evil-mode 1)
-    :config
-    (define-key evil-insert-state-map (kbd "<f9>") 'evil-normal-state) ;; press Ctrl-j to go back to normal mode
-    (define-key evil-visual-state-map (kbd "<f9>") 'evil-normal-state) ;; press Ctrl-j to go back to normal mode
-    (define-key evil-replace-state-map (kbd "<f9>") 'evil-normal-state) ;; press Ctrl-j to go back to normal mode
+    ;; The folloeing two lines are meant for evil-collection to work
+    (setq evil-want-integration t) 
+    (setq evil-want-keybinding nil)
     :custom
     (evil-undo-system 'undo-tree)
+    :config
+    (evil-mode 1)
     )
 
 #+end_src
-** evil-org
-Supplemental evil-mode key-bindings to Emacs org-mode.
-[[https://github.com/Somelauw/evil-org-mode][github page]]
+*** evil-collection
 #+begin_src emacs-lisp
-;(use-package evil-org
-;  :ensure t
-;  :after org
-;  :hook (org-mode . (lambda () evil-org-mode))
-;  :config
-;  (require 'evil-org-agenda)
-;  (evil-org-agenda-set-keys))
+  (use-package evil-collection
+    :ensure t
+    :after evil
+    :custom
+    (evil-collection-company-use-tng nil)
+    :config
+    (evil-collection-init))
+#+end_src
+*** evil-magit
+#+begin_src emacs-lisp
+;  (use-package evil-magit
+;    :ensure t
+;    :after magit evil-collection)
 #+end_src
 ** swiper
 Better emacs search
@@ -604,13 +626,8 @@ Magit is an interface to the version control system Git, implemented as an Emacs
 #+begin_src emacs-lisp
   (use-package magit
     :ensure t
+    :after evil evil-collection
     )
-#+end_src
-** evil-magit
-#+begin_src emacs-lisp
-  (use-package evil-magit
-    :ensure t
-    :after magit)
 #+end_src
 ** centaur-tabs
 Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customization options
