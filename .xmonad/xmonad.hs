@@ -91,12 +91,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_b     ), spawn "blender")
     , ((modm .|. controlMask, xK_g     ), spawn "godot")
+    , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
     , ((modm .|. shiftMask,   xK_s     ), killAllOtherCopies)    -- Window no longer sticky
 
     
     -- Run every morning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox distrotoot.com youtube.com/feed/subscriptions linkedin.com && thunderbird")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions linkedin.com && thunderbird")
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
 
@@ -259,6 +260,7 @@ myLayout =
 myManageHook = composeAll
     [ className  =? "MPlayer"        --> doFloat
     , className  =? "Gimp"           --> doFloat
+    , className  =? "Godot_Engine"   --> doFloat
     , resource   =? "desktop_window" --> doIgnore
     , resource   =? "kdesktop"       --> doIgnore
     ]

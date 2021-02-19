@@ -28,11 +28,6 @@ alias ls='exa --color=auto'
 alias ll='exa -l --color=auto'  
 alias la='exa -la --color=auto'  
 
-alias manchunkin='godot ~/Manchunkin/source/project.godot & vim ~/Manchunkin/source/scripts/'  
-alias ggg='cd $HOME/Manchunkin/ && vim -c G'
-alias pmiasma='cd $HOME/hdd/taskjuggler/ && tj3 miasma_project.tjp && firefox $HOME/hdd/taskjuggler/*.html'
-alias vmiasma='vim $HOME/hdd/taskjuggler/miasma_project.tjp'
-
 # adding flags
 #alias ls='ls --color=auto'  
 #alias ll='ls -lh --color=auto'  
@@ -55,13 +50,15 @@ alias subdl-name="subdl --existing=overwrite --force-filename "
 
 # Useful aliases
 alias cdr="cd $MY_RUST_PROJECTS_DIRECTORY"
-alias TFM="cd $MY_RUST_PROJECTS_DIRECTORY/TFM && vim -c 'source ~/.vim/sessions/rust-session.vim' ./src/main.rs"
+alias cdtfm="cd ~/hdd/University/Master/2020-2021/Trabajo\ fin\ de\ master/TFM"
 
 alias gs="git status "
 alias ga="git add "
 alias gr="git remove "
 alias gc="git commit -m  "
 alias gpom="git push origin master "
+
+alias designervenv=".venv/lib/python3.9/site-packages/qt5_applications/Qt/bin/designer"
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -76,6 +73,5 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 alias listServices='systemctl list-units --type=service'
 
 #Shenanigans
-alias StarWars="telnet towel.blinkenlights.nl"
 alias tiempo="curl wttr.in"
 alias listfonts="fc-list"
