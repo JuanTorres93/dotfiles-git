@@ -2,7 +2,7 @@
 
 
 # Remap escape to caps lock and viceversa
- setxkbmap -option caps:swapescape
+# setxkbmap -option caps:swapescape
 # Remap caps lock to control and viceversa
 #setxkbmap -option ctrl:swapcaps
 # xset -b quiets down the bios beep
