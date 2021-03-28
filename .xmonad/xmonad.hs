@@ -103,6 +103,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
+    , ((modm, xK_Escape                       ), spawn "setxkbmap -option caps:swapescape")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 
     -- close focused window
@@ -281,14 +282,14 @@ myEventHook = mempty
 
 myStartupHook = do
        spawnOnce "ChangeWallpaper"
-       spawnOnce "polybar xmonad &"
        spawnOnce "picom &"
        spawnOnce "volumeicon &"
        spawnOnce "udiskie &"
        spawnOnce "nm-applet &"
        spawnOnce "redshift -b 1:0.7 &"
-       --spawnOnce "parcellite -n &"
        spawnOnce "xfce4-clipman &"
+       spawnOnce "polybar xmonad &"
+       spawnOnce "udiskie &"
 
 ------------------------------------------------------------------------
 
