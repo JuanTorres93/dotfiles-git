@@ -1,6 +1,18 @@
-sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libreoffice texlive-most thunderbird dmenu xfce4-clipman-plugin thunar ranger picom gvim celluloid kdeconnect capitaine-cursors youtube-dl
+sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libreoffice texlive-most thunderbird dmenu xfce4-clipman-plugin thunar ranger picom gvim celluloid kdeconnect capitaine-cursors youtube-dl neofetch xmonad xmonad-contrib xmonad-utils alacritty emacs haskell-dbus ttf-ubuntu-font-family volumeicon lxappearance network-manager-applet
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 
-yay -S nerd-fonts-terminus nerd-fonts-mononoki
+# Install paru
+sudo pacman -S --needed base-devel
+cd ~
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+
+# Delete paru source code
+cd ..
+rm -rf paru
+
+# Install paru packages
+paru -S nerd-fonts-terminus nerd-fonts-mononoki xmobar-log
