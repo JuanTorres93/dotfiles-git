@@ -290,6 +290,7 @@ myStartupHook = do
        spawnOnce "xfce4-clipman &"
        spawnOnce "polybar xmonad &"
        spawnOnce "udiskie &"
+       spawnOnce "solaar -w hide &"
 
 ------------------------------------------------------------------------
 
