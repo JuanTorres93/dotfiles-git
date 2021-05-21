@@ -15,4 +15,4 @@ cd ..
 rm -rf paru
 
 # Install paru packages
-paru -S nerd-fonts-terminus nerd-fonts-mononoki xmobar-log
+paru -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log

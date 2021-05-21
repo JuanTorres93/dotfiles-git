@@ -26,26 +26,10 @@ Plugin 'dracula/vim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'rust-lang/rust.vim'
 Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'kalafut/vim-taskjuggler'
-Plugin 'habamax/vim-godot'
 " Consult YouCompleteMe github page in order to install it correctly
 "Plugin 'ycm-core/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
-" Godot YouCompleteMe Configuration
-if !has_key( g:, 'ycm_language_server' )
-  let g:ycm_language_server = []
-endif
-
-let g:ycm_language_server += [
-  \   {
-  \     'name': 'godot',
-  \     'filetypes': [ 'gdscript' ],
-  \     'project_root_files': [ 'project.godot' ],
-  \     'port': 6008
-  \   }
-  \ ]
 
 filetype plugin indent on    " required
 
