@@ -16,19 +16,19 @@ else
 fi
 
 # Retrieve theming
-git clone https://github.com/JuanTorres93/wallpapers
+#git clone https://github.com/JuanTorres93/wallpapers
 
 # Remove the .git folder from all downloaded repositoires
-rm -rf ./*/.git
+#rm -rf ./*/.git
 
 # Create Background folder
-wallpapersDir="$HOME"/.wallpapers
-sudo mkdir "$wallpapersDir"
+#wallpapersDir="$HOME"/.wallpapers
+#sudo mkdir "$wallpapersDir"
 
 # Move the wallpapers to the backgrounds folder created above
-sudo mv wallpapers/* "$wallpapersDir"
+#sudo mv wallpapers/* "$wallpapersDir"
 # Remove the wallpapers folder, downloaded from repository
-rm -rf wallpapers
+#rm -rf wallpapers
 
 # Move lightdm background and profile pic to /usr/share/lightdmPictures
 # this is done because I couldn't figure out how to enable lightdm to get
@@ -37,6 +37,9 @@ sudo mv lightdmPictures/ /usr/share/
 
 # Dot files configuration
 ./SoftLinkFiles
+
+# More packages
+./Install_from_arch_based_distro
 
 # Vim configuration
 ./vimSetUp.sh
