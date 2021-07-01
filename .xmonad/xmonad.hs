@@ -100,6 +100,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions linkedin.com stackoverflow.com & thunderbird")
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
+    -- Open fuertafit planning
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf ~/hdd/FuertaFit+/Abdominales_fuertafit/FUERTAFIT_ABD3_Junio.pdf")
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
