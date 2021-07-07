@@ -321,6 +321,8 @@ The CAPF back-end provides a bridge to the standard completion-at-point-function
 #+end_src
 *** company-lsp
 [[https://github.com/tigersoldier/company-lsp][github page]]
+PACKAGE NO LONGER AVAILABLE
+
 It provides features that are not available by using company-capf + lsp-mode:
 
     Support trigger characters. For example typing . will trigger completion for TypeScript.
@@ -331,9 +333,9 @@ It provides features that are not available by using company-capf + lsp-mode:
     Expand snippets on completion (requires yasnippet).
 
 #+begin_src emacs-lisp
-  (use-package company-lsp
-    :ensure t
-    )
+;;  (use-package company-lsp
+;;    :ensure t
+;;    )
 #+end_src
 
 *** company-box
@@ -397,6 +399,8 @@ Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, 
     ;; The folloeing two lines are meant for evil-collection to work
     (setq evil-want-integration t) 
     (setq evil-want-keybinding nil)
+    (setq evil-vsplit-window-right t)
+    (setq evil-split-window-below t)
     :custom
     (evil-undo-system 'undo-tree)
     :config
