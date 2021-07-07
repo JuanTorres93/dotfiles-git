@@ -7,7 +7,7 @@ then
 fi
 
 #Editor de latex a utilizar
-latexEditor=emacs
+latexEditor=vim
 
 nombre="$1"
 #Ruta de la CARPETA en la que se encuentra la plantilla
