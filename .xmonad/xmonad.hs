@@ -17,6 +17,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
@@ -293,6 +294,8 @@ myStartupHook = do
        spawnOnce "polybar xmonad &"
        spawnOnce "udiskie &"
        spawnOnce "solaar -w hide &"
+       -- This is done to avoid some java problems
+       setWMName "LG3D"
 
 ------------------------------------------------------------------------
 
