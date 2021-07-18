@@ -1,11 +1,4 @@
 #!/bin/bash
-# Update the system in order to get pacman functional
-sudo pacman -Syu
-# Install needed packages
-sudo pacman -S --needed tar gzip unzip unrar xarchiver git base-devel networkmanager network-manager-applet alsa-firmware pulseaudio pasystray pavucontrol xorg ttf-font-awesome alsa-utils ranger papirus-icon-theme parcellite zathura zathura-pdf-poppler trayer
-sudo pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xterm firefox geany dmenu lxappearance xwallpaper thunar thunar-archive-plugin picom qtile ttf-droid numlockx feh polkit-gnome cronie gvim ttf-ubuntu-font-family exa xmonad xmonad-contrib xmonad-utils xmobar
-sudo pacman -S --needed xfce4-appfinder volumeicon gvfs thunar-volman noto-fonts udisks2 udiskie alsa-utils alacritty xfce4-notifyd kvantum-qt5 qt5ct capitaine-cursors youtube-dl redshift arc-solid-gtk-theme kvantum-theme-arc arc-icon-theme subdl rsync
-
 # Check processor vendor and install xf86 accordingly (probably useless)
 probe_cpu=$(cat /proc/cpuinfo | grep vendor | uniq)
 
@@ -14,26 +7,6 @@ if [[  "$probe_cpu" == *"Intel"*  ]]; then
 else
 	sudo pacman -S xf86-video-amdgpu
 fi
-
-# Retrieve theming
-#git clone https://github.com/JuanTorres93/wallpapers
-
-# Remove the .git folder from all downloaded repositoires
-#rm -rf ./*/.git
-
-# Create Background folder
-#wallpapersDir="$HOME"/.wallpapers
-#sudo mkdir "$wallpapersDir"
-
-# Move the wallpapers to the backgrounds folder created above
-#sudo mv wallpapers/* "$wallpapersDir"
-# Remove the wallpapers folder, downloaded from repository
-#rm -rf wallpapers
-
-# Move lightdm background and profile pic to /usr/share/lightdmPictures
-# this is done because I couldn't figure out how to enable lightdm to get
-# images from home directory
-sudo mv lightdmPictures/ /usr/share/
 
 # Dot files configuration
 ./SoftLinkFiles
