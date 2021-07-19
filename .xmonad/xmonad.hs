@@ -76,7 +76,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,                 xK_Delete), spawn "xkill")
-    , ((modm,                 xK_e     ), spawn "thunar")
+    , ((modm,                 xK_e     ), spawn "dolphin")
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
     , ((modm,                 xK_s     ), windows copyToAll)    -- Window no longer sticky
 
