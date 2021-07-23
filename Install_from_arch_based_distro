@@ -15,6 +15,9 @@ echo "CHOOSE virtualbox-host-modules-arch"
 sudo pacman -S --needed virtualbox virtualbox-guest-utils
 sudo modprobe vboxdrv
 
+# ArcoLinux package name
+pacman -S --needed brave-bin
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 
