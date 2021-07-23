@@ -34,3 +34,6 @@ rm -rf paru
 
 # Install paru packages
 paru -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
+
+# Remove bash_profile if exists, since it can cause that .profile is not read
+rm $HOME/.bash_profile
