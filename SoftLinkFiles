@@ -60,3 +60,5 @@ while IFS='/' read -ra DIRECTORIES; do
 	done
 
 done <<< "$directoriesGitFolder"
+
+cp -r .emacs.d $HOME/
