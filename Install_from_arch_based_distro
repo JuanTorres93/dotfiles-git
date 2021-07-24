@@ -24,6 +24,7 @@ git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 
 # Soft-link config files
 python SoftLinkFiles.py 
+rm -rf ~/.emacs.d/
 cp .emacs.d/ ~/.emacs.d/
 
 # Install AUR helper
@@ -55,7 +56,7 @@ fi
 # Install AUR packages
 $AUR_HELPER --needed -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
  
-vim -c "PluginInstall" -c "norm ZQ"
+vim -c "PluginInstall" -c "norm ZQ" -c "norm ZQ"
 
 # Remove bash_profile if exists, since it can cause that .profile is not read
 rm $HOME/.bash_profile
