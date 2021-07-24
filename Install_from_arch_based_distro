@@ -21,19 +21,35 @@ pacman -S --needed brave-bin
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 
-# Install paru
+# Install AUR helper
 sudo pacman -S --needed base-devel
 cd ~
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
 
-# Delete paru source code
-cd ..
-rm -rf paru
+echo "Which AUR helper do you want to install: yay or paru?"
+read AUR_HELPER
 
-# Install paru packages
-paru -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
+if [ "$AUR_HELPER" == "paru"]; then
+   AUR_HELPER=paru
+   git clone https://aur.archlinux.org/paru.git
+   cd paru
+   makepkg -si
+   
+   # Delete paru source code
+   cd ..
+   rm -rf paru
+else:
+   AUR_HELPER=yay
+   git clone https://aur.archlinux.org/yay.git
+   cd yay
+   makepkg -si
+   
+   # Delete yay source code
+   cd ..
+   rm -rf yay
+fi
+
+# Install AUR packages
+AUR_HELPER -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
 
 # Remove bash_profile if exists, since it can cause that .profile is not read
 rm $HOME/.bash_profile
