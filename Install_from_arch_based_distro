@@ -1,3 +1,4 @@
+#! /bin/bash
 # Update the system in order to get pacman functional
 sudo pacman -Syu
 # Install needed packages
@@ -16,7 +17,7 @@ sudo pacman -S --needed virtualbox virtualbox-guest-utils
 sudo modprobe vboxdrv
 
 # ArcoLinux package name
-pacman -S --needed brave-bin
+sudo pacman -S --needed brave-bin
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
@@ -25,11 +26,9 @@ git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 sudo pacman -S --needed base-devel
 cd ~
 
-echo "Which AUR helper do you want to install: yay or paru?"
-read AUR_HELPER
+read -p  "Which AUR helper do you want to install: yay or paru?   " AUR_HELPER_NAME
 
-if [ "$AUR_HELPER" == "paru"]; then
-   AUR_HELPER=paru
+if [[ "$AUR_HELPER_NAME" == "paru" ]]; then
    git clone https://aur.archlinux.org/paru.git
    cd paru
    makepkg -si
@@ -37,8 +36,8 @@ if [ "$AUR_HELPER" == "paru"]; then
    # Delete paru source code
    cd ..
    rm -rf paru
-else:
-   AUR_HELPER=yay
+   AUR_HELPER=paru
+else
    git clone https://aur.archlinux.org/yay.git
    cd yay
    makepkg -si
@@ -46,10 +45,13 @@ else:
    # Delete yay source code
    cd ..
    rm -rf yay
+   AUR_HELPER=yay
 fi
 
 # Install AUR packages
-AUR_HELPER -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
+$AUR_HELPER --needed -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
+ 
+vim -c "PluginInstall" -c "norm ZQ"
 
 # Remove bash_profile if exists, since it can cause that .profile is not read
 rm $HOME/.bash_profile
