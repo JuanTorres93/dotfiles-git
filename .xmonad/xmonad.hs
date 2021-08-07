@@ -76,7 +76,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,                 xK_Delete), spawn "xkill")
-    , ((modm,                 xK_e     ), spawn "dolphin")
+    , ((modm,                 xK_e     ), spawn "thunar")
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
     , ((modm,                 xK_s     ), windows copyToAll)    -- Window no longer sticky
 
@@ -98,11 +98,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     
     -- Run every morning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions linkedin.com stackoverflow.com & thunderbird")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions linkedin.com odysee.com/$/following & thunderbird")
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
     -- Open fuertafit planning
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Abdominales_fuertafit/FUERTAFIT_ABD3_Junio.pdf ~/hdd/FuertaFit+/Gluteos_fuertafit/FUERTAFIT_Gluteos2_Junio21.pdf ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
+    -- Trading
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn "firefox https://global.bittrex.com/Market/Index?MarketName=USD-BTC https://global.bittrex.com/Market/Index?MarketName=EUR-BTC https://global.bittrex.com/balance")
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
