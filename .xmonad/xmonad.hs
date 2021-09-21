@@ -102,9 +102,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
     -- Open fuertafit planning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Abdominales_fuertafit/FUERTAFIT_ABD3_Junio.pdf ~/hdd/FuertaFit+/Gluteos_fuertafit/FUERTAFIT_Gluteos2_Junio21.pdf ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
+    --, ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Abdominales_fuertafit/FUERTAFIT_ABD3_Junio.pdf ~/hdd/FuertaFit+/Gluteos_fuertafit/FUERTAFIT_Gluteos2_Junio21.pdf ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_a     ), spawn "okular ~/hdd/FuertaFit+/Plan_para_adelgazar/Adelgazar_2.0_INICIAL.pdf")
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn "firefox https://global.bittrex.com/Market/Index?MarketName=USD-BTC https://global.bittrex.com/Market/Index?MarketName=EUR-BTC https://global.bittrex.com/balance")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn "firefox https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR")
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
