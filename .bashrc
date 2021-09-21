@@ -75,3 +75,4 @@ alias listServices='systemctl list-units --type=service'
 #Shenanigans
 alias tiempo="curl wttr.in"
 alias listfonts="fc-list"
+. "$HOME/.cargo/env"
