@@ -811,8 +811,39 @@ In order this function to work, some dictionaries must have been downloaded with
         (setq images-selection (directory-files (concat current-directory-string "Images/")))
 
         (setq chosen-image (let ((choices images-selection))
-          (ivy-read "Open bookmark:" choices )))
+          (ivy-read "Select image:" choices )))
 
-        (insert (concat "\\includegraphics[width=0.9\\linewidth]{Images/" chosen-image "}"))
+        ;;(insert (concat "\\includegraphics[width=0.9\\linewidth]{Images/" chosen-image "}"))
+        (insert "\\begin{figure}[h!]" "\n"
+        "  \\centering" "\n"
+        (concat "  \\includegraphics[width=0.9\\linewidth]{Images/" chosen-image "}") "\n"
+        "  \\caption{<++>}" "\n"
+        "  \\label{fig:<++>}" "\n"
+        "\\end{figure}" "\n"
+        "\\FloatBarrier" "\n")
   )
+
+  (global-set-key (kbd "C-ñ i") 'jtn/insert-graphics)
+#+end_src
+
+*** Insert placeholder
+#+begin_src emacs-lisp
+    (defun jtn/insert-placeholder ()
+      (interactive)
+        (insert "<++>")
+  )
+
+  (global-set-key (kbd "C-ñ p") 'jtn/insert-placeholder)
+#+end_src
+
+*** Go to placeholder
+#+begin_src emacs-lisp
+    (defun jtn/goto-placeholder ()
+      (interactive)
+        (search-forward "<++>")
+        (search-backward "<")
+        (evil-change (point) (+ (point) 4))
+  )
+
+  (global-set-key (kbd "C-ñ SPC") 'jtn/goto-placeholder)
 #+end_src
