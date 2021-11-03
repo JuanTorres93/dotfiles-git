@@ -296,7 +296,6 @@ myStartupHook = do
        spawnOnce "redshift -b 1:0.7 &"
        spawnOnce "xfce4-clipman &"
        spawnOnce "polybar xmonad &"
-       spawnOnce "udiskie &"
        spawnOnce "solaar -w hide &"
        -- This is done to avoid some java problems
        setWMName "LG3D"

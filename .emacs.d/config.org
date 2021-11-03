@@ -553,7 +553,11 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
     (use-package lsp-mode
       :ensure t
 
-      :hook (prog-mode . lsp-mode)
+      :hook ((prog-mode . lsp-mode)
+             (TeX-latex-mode . lsp-mode)
+             (latex-mode . lsp-mode)
+             (tex-mode . lsp-mode)
+             )
   ;    :commands (lsp lsp-deferred);Both commands activate lsp-mode when called
       :init
       (setq lsp-keymap-prefix "C-c l")
@@ -573,7 +577,7 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
     (require 'lsp-mode)
 #+end_src
 
-** lsp-python-ms
+*** lsp-python-ms
 #+begin_src emacs-lisp
   (use-package lsp-python-ms
     :ensure t
