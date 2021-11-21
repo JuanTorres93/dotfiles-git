@@ -2,22 +2,15 @@
 # Update the system in order to get pacman functional
 sudo pacman -Syu
 # Install needed packages
-sudo pacman -S --needed tar gzip unzip unrar xarchiver git base-devel networkmanager network-manager-applet alsa-firmware pulseaudio pasystray pavucontrol xorg ttf-font-awesome alsa-utils ranger papirus-icon-theme parcellite zathura zathura-pdf-poppler trayer okular dolphin solaar konsole
+# Declare an array of packages to install
+declare -a StringArray=("tar" "gzip" "unzip" "unrar" "xarchiver" "git" "base-devel" "networkmanager" "network-manager-applet" "alsa-firmware" "pulseaudio" "pasystray" "pavucontrol" "xorg" "ttf-font-awesome" "alsa-utils" "ranger" "papirus-icon-theme" "parcellite" "zathura" "zathura-pdf-poppler" "trayer" "okular" "dolphin" "solaar" "konsole" "lightdm" "lightdm-gtk-greeter" "lightdm-gtk-greeter-settings" "xterm" "firefox" "geany" "dmenu" "lxappearance" "xwallpaper" "thunar" "thunar-archive-plugin" "picom" "qtile" "ttf-droid" "numlockx" "feh" "polkit-gnome" "cronie" "gvim" "ttf-ubuntu-font-family" "exa" "xmonad" "xmonad-contrib" "xmonad-utils" "xmobar" "xfce4-appfinder" "volumeicon" "gvfs" "thunar-volman" "noto-fonts" "udisks2" "udiskie" "alsa-utils" "alacritty" "xfce4-notifyd" "kvantum-qt5" "qt5ct" "capitaine-cursors" "youtube-dl" "redshift" "arc-solid-gtk-theme" "kvantum-theme-arc" "arc-icon-theme" "subdl" "rsync" "freecad" "prusa-slicer" "gimp" "numlockx" "exa" "zathura" "zathura-pdf-poppler" "xwallpaper" "libreoffice" "texlive-most" "thunderbird" "dmenu" "xfce4-clipman-plugin" "thunar" "ranger" "picom" "gvim" "celluloid" "kdeconnect" "capitaine-cursors" "youtube-dl" "neofetch" "xmonad" "xmonad-contrib" "xmonad-utils" "alacritty" "emacs" "haskell-dbus" "ttf-ubuntu-font-family" "volumeicon" "lxappearance" "network-manager-applet" "blender" "brave-bin")
 
-sudo pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xterm firefox geany dmenu lxappearance xwallpaper thunar thunar-archive-plugin picom qtile ttf-droid numlockx feh polkit-gnome cronie gvim ttf-ubuntu-font-family exa xmonad xmonad-contrib xmonad-utils xmobar
-
-sudo pacman -S --needed xfce4-appfinder volumeicon gvfs thunar-volman noto-fonts udisks2 udiskie alsa-utils alacritty xfce4-notifyd kvantum-qt5 qt5ct capitaine-cursors youtube-dl redshift arc-solid-gtk-theme kvantum-theme-arc arc-icon-theme subdl rsync freecad prusa-slicer gimp
-
-sudo pacman -S --needed numlockx exa zathura zathura-pdf-poppler xwallpaper libreoffice texlive-most thunderbird dmenu xfce4-clipman-plugin thunar ranger picom gvim celluloid kdeconnect capitaine-cursors youtube-dl neofetch xmonad xmonad-contrib xmonad-utils alacritty emacs haskell-dbus ttf-ubuntu-font-family volumeicon lxappearance network-manager-applet blender
-
-echo ""
-echo ""
-echo "CHOOSE virtualbox-host-modules-arch"
-sudo pacman -S --needed virtualbox virtualbox-guest-utils
-sudo modprobe vboxdrv
-
-# ArcoLinux package name
-sudo pacman -S --needed brave-bin
+sudo pacman -Rns --noconfirm vim
+ 
+# Iterate the string array using for loop
+for val in ${StringArray[@]}; do
+   sudo pacman -S --needed --noconfirm $val
+done
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
@@ -60,6 +53,10 @@ vim -c "PluginInstall" -c "norm ZQ" -c "norm ZQ"
 
 # Remove bash_profile if exists, since it can cause that .profile is not read
 rm $HOME/.bash_profile
+
+# Git configuration
+git config --global user.email "juan93git@gmail.com"
+git config --global user.name "Juan Torres"
 
 # Recompile xmonad
 xmonad --recompile
