@@ -85,11 +85,6 @@ This option allows the visualization of different "asterisks" levels in the agen
   (setq make-backup-files nil)
   (setq auto-save-default nil)
 #+end_src
-** Follow symlinks for version control
-This is done at startup in order not to get emacs asking to load its own configuration.
-#+begin_src emacs-lisp
-  ;(add-hook 'after-init-hook (lambda () (vc-follow-symlinks nil)))
-#+end_src
 ** Line numbers configuration
 #+begin_src emacs-lisp
 (global-display-line-numbers-mode 1)
@@ -126,6 +121,7 @@ Ibuffer is an advanced replacement for BufferMenu, which lets you operate on buf
 
 #+end_src
 ** Do not save X clipboard when closing emacs
+I think that if this was not nil, then emacs hanged up on closing
 #+begin_src emacs-lisp
   (setq x-select-enable-clipboard-manager nil)
 #+end_src
@@ -163,6 +159,10 @@ Show org-mode bullets as UTF-8 characters.
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
 ** ivy
+Ivy is a generic completion mechanism for Emacs. While it operates similarly to other completion schemes such as icomplete-mode, Ivy aims to be more efficient, smaller, simpler, and smoother to use yet highly customizable.
+
+[[https://github.com/abo-abo/swiper][github]]
+
 #+begin_src emacs-lisp
   (use-package ivy
     :ensure t
@@ -184,6 +184,14 @@ Show org-mode bullets as UTF-8 characters.
     (ivy-mode 1))
 #+end_src
 ** counsel
+ivy-mode ensures that any Emacs command using completing-read-function uses ivy for completion.
+
+Counsel takes this further, providing versions of common Emacs commands that are customised to make the best use of Ivy. For example, counsel-find-file has some additional keybindings. Pressing DEL will move you to the parent directory.
+
+Enabling counsel-mode remaps built-in Emacs functions that have counsel replacements.
+
+[[https://github.com/abo-abo/swiper][github]]
+
 #+begin_src emacs-lisp
   (use-package counsel
     :ensure t
@@ -195,6 +203,10 @@ Show org-mode bullets as UTF-8 characters.
   (global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 #+end_src
 ** ivy-rich
+This package comes with rich transformers for commands from ivy and counsel. It should be easy enough to define your own transformers too.
+
+[[https://github.com/Yevgnen/ivy-rich][github]]
+
 #+begin_src emacs-lisp
   (use-package ivy-rich
     :ensure t
@@ -202,6 +214,10 @@ Show org-mode bullets as UTF-8 characters.
     (ivy-rich-mode 1))
 #+end_src
 ** helpful
+Helpful is an alternative to the built-in Emacs help that provides much more contextual information.
+
+[[https://github.com/Wilfred/helpful][github]]
+
 #+begin_src emacs-lisp
   (use-package helpful
     :ensure t
@@ -368,6 +384,27 @@ The package all-the-icons is needed for this package to be visually appealing
   :init (doom-modeline-mode 1))
 #+end_src
 
+** doom-themes
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  ;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  ;;(doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+end_src
+
 ** all-the-icons
 Once installed it is needed to run: M-x all-the-icons-install-fonts
 #+begin_src emacs-lisp
@@ -417,12 +454,6 @@ Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, 
     (evil-collection-company-use-tng nil)
     :config
     (evil-collection-init))
-#+end_src
-*** evil-magit
-#+begin_src emacs-lisp
-;  (use-package evil-magit
-;    :ensure t
-;    :after magit evil-collection)
 #+end_src
 ** swiper
 Better emacs search
@@ -506,30 +537,6 @@ Prettify symbols
 #+begin_src emacs-lisp
   ;(add-hook 'LaTeX-mode-hook
   ;          (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
-#+end_src
-** rust-mode
-#+begin_src emacs-lisp
-  (use-package rust-mode
-    :ensure t
-    )
-
-  (require 'rust-mode)
-#+end_src
-
-Indentation
-#+begin_src emacs-lisp
-  (add-hook 'rust-mode-hook
-            (lambda () (setq indent-tabs-mode nil)))
-#+end_src
-
-Code formatting on save (Default C-c C-f)
-#+begin_src emacs-lisp
-  (setq rust-format-on-save t)
-#+end_src
-
-Cargo run
-#+begin_src emacs-lisp
-  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
 #+end_src
 ** haskell-mode
 #+begin_src emacs-lisp
@@ -695,14 +702,6 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
 #+RESULTS:
 : org-agenda
 
-*** Edit TFM
-#+begin_src emacs-lisp
-  (defun edit-my-TFM ()
-    (interactive)
-    (find-file "~/hdd/University/Master/2020-2021/Primer cuatrimestre/Trabajo fin de máster/TFM Memoria/TFM.tex"))
-
-  (global-set-key (kbd "C-c t") 'edit-my-TFM)
-#+end_src
 *** Reload config file
 #+begin_src emacs-lisp
   (defun config-reload ()
@@ -743,17 +742,6 @@ When making a vertical or horizontal split, the cursor will follow and make the 
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c s") 'yas-describe-tables)
 #+END_SRC
-*** Goto placeholder
-Probably I will delete this in favour of yasnippets
-#+begin_src emacs-lisp
-  (defun my-goto-place-holder ()
-    (interactive)
-    (search-forward "<++>")
-    (backward-char 4)
-    (delete-char 4))
-
-    (global-set-key (kbd "C-c C-SPC") 'my-goto-place-holder)
-#+end_src
 *** Change dictionary
 *I plan to take a look for a better way of implementing this*
 
