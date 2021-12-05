@@ -49,16 +49,12 @@ alias subdl="subdl --existing=overwrite "
 alias subdl-name="subdl --existing=overwrite --force-filename "
 
 # Useful aliases
-alias cdr="cd $MY_RUST_PROJECTS_DIRECTORY"
-alias cdtfm="cd ~/hdd/University/Master/2020-2021/Trabajo\ fin\ de\ master/TFM"
-
 alias gs="git status "
 alias ga="git add "
 alias gr="git remove "
 alias gc="git commit -m  "
 alias gpom="git push origin master "
 
-alias designervenv=".venv/lib/python3.9/site-packages/qt5_applications/Qt/bin/designer"
 alias run_bot="cd ~/hdd/python_projects/ccxt_trading_bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 
 #get fastest mirrors in your neighborhood 
@@ -76,4 +72,3 @@ alias listServices='systemctl list-units --type=service'
 #Shenanigans
 alias tiempo="curl wttr.in"
 alias listfonts="fc-list"
-. "$HOME/.cargo/env"
