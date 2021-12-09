@@ -440,6 +440,10 @@ Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, 
     (setq evil-split-window-below t)
     :custom
     (evil-undo-system 'undo-tree)
+    :bind (("C-+" . evil-window-increase-height)
+           ("C--" . evil-window-decrease-height)
+           ("C-<" . evil-window-decrease-width)
+           ("C->" . evil-window-increase-width))
     :config
     (evil-mode 1)
     )
@@ -537,6 +541,18 @@ Prettify symbols
 #+begin_src emacs-lisp
   ;(add-hook 'LaTeX-mode-hook
   ;          (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
+#+end_src
+
+Use pdf-tools as pdf viewwe
+#+begin_src emacs-lisp
+   ;; to use pdfview with auctex
+   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+      TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+      TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
+
+   ;; to have the buffer refresh after compilation
+   (add-hook 'TeX-after-compilation-finished-functions
+          #'TeX-revert-document-buffer)
 #+end_src
 ** haskell-mode
 #+begin_src emacs-lisp
@@ -642,6 +658,14 @@ Magit is an interface to the version control system Git, implemented as an Emacs
   (use-package magit
     :ensure t
     :after evil evil-collection
+    )
+#+end_src
+** pdf-tools
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install)
     )
 #+end_src
 ** centaur-tabs
