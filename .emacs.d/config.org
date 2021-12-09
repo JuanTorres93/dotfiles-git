@@ -668,6 +668,21 @@ Magit is an interface to the version control system Git, implemented as an Emacs
     (pdf-tools-install)
     )
 #+end_src
+** switch-window
+#+begin_src emacs-lisp
+  (use-package switch-window
+    :ensure t
+    :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (setq switch-window-qwerty-shortcuts
+          '("a" "s" "d" "f" "h" "j" "l"))
+    :bind
+    ([remap other-window] . switch-window)
+    )
+#+end_src
 ** centaur-tabs
 Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customization options
 [[https://github.com/ema2159/centaur-tabs][github page]]
