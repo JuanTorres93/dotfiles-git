@@ -440,13 +440,15 @@ Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, 
     (setq evil-split-window-below t)
     :custom
     (evil-undo-system 'undo-tree)
-    :bind (("C-+" . evil-window-increase-height)
-           ("C--" . evil-window-decrease-height)
-           ("C-<" . evil-window-decrease-width)
-           ("C->" . evil-window-increase-width))
     :config
     (evil-mode 1)
-    )
+  )
+
+
+  (global-set-key (kbd "C-+") 'evil-window-increase-height)
+  (global-set-key (kbd "C--") 'evil-window-decrease-height)
+  (global-set-key (kbd "C-*") 'evil-window-decrease-width)
+  (global-set-key (kbd "C-_") 'evil-window-increase-width)
 
 #+end_src
 *** evil-collection
@@ -554,6 +556,12 @@ Use pdf-tools as pdf viewwe
    (add-hook 'TeX-after-compilation-finished-functions
           #'TeX-revert-document-buffer)
 #+end_src
+
+Enable synctex
+#+begin_src emacs-lisp
+  (setq LaTeX-command "latex --synctex=1")
+#+end_src
+
 ** haskell-mode
 #+begin_src emacs-lisp
   (use-package haskell-mode
