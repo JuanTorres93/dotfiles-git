@@ -610,13 +610,19 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
 
 *** lsp-python-ms
 #+begin_src emacs-lisp
+  ;;(use-package lsp-python-ms
+  ;;  :ensure t
+  ;;  :hook (python-mode . (lambda ()
+  ;;                         (require 'lsp-python-ms)
+  ;;                         (lsp)))
+  ;;  :init
+  ;;  (setq lsp-python-ms-executable (executable-find "python-language-server")))
   (use-package lsp-python-ms
     :ensure t
+    :init (setq lsp-python-ms-auto-install-server t)
     :hook (python-mode . (lambda ()
-                           (require 'lsp-python-ms)
-                           (lsp)))
-    :init
-    (setq lsp-python-ms-executable (executable-find "python-language-server")))
+                            (require 'lsp-python-ms)
+                            (lsp))))  ; or lsp-deferred
 #+end_src
 ** pyenv
 Adds support for python virtual environments (venv)
