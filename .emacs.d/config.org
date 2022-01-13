@@ -42,7 +42,7 @@ Sometimes packages can't be downloaded, this may be due to a lack of syncronism,
 #+end_src
 *** Agenda files
 #+begin_src emacs-lisp
-  (setq org-agenda-files (list "~/org-agenda"))
+  (setq org-agenda-files (list "~/hdd/org-agenda"))
 #+end_src
 *** Agenda shows higher levels
 This option allows the visualization of different "asterisks" levels in the agenda view
@@ -737,23 +737,20 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
   ; University
     (defun edit-my-org-agenda ()
       (interactive)
-      (find-file "~/org-agenda/universidad.org"))
+      (find-file "~/hdd/org-agenda/universidad.org"))
 
     (global-set-key (kbd "C-c a") 'edit-my-org-agenda)
 
     ; Personal
     (defun edit-my-personal-org-agenda ()
       (interactive)
-      (find-file "~/org-agenda/personal.org"))
+      (find-file "~/hdd/org-agenda/personal.org"))
 
     ;(global-set-key (kbd "C-c p") 'edit-my-personal-org-agenda)
 
     ; Show agenda
     (global-set-key (kbd "C-c A") 'org-agenda)
 #+end_src
-
-#+RESULTS:
-: org-agenda
 
 *** Reload config file
 #+begin_src emacs-lisp
