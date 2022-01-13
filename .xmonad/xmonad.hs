@@ -34,7 +34,8 @@ import qualified Codec.Binary.UTF8.String as UTF8
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
+myTerminal = "alacritty"
+myBrowser = "brave"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -85,7 +86,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Super + Control + key
     , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -a \"emacs\"")
-    , ((modm .|. controlMask, xK_f     ), spawn "firefox")
+    , ((modm .|. controlMask, xK_f     ), spawn myBrowser)
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
@@ -99,13 +100,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     
     -- Run every morning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions & thunderbird")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn (myBrowser ++ " youtube.com/feed/subscriptions & thunderbird"))
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
     -- Open fuertafit planning
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/*.pdf")
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn "firefox https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR"))
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
