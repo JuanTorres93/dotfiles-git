@@ -86,7 +86,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Super + Control + key
     , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -a \"emacs\"")
-    , ((modm .|. controlMask, xK_f     ), spawn myBrowser)
+    , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
