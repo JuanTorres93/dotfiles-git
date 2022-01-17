@@ -545,22 +545,35 @@ Prettify symbols
   ;          (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
 #+end_src
 
-Use pdf-tools as pdf viewwe
-#+begin_src emacs-lisp
-   ;; to use pdfview with auctex
-   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-      TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
-      TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
-
-   ;; to have the buffer refresh after compilation
-   (add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer)
-#+end_src
-
 Enable synctex
 #+begin_src emacs-lisp
   (setq LaTeX-command "latex --synctex=1")
 #+end_src
+
+*** pdf viewer
+ONLY ONE VIEWER MUST BE UNCOMMENTED!
+
+Use pdf-tools as pdf viewer
+#+begin_src emacs-lisp
+    ;; to use pdfview with auctex
+    ;;(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+    ;;   TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+    ;;   TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
+#+end_src
+
+Use zathura as pdf viewer
+#+begin_src emacs-lisp
+  (with-eval-after-load 'tex
+      (add-to-list 'TeX-view-program-selection
+                   '(output-pdf "Zathura")))
+#+end_src
+
+Have the buffer refresh after compilation
+#+begin_src emacs-lisp
+    (add-hook 'TeX-after-compilation-finished-functions
+           #'TeX-revert-document-buffer)
+#+end_src
+
 
 ** haskell-mode
 #+begin_src emacs-lisp
