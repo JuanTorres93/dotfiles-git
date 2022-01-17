@@ -35,7 +35,7 @@ import qualified Codec.Binary.UTF8.String as UTF8
 -- certain contrib modules.
 --
 myTerminal = "alacritty"
-myBrowser = "brave"
+myBrowser = "firefox"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
