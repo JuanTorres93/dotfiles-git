@@ -42,7 +42,7 @@ Sometimes packages can't be downloaded, this may be due to a lack of syncronism,
 #+end_src
 *** Agenda files
 #+begin_src emacs-lisp
-  (setq org-agenda-files (list "~/org-agenda"))
+  (setq org-agenda-files (list "~/hdd/org-agenda"))
 #+end_src
 *** Agenda shows higher levels
 This option allows the visualization of different "asterisks" levels in the agenda view
@@ -125,6 +125,14 @@ I think that if this was not nil, then emacs hanged up on closing
 #+begin_src emacs-lisp
   (setq x-select-enable-clipboard-manager nil)
 #+end_src
+** Spell checking
+#+begin_src emacs-lisp
+  (setq ispell-program-name "hunspell")
+  (setq ispell-local-dictionary "es_ES")
+  (setq ispell-local-dictionary-alist
+        '(("es_ES" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+#+end_src
+
 * MELPA packages
 ** which-key
 which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup. For example, after enabling the minor mode if you enter C-x and wait for the default of 1 second the minibuffer will expand with all of the available key bindings that follow C-x (or as many as space allows given your settings).
@@ -392,7 +400,8 @@ The package all-the-icons is needed for this package to be visually appealing
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
+  ;;(load-theme 'doom-one t)
+  (load-theme 'doom-challenger-deep t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -545,22 +554,35 @@ Prettify symbols
   ;          (lambda () (local-set-key (kbd "C-c p") #'prettify-symbols-mode)))
 #+end_src
 
-Use pdf-tools as pdf viewwe
-#+begin_src emacs-lisp
-   ;; to use pdfview with auctex
-   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-      TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
-      TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
-
-   ;; to have the buffer refresh after compilation
-   (add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer)
-#+end_src
-
 Enable synctex
 #+begin_src emacs-lisp
   (setq LaTeX-command "latex --synctex=1")
 #+end_src
+
+*** pdf viewer
+ONLY ONE VIEWER MUST BE UNCOMMENTED!
+
+Use pdf-tools as pdf viewer
+#+begin_src emacs-lisp
+    ;; to use pdfview with auctex
+    ;;(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+    ;;   TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+    ;;   TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
+#+end_src
+
+Use zathura as pdf viewer
+#+begin_src emacs-lisp
+  (with-eval-after-load 'tex
+      (add-to-list 'TeX-view-program-selection
+                   '(output-pdf "Zathura")))
+#+end_src
+
+Have the buffer refresh after compilation
+#+begin_src emacs-lisp
+    (add-hook 'TeX-after-compilation-finished-functions
+           #'TeX-revert-document-buffer)
+#+end_src
+
 
 ** haskell-mode
 #+begin_src emacs-lisp
@@ -610,13 +632,19 @@ IT IS NEEDED TO INSTALL THE PARTICULAR LANGUAGE SERVER FOR EACH ONE IT IS DESIRE
 
 *** lsp-python-ms
 #+begin_src emacs-lisp
+  ;;(use-package lsp-python-ms
+  ;;  :ensure t
+  ;;  :hook (python-mode . (lambda ()
+  ;;                         (require 'lsp-python-ms)
+  ;;                         (lsp)))
+  ;;  :init
+  ;;  (setq lsp-python-ms-executable (executable-find "python-language-server")))
   (use-package lsp-python-ms
     :ensure t
+    :init (setq lsp-python-ms-auto-install-server t)
     :hook (python-mode . (lambda ()
-                           (require 'lsp-python-ms)
-                           (lsp)))
-    :init
-    (setq lsp-python-ms-executable (executable-find "python-language-server")))
+                            (require 'lsp-python-ms)
+                            (lsp))))  ; or lsp-deferred
 #+end_src
 ** pyenv
 Adds support for python virtual environments (venv)
@@ -731,23 +759,20 @@ Aesthetic, functional and efficient tabs plugin for Emacs with a lot of customiz
   ; University
     (defun edit-my-org-agenda ()
       (interactive)
-      (find-file "~/org-agenda/universidad.org"))
+      (find-file "~/hdd/org-agenda/universidad.org"))
 
     (global-set-key (kbd "C-c a") 'edit-my-org-agenda)
 
     ; Personal
     (defun edit-my-personal-org-agenda ()
       (interactive)
-      (find-file "~/org-agenda/personal.org"))
+      (find-file "~/hdd/org-agenda/personal.org"))
 
     ;(global-set-key (kbd "C-c p") 'edit-my-personal-org-agenda)
 
     ; Show agenda
     (global-set-key (kbd "C-c A") 'org-agenda)
 #+end_src
-
-#+RESULTS:
-: org-agenda
 
 *** Reload config file
 #+begin_src emacs-lisp
@@ -799,15 +824,15 @@ In order this function to work, some dictionaries must have been downloaded with
   (defun change-dictionary-to-english ()
     (interactive)
     (ispell-change-dictionary "en_GB")
-    (setq flyspell-mode t)
-    (flyspell-buffer)
+    (flyspell-mode -1)
+    (flyspell-mode)
     )
 
   (defun change-dictionary-to-spanish ()
     (interactive)
-    (ispell-change-dictionary "es_ANY")
-    (setq flyspell-mode t)
-    (flyspell-buffer)
+    (ispell-change-dictionary "es_ES")
+    (flyspell-mode -1)
+    (flyspell-mode)
     )
 
   (global-set-key (kbd "<f12>") 'change-dictionary-to-spanish)

@@ -7,11 +7,14 @@ then
 fi
 
 #Editor de latex a utilizar
-latexEditor=vim
+latexEditor=emacs
 
 nombre="$1"
 #Ruta de la CARPETA en la que se encuentra la plantilla
-rutaPlantilla=$HOME/hdd/University/Master/Plantilla\ Latex/
+# Plantilla master
+# rutaPlantilla=$HOME/hdd/University/Master/Plantilla\ Latex/
+# Plantilla ingles
+rutaPlantilla=$HOME/hdd/English\ B2/Plantilla\ Latex/
 rutaActual="$PWD"
 
 mkdir "$nombre"

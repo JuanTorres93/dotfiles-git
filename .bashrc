@@ -55,7 +55,8 @@ alias gr="git remove "
 alias gc="git commit -m  "
 alias gpom="git push origin master "
 
-alias run_bot="cd ~/hdd/python_projects/ccxt_trading_bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
+# alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
+alias run_bot="cd ~/hdd/python_projects/crypto-trading-bot/ && source venv/bin/activate && cd src/ && python run.py"
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"

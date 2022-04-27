@@ -34,7 +34,8 @@ import qualified Codec.Binary.UTF8.String as UTF8
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
+myTerminal = "alacritty"
+myBrowser = "firefox"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -85,12 +86,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Super + Control + key
     , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -a \"emacs\"")
-    , ((modm .|. controlMask, xK_f     ), spawn "firefox")
+    , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_b     ), spawn "blender")
+    , ((modm .|. controlMask, xK_p     ), spawn "prusa-slicer")
     , ((modm .|. controlMask, xK_g     ), spawn "godot")
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
@@ -98,19 +100,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     
     -- Run every morning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn "firefox youtube.com/feed/subscriptions linkedin.com & thunderbird")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn (myBrowser ++ " youtube.com/feed/subscriptions & thunderbird"))
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
     -- Open fuertafit planning
-    --, ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Abdominales_fuertafit/FUERTAFIT_ABD3_Junio.pdf ~/hdd/FuertaFit+/Gluteos_fuertafit/FUERTAFIT_Gluteos2_Junio21.pdf ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/Plan_para_ganar_musculo/Musculo_2.0_INICIAL.pdf")
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_a     ), spawn "okular ~/hdd/FuertaFit+/Plan_para_adelgazar/Adelgazar_2.0_INICIAL.pdf")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/*.pdf")
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn "firefox https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR")
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR"))
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
-    , ((modm, xK_Escape                       ), spawn "setxkbmap -option caps:swapescape")
     , ((0, xK_Print                    ), spawn "ScreenCapture")
 
     -- close focused window
