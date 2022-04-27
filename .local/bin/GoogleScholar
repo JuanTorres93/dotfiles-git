@@ -1,0 +1,10 @@
+#!/bin/bash
+# Get article name from clipboard
+ARTICLE=$( xsel -ob | head )
+ARTICLE_PARAM="${ARTICLE// /'+'}"
+echo $ARTICLE_PARAM
+LINK_PREFIX="https://scholar.google.com/scholar?hl=es&as_sdt=0%252C5&q="
+LINK_SUFFIX="&btnG="
+SCHOLAR_LINK=$LINK_PREFIX$ARTICLE_PARAM$LINK_SUFFIX
+
+$BROWSER "$SCHOLAR_LINK"
