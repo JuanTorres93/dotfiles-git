@@ -522,15 +522,15 @@ References
 
 Electric dollar symbols
 #+begin_src emacs-lisp
-  (add-hook 'LaTeX-mode-hook
-             (lambda () (set (make-local-variable 'TeX-electric-math)
-                             (cons "$" "$"))))
+  ;; (add-hook 'LaTeX-mode-hook
+  ;;            (lambda () (set (make-local-variable 'TeX-electric-math)
+  ;;                            (cons "$" "$"))))
 #+end_src
 
 Electric left and right
 #+begin_src emacs-lisp
-  (setq TeX-arg-right-insert-p t)
-  (setq LaTeX-electric-left-right-brace t)
+  ;; (setq TeX-arg-right-insert-p t)
+  ;; (setq LaTeX-electric-left-right-brace t)
 #+end_src
 
 Math mode enabled (C-c ~)
@@ -715,6 +715,7 @@ Magit is an interface to the version control system Git, implemented as an Emacs
     (setq switch-window-shortcut-style 'qwerty)
     (setq switch-window-qwerty-shortcuts
           '("a" "s" "d" "f" "h" "j" "l"))
+    (setq switch-window-minibuffer-shortcut ?z)
     :bind
     ([remap other-window] . switch-window)
     )
