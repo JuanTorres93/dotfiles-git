@@ -13,8 +13,7 @@ xsetroot -cursor_name left_ptr
 
 ChangeWallpaper
 
-# TFM
-#export QT_PLUGIN_PATH="/home/juan/hdd/University/Master/2020-2021/Trabajo fin de master/TFM/src/.venv/lib/python3.9/site-packages/qt5_applications/Qt/plugins/"
+export BOT_ADDRESS='local_ip'
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
 export EDITOR=vim

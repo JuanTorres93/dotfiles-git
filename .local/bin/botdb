@@ -1,0 +1,2 @@
+sshpass -p 'pass' scp user@$BOT_ADDRESS:trading.db ~/trading.db
+sqlitebrowser -R ~/trading.db
