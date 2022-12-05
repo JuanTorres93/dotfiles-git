@@ -1,0 +1,6 @@
+# Get database from bot
+sshpass -p 'Linux20' scp bot@$BOT_ADDRESS:trading.db ~/trading.db
+# sqlitebrowser -R ~/trading_bot.db
+# Execute and show queries
+# General results
+cat ~/hdd/python_projects/crypto-trading/sql_queries/all_results.sql | sqlite3 -header -nullvalue NULL -column ~/trading.db

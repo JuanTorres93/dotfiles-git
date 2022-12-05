@@ -1,0 +1,3 @@
+# Get database from bot
+sshpass -p 'Linux20' scp bot@$BOT_ADDRESS:trading.db ~/trading.db
+sqlitebrowser -R ~/trading.db

@@ -49,14 +49,14 @@ alias subdl="subdl --existing=overwrite "
 alias subdl-name="subdl --existing=overwrite --force-filename "
 
 # Useful aliases
-alias gs="git status "
+#alias gs="git status "
 alias ga="git add "
 alias gr="git remove "
 alias gc="git commit -m  "
 alias gpom="git push origin master "
 
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
-alias run_bot="cd ~/hdd/python_projects/crypto-trading-bot/ && source venv/bin/activate && cd src/ && python run.py"
+alias botcheck="while [ 1 -eq 1 ]; do botdb; sleep 60; echo ''; echo ''; done "
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"

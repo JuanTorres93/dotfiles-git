@@ -14,7 +14,7 @@ nombre="$1"
 # Plantilla master
 # rutaPlantilla=$HOME/hdd/University/Master/Plantilla\ Latex/
 # Plantilla ingles
-rutaPlantilla=$HOME/hdd/English\ B2/Plantilla\ Latex/
+rutaPlantilla=$HOME/hdd/English/B2\ academia/Plantilla\ Latex/
 rutaActual="$PWD"
 
 mkdir "$nombre"
