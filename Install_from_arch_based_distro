@@ -66,11 +66,29 @@ systemctl enable --user emacs
 
 
 # Configure ergodox training
-RULES=/etc/udev/rules.d/50-oryx.rules
+RULES=/etc/udev/rules.d/50-zsa.rules
 touch placeholder
 
-echo "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"" >> placeholder
-echo "SUBSYSTEM==\"usb\", ATTR{idVendor}==\"feed\", ATTR{idProduct}==\"1307\", GROUP=\"plugdev\"" >> placeholder
+echo "# Rules for Oryx web flashing and live training" >> placeholder
+echo "KERNEL==\"hidraw*\", ATTRS{idVendor}==\"16c0\", MODE=\"0664\", GROUP=\"plugdev\"" >> placeholder
+echo "KERNEL==\"hidraw*\", ATTRS{idVendor}==\"3297\", MODE=\"0664\", GROUP=\"plugdev\"" >> placeholder
+echo "" >> placeholder
+echo "# Legacy rules for live training over webusb (Not needed for firmware v21+)" >> placeholder
+echo "  # Rule for all ZSA keyboards" >> placeholder
+echo "  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"" >> placeholder
+echo "  # Rule for the Ergodox EZ" >> placeholder
+echo "  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"feed\", ATTR{idProduct}==\"1307\", GROUP=\"plugdev\"" >> placeholder
+echo "" >> placeholder
+echo "# Wally Flashing rules for the Ergodox EZ" >> placeholder
+echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789B]?\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"" >> placeholder
+echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789A]?\", ENV{MTP_NO_PROBE}=\"1\"" >> placeholder
+echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789ABCD]?\", MODE:=\"0666\"" >> placeholder
+echo "KERNEL==\"ttyACM*\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789B]?\", MODE:=\"0666\"" >> placeholder
+echo "" >> placeholder
+echo "# Wally Flashing rules for the Moonlander and Planck EZ" >> placeholder
+echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"df11\", \ " >> placeholder
+echo "    MODE:=\"0666\", \ " >> placeholder
+echo "    SYMLINK+=\"stm32_dfu\"" >> placeholder
 
 sudo mv -f placeholder $RULES
 
