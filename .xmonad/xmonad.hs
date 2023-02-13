@@ -22,6 +22,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
+import XMonad.Layout.ThreeColumns
 
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
@@ -235,6 +236,7 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 myLayout = 
         mySpacing 5 (avoidStruts(tiled)) |||
         mySpacing 5 (avoidStruts(Grid)) |||
+        mySpacing 5 (avoidStruts(ThreeCol 1 (3/100) (1/3))) |||
         noBorders Full 
   where
      -- default tiling algorithm partitions the screen into two panes
