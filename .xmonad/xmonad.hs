@@ -101,7 +101,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     
     -- Run every morning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn (myBrowser ++ " youtube.com/feed/subscriptions & thunderbird"))
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn (myBrowser ++ " & thunderbird"))
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
     -- Open fuertafit planning
