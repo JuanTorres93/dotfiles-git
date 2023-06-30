@@ -1,0 +1,13 @@
+2023-06-30 20:07:59.968 [error] ENOENT: no such file or directory, open '/home/juan/.config/Code - OSS/User/globalStorage/vscodevim.vim/.registers': Error: ENOENT: no such file or directory, open '/home/juan/.config/Code - OSS/User/globalStorage/vscodevim.vim/.registers'
+2023-06-30 20:08:01.491 [info] [perf] Render performance baseline is 37ms
+2023-06-30 20:13:16.199 [warning] Settings pattern "security.*" doesn't match any settings
+2023-06-30 20:13:16.199 [warning] SettingsEditor2: Settings not included in settingsLayout.ts: interactiveEditor.editMode, accessibility.verbosity.diff-editor, accessibility.verbosity.terminal
+2023-06-30 20:16:34.857 [error] Unable to read file 'vscode-userdata:/home/juan/.config/Code - OSS/User/keybindings.json' (Error: File not modified since): Error: Unable to read file 'vscode-userdata:/home/juan/.config/Code - OSS/User/keybindings.json' (Error: File not modified since)
+    at e.FileService.w (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:624:17669)
+    at e.FileService.v (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:624:17501)
+    at async e.NativeTextFileService.H (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2307:38305)
+    at async e.NativeTextFileService.readStream (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2307:38000)
+    at async Hs.Ab (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2298:54368)
+    at async Hs.resolve (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2298:52773)
+    at async vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2307:34023
+2023-06-30 20:17:46.043 [warning] Settings pattern "security.*" doesn't match any settings

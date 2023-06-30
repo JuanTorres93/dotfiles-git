@@ -1,0 +1,9 @@
+2023-06-30 20:01:46.919 [info] Started initializing default profile extensions in extensions installation folder. file:///home/juan/.vscode-oss/extensions
+2023-06-30 20:01:47.256 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/juan/.vscode-oss/extensions
+2023-06-30 20:03:19.786 [info] Getting Manifest... vscodevim.vim
+2023-06-30 20:03:20.201 [info] Installing extension: vscodevim.vim
+2023-06-30 20:03:20.952 [info] Extension signature verification is not done: vscodevim.vim
+2023-06-30 20:03:21.050 [info] Extracted extension to /home/juan/.vscode-oss/extensions/.5006eaf8-b528-4c9f-943e-7b37eb98319b: vscodevim.vim
+2023-06-30 20:03:21.058 [info] Renamed to /home/juan/.vscode-oss/extensions/vscodevim.vim-1.25.2-universal
+2023-06-30 20:03:21.060 [info] Extracting extension completed. vscodevim.vim
+2023-06-30 20:03:21.069 [info] Extension installed successfully: vscodevim.vim

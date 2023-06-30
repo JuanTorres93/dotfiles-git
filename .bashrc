@@ -57,6 +57,8 @@ alias gpom="git push origin master "
 
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 alias botcheck="while [ 1 -eq 1 ]; do botdbcli; sleep 60; echo ''; echo ''; done "
+alias calorias="cd /home/juan/hdd/python_projects/remaining_calories/ && source ./venv/bin/activate && python ./main.py"
+alias finances="cd /home/juan/hdd/python_projects/gnucash_logger/ && source ./venv/bin/activate && python ./gui.py"
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
