@@ -289,7 +289,8 @@ myEventHook = mempty
 -- Startup hook
 
 myStartupHook = do
-       spawnOnce "ChangeWallpaper"
+       -- spawnOnce "ChangeWallpaper"
+       spawnOnce "variety &"
        spawnOnce "picom &"
        spawnOnce "volumeicon &"
        spawnOnce "udiskie &"
