@@ -19,7 +19,7 @@ git clone https://github.com/JuanTorres93/wallpapers ~/.wallpapers
 # Soft-link config files
 python SoftLinkFiles.py 
 rm -rf ~/.emacs.d/
-cp .emacs.d/ ~/.emacs.d/
+cp ~/dotfiles-git/.emacs.d/ ~/.emacs.d/
 
 # Install AUR helper
 cd ~
