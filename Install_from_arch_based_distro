@@ -47,7 +47,7 @@ else
 fi
 
 # Install AUR packages
-$AUR_HELPER --needed -S nerd-fonts-terminus nerd-fonts-mononoki xmonad-log polybar zsa-wally-bin
+$AUR_HELPER --needed -S ttf-terminus-nerd ttf-mononoki-git xmonad-log polybar zsa-wally-bin
  
 vim -c "PluginInstall" -c "norm ZQ" -c "norm ZQ"
 
