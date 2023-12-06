@@ -12,7 +12,8 @@ items_to_exclude = [".git",
                     "Install_from_arch_based_distro",
                     "SoftLinkFiles",
                     "SoftLinkFiles.py",
-                    "ArchSetUp_RunMeFromMyDirectory.sh"]
+                    "ArchSetUp_RunMeFromMyDirectory.sh",
+                    "juan.code-profile"]
 
 items_in_repository = os.listdir(repository_dir)
 
