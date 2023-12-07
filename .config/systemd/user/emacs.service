@@ -3,11 +3,13 @@ Description=Emacs text editor
 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/emacs --daemon
+# Now this is managed from window manager (xmonad)
+# Type=forking
+Type=exec
+ExecStart=/usr/bin/emacs --bg-daemon=EMACS_SERVER
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
-Restart=on-failure
+# Restart=on-failure
 
 [Install]
 WantedBy=default.target

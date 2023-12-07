@@ -86,7 +86,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
 
         -- Super + Control + key
-    , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -a \"emacs\"")
+    , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -s EMACS_SERVER -a emacs")
     , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
@@ -291,6 +291,7 @@ myEventHook = mempty
 myStartupHook = do
        -- spawnOnce "ChangeWallpaper"
        spawnOnce "variety &"
+       spawnOnce "/usr/bin/emacs --bg-daemon=EMACS_SERVER &"
        spawnOnce "picom &"
        spawnOnce "volumeicon &"
        spawnOnce "udiskie &"

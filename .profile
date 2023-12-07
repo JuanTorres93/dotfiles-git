@@ -11,7 +11,7 @@ xset -b
 numlockx on
 xsetroot -cursor_name left_ptr
 
-ChangeWallpaper
+# ChangeWallpaper
 
 export BOT_ADDRESS='local_ip'
 

@@ -61,8 +61,8 @@ git config --global user.name "Juan Torres"
 # Recompile xmonad
 xmonad --recompile
 
-# Enable emacs daemon
-systemctl enable --user emacs
+# Enable emacs daemon. Now managed by window manager (xmonad)
+# systemctl enable --user emacs
 
 
 # Configure ergodox training
