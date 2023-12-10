@@ -54,6 +54,7 @@ alias ga="git add "
 alias gr="git remove "
 alias gc="git commit -m  "
 alias gpom="git push origin master "
+alias update="sudo pacman -Syu && xmonad --recompile"
 
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 alias botcheck="while [ 1 -eq 1 ]; do botdbcli; sleep 60; echo ''; echo ''; done "
