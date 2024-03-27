@@ -107,7 +107,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Open fuertafit planning
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/*.pdf")
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR"))
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_EUR?layout=pro https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=BINANCE%3ABTCEUR https://coinmarketcap.com/es/?page=5"))
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
