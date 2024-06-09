@@ -107,7 +107,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Open fuertafit planning
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/*.pdf")
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_USDT?type=spot https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=VANTAGE%3ASP500 https://docs.google.com/spreadsheets/d/1CPayigO2MieRvMASdezEGnF5K4OMqRaeFDqdaCi0fco/edit#gid=0 https://miro.medium.com/v2/resize:fit:2000/0*fGOH_EZ-GIQ3EePJ "))
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_USDT?type=spot https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=VANTAGE%3ASP500 https://docs.google.com/spreadsheets/d/1CPayigO2MieRvMASdezEGnF5K4OMqRaeFDqdaCi0fco/edit#gid=0 file:///home/juan/dotfiles-git/chart-patterns-cheat-sheet.png "))
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
