@@ -104,10 +104,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_i     ), spawn (myBrowser ++ " & thunderbird"))
     -- Launch oryx live training for ergodox-Ez
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_t     ), spawn "brave \"https://configure.ergodox-ez.com/train\"")
-    -- Open fuertafit planning
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_f     ), spawn "okular ~/hdd/FuertaFit+/*.pdf")
+    -- Open back and frontend for web development
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_w     ), launchProjects)
     -- Trading
-    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_USDT?type=spot https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=VANTAGE%3ASP500 https://docs.google.com/spreadsheets/d/1CPayigO2MieRvMASdezEGnF5K4OMqRaeFDqdaCi0fco/edit#gid=0 file:///home/juan/dotfiles-git/chart-patterns-cheat-sheet.png "))
+    , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_USDT?type=spot https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=VANTAGE%3ASP500 https://docs.google.com/spreadsheets/d/1Yf6ClJHXaEVFtcKxSPcBW1oiFcRgxf0WAMz_iij0Ow4/edit?gid=0#gid=0 "))
 
         -- Single key
     , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
@@ -199,6 +199,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_i, xK_o, xK_p] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+launchProjects :: X ()
+launchProjects = do
+    spawn "code ~/hdd/webapps/training-webapp-backend &"
+    spawn "code ~/hdd/webapps/training-webapp-frontend &"
+    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-backend -e bash -c 'npm start' &"
+    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-frontend -e bash -c 'npm start' &"
 
 
 ------------------------------------------------------------------------
