@@ -206,6 +206,8 @@ launchProjects = do
     spawn "code ~/hdd/webapps/training-webapp-frontend &"
     spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-backend -e bash -c 'npm start' &"
     spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-frontend -e bash -c 'npm start' &"
+    spawn (myBrowser ++ " https://editor.swagger.io/ https://dbdiagram.io/d &")
+    spawn "dbeaver &"
 
 
 ------------------------------------------------------------------------
