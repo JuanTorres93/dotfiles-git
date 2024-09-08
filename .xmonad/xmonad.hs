@@ -204,8 +204,8 @@ launchProjects :: X ()
 launchProjects = do
     spawn "code ~/hdd/webapps/training-webapp-backend &"
     spawn "code ~/hdd/webapps/training-webapp-frontend &"
-    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-backend -e bash -c 'npm start' &"
-    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-frontend -e bash -c 'npm start' &"
+    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-backend -e bash -c 'npm run docker' &"
+    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-frontend -e bash -c 'npm run docker' &"
     spawn (myBrowser ++ " https://e.ggtimer.com/ https://editor.swagger.io/ &")
     spawn ("brave https://dbdiagram.io/d &")
     spawn "dbeaver &"
