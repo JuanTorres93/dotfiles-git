@@ -42,24 +42,20 @@ alias cp='cp -i'
 alias grep='grep --color=auto'
 alias df='df -h'
 
-alias yta="youtube-dl -ic --extract-audio --audio-format mp3 "
-alias yt="youtube-dl -ic "
+alias yta="/usr/local/bin/youtube-dl -ic --extract-audio --audio-format mp3 "
+alias yt="/usr/local/bin/youtube-dl -ic "
 
 alias subdl="subdl --existing=overwrite "
 alias subdl-name="subdl --existing=overwrite --force-filename "
 
 # Useful aliases
 #alias gs="git status "
-alias ga="git add "
-alias gr="git remove "
-alias gc="git commit -m  "
-alias gpom="git push origin master "
+alias d="docker "
+alias dc="docker-compose "
 alias update="sudo pacman -Syu && xmonad --recompile && yay -S visual-studio-code-bin"
 
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 alias botcheck="while [ 1 -eq 1 ]; do botdbcli; sleep 60; echo ''; echo ''; done "
-alias calorias="cd /home/juan/hdd/python_projects/remaining_calories/ && source ./venv/bin/activate && python ./main.py"
-alias finances="cd /home/juan/hdd/python_projects/gnucash_logger/ && source ./venv/bin/activate && python ./gui.py"
 
 #get fastest mirrors in your neighborhood 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
