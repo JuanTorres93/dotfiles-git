@@ -202,10 +202,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 launchProjects :: X ()
 launchProjects = do
-    spawn "code ~/hdd/webapps/training-webapp-backend &"
-    spawn "code ~/hdd/webapps/training-webapp-frontend &"
-    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-backend -e bash -c 'npm run docker' &"
-    spawn "alacritty --working-directory ~/hdd/webapps/training-webapp-frontend -e bash -c 'npm run docker' &"
+    spawn "code ~/hdd/webapps/trackoverload/backend &"
+    spawn "code ~/hdd/webapps/trackoverload/frontend &"
+    spawn "alacritty --working-directory ~/hdd/webapps/trackoverload -e bash -c 'docker-compose up --build' &"
     spawn (myBrowser ++ " https://e.ggtimer.com/ https://editor.swagger.io/ &")
     spawn ("brave https://dbdiagram.io/d &")
     spawn "dbeaver &"
