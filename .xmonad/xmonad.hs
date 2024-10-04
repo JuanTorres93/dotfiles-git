@@ -207,6 +207,7 @@ launchProjects = do
     spawn "alacritty --working-directory ~/hdd/webapps/trackoverload -e bash -c 'docker-compose up --build' &"
     spawn (myBrowser ++ " https://e.ggtimer.com/ https://editor.swagger.io/ &")
     spawn ("brave https://dbdiagram.io/d &")
+    spawn "postman &"
     spawn "dbeaver &"
 
 
