@@ -25,7 +25,7 @@ neofetch
 # ----- ALIASES -----
 # changing programs
 alias ls='exa --color=auto'  
-alias ll='exa -l --color=auto'  
+alias ll='exa -lgh --color=auto'  
 alias la='exa -la --color=auto'  
 
 # adding flags
