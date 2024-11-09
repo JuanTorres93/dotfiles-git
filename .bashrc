@@ -42,8 +42,8 @@ alias cp='cp -i'
 alias grep='grep --color=auto'
 alias df='df -h'
 
-alias yta="/usr/local/bin/youtube-dl -ic --extract-audio --audio-format mp3 "
-alias yt="/usr/local/bin/youtube-dl -ic "
+alias yta="yt-dlp -ic --extract-audio --audio-format mp3 "
+alias yt="yt-dlp -ic "
 
 alias subdl="subdl --existing=overwrite "
 alias subdl-name="subdl --existing=overwrite --force-filename "
