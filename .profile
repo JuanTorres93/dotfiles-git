@@ -13,6 +13,9 @@ xsetroot -cursor_name left_ptr
 
 # ChangeWallpaper
 
+# Launch odoo
+cd ~/hdd/Improvement\ engineer/ && docker-compose up -d && cd ~
+
 export BOT_ADDRESS='local_ip'
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
@@ -25,13 +28,6 @@ export QT_STYLE_OVERRIDE=kvantum
 # Icons in qt5 applications
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
-export PATH="/opt/cuda-10.2/nsight-compute-2019.5.0:$PATH"
-export PATH="/opt/cuda-10.2/bin:$PATH"
-export CUDA_HOME="/opt/cuda-10.2"
-export LD_LIBRARY_PATH="/opt/cuda-10.2/lib64":$LD_LIBRARY_PATH
-
-
-export MY_RUST_PROJECTS_DIRECTORY="$HOME/hdd/rust"
 
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=24
