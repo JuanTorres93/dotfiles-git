@@ -202,14 +202,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 launchProjects :: X ()
 launchProjects = do
-    spawn "code ~/hdd/webapps/trackoverload/backend &"
-    spawn "code ~/hdd/webapps/trackoverload/frontend &"
-    spawn "code ~/hdd/webapps/trackoverload &"
-    spawn "alacritty --working-directory ~/hdd/webapps/trackoverload -e bash -c './scripts/upApp.sh &"
+    spawn "/usr/bin/code ~/hdd/webapps/trackoverload/backend &"
+    spawn "/usr/bin/code ~/hdd/webapps/trackoverload/frontend &"
+    spawn "/usr/bin/code ~/hdd/webapps/trackoverload &"
     spawn (myBrowser ++ " https://e.ggtimer.com/ https://editor.swagger.io/ &")
     spawn ("brave https://dbdiagram.io/d &")
     spawn "postman &"
     spawn "dbeaver &"
+    spawn "alacritty --working-directory ~/hdd/webapps/trackoverload -e './scripts/upApp.sh' && alacritty --hold -e 'docker' 'logs' '-f' 'trackoverload-back'"
+    spawn "alacritty --working-directory ~/hdd/webapps/trackoverload & "
 
 
 ------------------------------------------------------------------------
@@ -306,7 +307,7 @@ myStartupHook = do
        spawnOnce "variety &"
        spawnOnce "/usr/bin/emacs --bg-daemon=EMACS_SERVER &"
        spawnOnce "picom &"
-       spawnOnce "volumeicon &"
+       -- spawnOnce "volumeicon &"
        spawnOnce "udiskie &"
        spawnOnce "nm-applet &"
        spawnOnce "redshift -b 1:0.7 &"

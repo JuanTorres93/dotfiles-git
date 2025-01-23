@@ -27,7 +27,7 @@ cp -r "$VIDEO_DIR$TEMPLATE_FOLDER_NAME" "$VIDEO_DIR$NEW_VIDEO_NAME"
 mv "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/videoX.kdenlive" "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive"
 
 # Open the new video with kdenlive
-/usr/bin/kdenlive "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive" &
+# /usr/bin/kdenlive "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive" &
 
 # Open the new video folder with thunar
 /usr/bin/thunar "$VIDEO_DIR$NEW_VIDEO_NAME" &
