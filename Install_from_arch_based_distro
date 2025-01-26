@@ -3,7 +3,7 @@
 sudo pacman -Syu
 # Install needed packages
 # Declare an array of packages to install
-declare -a StringArray=("tar" "gzip" "unzip" "unrar" "xarchiver" "git" "base-devel" "networkmanager" "network-manager-applet" "alsa-firmware" "pulseaudio" "pasystray" "pavucontrol" "xorg" "ttf-font-awesome" "alsa-utils" "ranger" "papirus-icon-theme" "parcellite" "zathura" "zathura-pdf-poppler" "trayer" "okular" "dolphin" "solaar" "konsole" "lightdm" "lightdm-gtk-greeter" "lightdm-gtk-greeter-settings" "xterm" "firefox" "geany" "dmenu" "lxappearance" "xwallpaper" "nemo" "thunar" "thunar-archive-plugin" "picom" "qtile" "ttf-droid" "numlockx" "feh" "polkit-gnome" "cronie" "gvim" "ttf-ubuntu-font-family" "exa" "xmonad" "xmonad-contrib" "xmonad-utils" "xmobar" "xfce4-appfinder" "volumeicon" "gvfs" "thunar-volman" "noto-fonts" "udisks2" "udiskie" "alsa-utils" "alacritty" "xfce4-notifyd" "kvantum-qt5" "qt5ct" "capitaine-cursors" "yt-dlp" "redshift" "arc-solid-gtk-theme" "kvantum-theme-arc" "arc-icon-theme" "subdl" "rsync" "gimp" "texlive-most" "thunderbird" "dmenu" "xfce4-clipman-plugin" "celluloid" "kdeconnect" "neofetch" "emacs" "haskell-dbus" "ttf-ubuntu-font-family" "lxappearance" "network-manager-applet" "brave-bin" "pycharm-community-edition" "sqlitebrowser" "ristretto" "xfce4-screenshooter" "ncdu" "obs-studio" "hunspell-es_es" "hunspell-en_gb" "sshpass" "variety" "inkscape" "dbeaver" "docker" "docker-buildx" "docker-compose" "kubectl" "minikube")
+declare -a StringArray=("tar" "gzip" "unzip" "unrar" "xarchiver" "git" "base-devel" "networkmanager" "network-manager-applet" "alsa-firmware" "pulseaudio" "pasystray" "pavucontrol" "xorg" "ttf-font-awesome" "alsa-utils" "ranger" "papirus-icon-theme" "parcellite" "zathura" "zathura-pdf-poppler" "trayer" "okular" "dolphin" "solaar" "konsole" "lightdm" "lightdm-gtk-greeter" "lightdm-gtk-greeter-settings" "xterm" "firefox" "geany" "dmenu" "lxappearance" "xwallpaper" "nemo" "thunar" "thunar-archive-plugin" "picom" "qtile" "ttf-droid" "numlockx" "feh" "polkit-gnome" "cronie" "gvim" "ttf-ubuntu-font-family" "exa" "xmonad" "xmonad-contrib" "xmonad-utils" "polybar" "xmobar" "xfce4-appfinder" "volumeicon" "gvfs" "thunar-volman" "noto-fonts" "udisks2" "udiskie" "alsa-utils" "alacritty" "xfce4-notifyd" "kvantum-qt5" "qt5ct" "capitaine-cursors" "yt-dlp" "redshift" "arc-solid-gtk-theme" "kvantum-theme-arc" "arc-icon-theme" "subdl" "rsync" "gimp" "gmic" "gimp-plugin-gmic" "texlive-most" "thunderbird" "dmenu" "xfce4-clipman-plugin" "celluloid" "kdeconnect" "neofetch" "emacs" "haskell-dbus" "ttf-ubuntu-font-family" "lxappearance" "network-manager-applet" "brave-bin" "pycharm-community-edition" "sqlitebrowser" "ristretto" "xfce4-screenshooter" "ncdu" "obs-studio" "hunspell-es_es" "hunspell-en_gb" "sshpass" "variety" "inkscape" "dbeaver" "docker" "docker-buildx" "docker-compose" "kubectl" "minikube")
 
 # Remove vim if installed to later install gvim
 sudo pacman -Rns --noconfirm vim
@@ -47,7 +47,7 @@ else
 fi
 
 # Install AUR packages
-$AUR_HELPER --needed -S visual-studio-code-bin ttf-terminus-nerd ttf-mononoki-git xmonad-log polybar postman-bin
+$AUR_HELPER --needed -S visual-studio-code-bin ttf-terminus-nerd ttf-mononoki-git xmonad-log postman-bin
  
 vim -c "PluginInstall" -c "norm ZQ" -c "norm ZQ"
 
@@ -64,33 +64,5 @@ xmonad --recompile
 # Enable emacs daemon. Now managed by window manager (xmonad)
 # systemctl enable --user emacs
 
-
-# Configure ergodox training
-RULES=/etc/udev/rules.d/50-zsa.rules
-touch placeholder
-
-echo "# Rules for Oryx web flashing and live training" >> placeholder
-echo "KERNEL==\"hidraw*\", ATTRS{idVendor}==\"16c0\", MODE=\"0664\", GROUP=\"plugdev\"" >> placeholder
-echo "KERNEL==\"hidraw*\", ATTRS{idVendor}==\"3297\", MODE=\"0664\", GROUP=\"plugdev\"" >> placeholder
-echo "" >> placeholder
-echo "# Legacy rules for live training over webusb (Not needed for firmware v21+)" >> placeholder
-echo "  # Rule for all ZSA keyboards" >> placeholder
-echo "  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"" >> placeholder
-echo "  # Rule for the Ergodox EZ" >> placeholder
-echo "  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"feed\", ATTR{idProduct}==\"1307\", GROUP=\"plugdev\"" >> placeholder
-echo "" >> placeholder
-echo "# Wally Flashing rules for the Ergodox EZ" >> placeholder
-echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789B]?\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"" >> placeholder
-echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789A]?\", ENV{MTP_NO_PROBE}=\"1\"" >> placeholder
-echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789ABCD]?\", MODE:=\"0666\"" >> placeholder
-echo "KERNEL==\"ttyACM*\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"04[789B]?\", MODE:=\"0666\"" >> placeholder
-echo "" >> placeholder
-echo "# Wally Flashing rules for the Moonlander and Planck EZ" >> placeholder
-echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"df11\", \ " >> placeholder
-echo "    MODE:=\"0666\", \ " >> placeholder
-echo "    SYMLINK+=\"stm32_dfu\"" >> placeholder
-
-sudo mv -f placeholder $RULES
-
-sudo groupadd plugdev
-sudo usermod -aG plugdev $USER
+# Nordic theme
+sudo git clone https://github.com/EliverLara/Nordic.git /usr/share/themes/Nordic/

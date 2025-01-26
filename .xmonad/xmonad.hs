@@ -280,7 +280,7 @@ myLayout =
 --
 myManageHook = composeAll
     [ className  =? "MPlayer"        --> doFloat
-    , className  =? "Gimp"           --> doFloat
+    --, className  =? "Gimp"           --> doFloat
     , className  =? "Godot_Engine"   --> doFloat
     , className =? "thunderbird" <&&> isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
     , resource   =? "desktop_window" --> doIgnore
