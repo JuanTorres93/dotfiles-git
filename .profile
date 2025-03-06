@@ -14,7 +14,9 @@ xsetroot -cursor_name left_ptr
 # ChangeWallpaper
 
 # Launch odoo
-cd ~/hdd/Improvement\ engineer/ && docker-compose up -d && cd ~
+cd ~/hdd/Improvement\ engineer/ && docker-compose up -d &
+# Return terminal to default path
+cd ~
 
 export BOT_ADDRESS='local_ip'
 
