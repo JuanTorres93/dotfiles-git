@@ -78,12 +78,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,                 xK_Delete), spawn "xkill")
+    , ((modm,                 xK_F1    ), spawn "ChangeWallpaper")
     , ((modm,                 xK_e     ), spawn "thunar")
+    , ((modm ,                xK_q     ), kill1)        -- close focused window. kill1 in order to tagged window only close in current worskspace. Otherwise use kill
     , ((modm,                 xK_r     ), spawn "alacritty -e ranger")
     , ((modm,                 xK_s     ), windows copyToAll)    -- Window no longer sticky
 
         -- Super + Shift + key
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
+    , ((modm .|. shiftMask,   xK_r     ), spawn "xmonad --recompile; xmonad --restart")   -- Restart xmonad
     , ((modm .|. shiftMask,   xK_s     ), killAllOtherCopies)    -- Window no longer sticky
 
         -- Super + Control + key
@@ -95,6 +98,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
     , ((modm .|. controlMask, xK_p     ), spawn "write-content.sh")
+    , ((modm .|. controlMask, xK_r     ), spawn "/usr/bin/distrobox enter resolve-fedora-37 -- /opt/resolve/bin/resolve")   -- Executes DaVinci resolve in distrobox as explained in: https://www.youtube.com/watch?v=wmRiZQ9IZfc
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
@@ -109,12 +113,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Trading
     , ((modm .|. controlMask .|. shiftMask .|. altMask, xK_b     ), spawn (myBrowser ++ " https://www.binance.com/en/trade/BTC_USDT?type=spot https://www.binance.com/en/my/orders/exchange/tradeorder https://www.tradingview.com/chart/E7Os5wqY/?symbol=VANTAGE%3ASP500 https://docs.google.com/spreadsheets/d/1Yf6ClJHXaEVFtcKxSPcBW1oiFcRgxf0WAMz_iij0Ow4/edit?gid=0#gid=0 "))
 
-        -- Single key
-    , ((modm, xK_F1                       ), spawn "ChangeWallpaper")
+    -- Single key, no midifier
     , ((0, xK_Print                    ), spawn "ScreenCapture")
-
-    -- close focused window
-    , ((modm ,                xK_q     ), kill1)        -- kill1 in order to tagged window only close in current worskspace. Otherwise use kill
 
      -- Rotate through the available layout algorithms
     , ((modm,                 xK_space ), sendMessage NextLayout)
@@ -177,9 +177,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Reboot computer
     , ((modm .|. shiftMask, xK_comma     ),  spawn "shutdown_confirmation_qtile reboot")
-
-    -- Restart xmonad
-    , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")
     ]
     ++
 

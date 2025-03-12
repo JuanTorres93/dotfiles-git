@@ -55,6 +55,9 @@ alias dc="docker-compose "
 alias k="kubectl "
 alias update="sudo pacman -Syu && xmonad --recompile && yay -S --needed visual-studio-code-bin"
 
+# Executes DaVinci resolve in distrobox as explained in: https://www.youtube.com/watch?v=wmRiZQ9IZfc
+alias resolve="/usr/bin/distrobox enter resolve-fedora-37 -- /opt/resolve/bin/resolve"
+
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 alias botcheck="while [ 1 -eq 1 ]; do botdbcli; sleep 60; echo ''; echo ''; done "
 
