@@ -98,7 +98,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
     , ((modm .|. controlMask, xK_p     ), spawn "write-content.sh")
-    , ((modm .|. controlMask, xK_r     ), spawn "/usr/bin/distrobox enter resolve-fedora-37 -- /opt/resolve/bin/resolve")   -- Executes DaVinci resolve in distrobox as explained in: https://www.youtube.com/watch?v=wmRiZQ9IZfc
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
