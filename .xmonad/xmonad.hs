@@ -24,6 +24,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.ThreeColumns
 
+import XMonad.Util.Paste (sendKey)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
@@ -100,6 +101,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_p     ), spawn "write-content.sh")
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
+    , ((modm .|. controlMask, xK_v     ), spawn "edit-video.sh")
     , ((modm .|. controlMask, xK_w     ), spawn myBrowser)
 
     

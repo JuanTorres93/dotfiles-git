@@ -1,8 +1,8 @@
 #!/bin/bash
 
 VIDEO_DIR=~/hdd/Video\ editting/
-# TEMPLATE_FOLDER_NAME=00\ -\ KDENLIVE\ TEMPLATE
-TEMPLATE_FOLDER_NAME=00\ -\ BLENDER\ TEMPLATE
+TEMPLATE_FOLDER_NAME=00\ -\ KDENLIVE\ TEMPLATE
+# TEMPLATE_FOLDER_NAME=00\ -\ BLENDER\ TEMPLATE
 
 # List elements in the video directory and get last one
 LAST_VIDEO=$(ls "$VIDEO_DIR" | tail -n 1)
@@ -25,8 +25,8 @@ fi
 cp -r "$VIDEO_DIR$TEMPLATE_FOLDER_NAME" "$VIDEO_DIR$NEW_VIDEO_NAME"
 
 # Change project file name to videoX, where X is the new video number
-# mv "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/videoX.kdenlive" "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive"
-mv "$VIDEO_DIR$NEW_VIDEO_NAME/blender/videoX.blend" "$VIDEO_DIR$NEW_VIDEO_NAME/blender/video${NEW_VIDEO_NUMBER}_01-rough-cuts.blend"
+mv "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/videoX.kdenlive" "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive"
+# mv "$VIDEO_DIR$NEW_VIDEO_NAME/blender/videoX.blend" "$VIDEO_DIR$NEW_VIDEO_NAME/blender/video${NEW_VIDEO_NUMBER}_01-rough-cuts.blend"
 
 # Open the new video with kdenlive
 # /usr/bin/kdenlive "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive" &

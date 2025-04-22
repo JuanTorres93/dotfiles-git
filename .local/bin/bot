@@ -1,1 +1,2 @@
+#!/bin/bash
 sshpass -p 'pass' ssh user@$BOT_ADDRESS

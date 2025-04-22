@@ -1,3 +1,6 @@
+[terminal.shell]
+program = "/usr/bin/fish"
+
 [colors.bright]
 black = "0x969896"
 blue = "0x81a2be"
