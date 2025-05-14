@@ -2,7 +2,7 @@
 
 VIDEO_DIR=~/hdd/Video\ editting/
 TEMPLATE_FOLDER_NAME=00\ -\ KDENLIVE\ TEMPLATE
-# TEMPLATE_FOLDER_NAME=00\ -\ BLENDER\ TEMPLATE
+THUMBNAIL_TEMPLATE=${VIDEO_DIR}00\ -\ ASSETS/THUMBNAIL\ FACTORY/thumbnailTemplate.xcf
 
 # List elements in the video directory and get last one
 LAST_VIDEO=$(ls "$VIDEO_DIR" | tail -n 1)
@@ -26,10 +26,9 @@ cp -r "$VIDEO_DIR$TEMPLATE_FOLDER_NAME" "$VIDEO_DIR$NEW_VIDEO_NAME"
 
 # Change project file name to videoX, where X is the new video number
 mv "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/videoX.kdenlive" "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive"
-# mv "$VIDEO_DIR$NEW_VIDEO_NAME/blender/videoX.blend" "$VIDEO_DIR$NEW_VIDEO_NAME/blender/video${NEW_VIDEO_NUMBER}_01-rough-cuts.blend"
+# Copy the thumbnail template to thumbnail folder as thumbnailX, where X is the new video number
+cp "$THUMBNAIL_TEMPLATE" "$VIDEO_DIR$NEW_VIDEO_NAME/thumbnail/thumbnail_video_$NEW_VIDEO_NUMBER.xcf"
 
-# Open the new video with kdenlive
-# /usr/bin/kdenlive "$VIDEO_DIR$NEW_VIDEO_NAME/kdenlive/video$NEW_VIDEO_NUMBER.kdenlive" &
 
 # Open the new video folder with thunar
 /usr/bin/thunar "$VIDEO_DIR$NEW_VIDEO_NAME" &
