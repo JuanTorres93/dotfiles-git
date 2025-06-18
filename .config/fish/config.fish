@@ -67,6 +67,7 @@ if status is-interactive
   alias dc="docker-compose"
   alias k="kubectl"
   alias update="sudo pacman -Syu; xmonad --recompile; yay -S --needed visual-studio-code-bin"
+  alias iphoneScreenCast="cd ~/hdd/Video\ editting/00\ -\ ASSETS/Screencast\ from\ Iphone/ && ./init.sh"
   
   # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
   function botcheck
