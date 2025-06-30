@@ -25,6 +25,56 @@ for folder in "${!folders_files[@]}"; do
   done
 done
 
+# Add reset styles to _reset.scss
+cat > "$ROOT_DIR/base/_reset.scss" <<'EOL'
+/* Basix reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+
+  /* 
+    Inherit box-sizing from parent, which will the the value
+    defined in the body element
+    */
+  box-sizing: inherit;
+}
+
+html {
+  // This defines what 1 rem is
+  font-size: 62.5%; // 1rem = 10px, 10/16 = 50%
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  padding: 1rem 1rem;
+
+  /*
+  color: $gray-dark;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  */
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+EOL
+
 # Create main.scss file
 MAIN_FILE="$ROOT_DIR/main.scss"
 cat > "$MAIN_FILE" <<EOL
@@ -57,4 +107,4 @@ cat > "$MAIN_FILE" <<EOL
 @use 'vendors/bootstrap';
 EOL
 
-echo "✅ Estructura Sass generada en ./$ROOT_DIR"
+echo "✅ Estructura Sass generada en ./$ROOT_DIR con código de reset incluido"
