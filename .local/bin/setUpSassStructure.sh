@@ -25,8 +25,19 @@ for folder in "${!folders_files[@]}"; do
   done
 done
 
-# Add reset styles to _reset.scss
+# Write variables to _variables.scss (only required ones for now)
+cat > "$ROOT_DIR/abstracts/_variables.scss" <<'EOL'
+$neutral-bg: #ffffff;
+$neutral-text: #1a1a1a;
+$neutral-surface: #f2f2f2;
+
+$color-secondary-light: #d0e6ff;
+EOL
+
+# Write content to _reset.scss
 cat > "$ROOT_DIR/base/_reset.scss" <<'EOL'
+@use "../abstracts/variables" as *;
+
 /* Basix reset */
 *,
 *::after,
@@ -49,29 +60,54 @@ html {
 body {
   box-sizing: border-box;
   font-size: 1.6rem;
-  padding: 1rem 1rem;
+}
+EOL
 
-  /*
-  color: $gray-dark;
-  font-family: "Raleway", sans-serif;
+# Write updated content to _base.scss
+cat > "$ROOT_DIR/base/_base.scss" <<'EOL'
+@use "../abstracts/variables" as *;
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+
+  background-color: $neutral-bg;
+  color: $neutral-text;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  */
 }
 
-button {
+button,
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
   color: inherit;
   border: none;
+}
+
+input,
+textarea {
+  background-color: $neutral-surface;
+  outline: none;
+}
+
+button {
   cursor: pointer;
 
   &:focus {
     outline: none;
   }
+}
+
+::selection {
+  // TODO change if needed when updated color palette
+  background-color: $color-secondary-light;
+  color: $neutral-text;
 }
 EOL
 
@@ -107,4 +143,4 @@ cat > "$MAIN_FILE" <<EOL
 @use 'vendors/bootstrap';
 EOL
 
-echo "✅ Estructura Sass generada en ./$ROOT_DIR con código de reset incluido"
+echo "✅ Estructura Sass generada en ./$ROOT_DIR con contenido actualizado en reset, base y variables"
