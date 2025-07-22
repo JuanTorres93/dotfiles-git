@@ -38,8 +38,9 @@ cat > "$DEVCONTAINER_FILE" <<'EOF'
 				"esbenp.prettier-vscode",
 				"naumovs.color-highlight",
 				"Perkovec.emoji",
-        "42Crunch.vscode-openapi",
-        "Gruntfuggly.todo-tree"
+        		"42Crunch.vscode-openapi",
+        		"Gruntfuggly.todo-tree",
+				"formulahendry.auto-rename-tag"
 			]
 		}
 	}
