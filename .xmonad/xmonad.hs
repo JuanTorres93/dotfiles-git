@@ -87,6 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Super + Shift + key
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
+    , ((modm .|. shiftMask,   xK_g     ), spawn "gtd.sh") -- Getting things done control panel
     , ((modm .|. shiftMask,   xK_r     ), spawn "xmonad --recompile; xmonad --restart")   -- Restart xmonad
     , ((modm .|. shiftMask,   xK_s     ), killAllOtherCopies)    -- Window no longer sticky
 
@@ -94,7 +95,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
     , ((modm .|. controlMask, xK_b     ), spawn "blender")
     , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -s EMACS_SERVER -a emacs")
-    , ((modm .|. controlMask, xK_g     ), spawn "godot")
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")

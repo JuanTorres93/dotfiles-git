@@ -49,7 +49,7 @@ echo "File '$JSX_FILE' created"
 # Create the SCSS file
 SCSS_FILE="$COMPONENT_NAME/$COMPONENT_NAME.module.scss"
 cat > "$SCSS_FILE" << EOF
-@use "../../variables" as *;
+@use "../../../variables" as *;
 
 .$COMPONENT_NAME {
     
