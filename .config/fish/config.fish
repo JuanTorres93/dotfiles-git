@@ -41,6 +41,7 @@ if status is-interactive
   alias ls="exa --color=auto"
   alias ll="exa -lgh --color=auto"
   alias la="exa -la --color=auto"
+  alias davinciresolve="distrobox-enter -n davincibox -- /usr/bin/run-davinci /opt/resolve/bin/resolve %u"
   
   # Agregando flags
   # alias ls="ls --color=auto"

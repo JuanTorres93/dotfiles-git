@@ -54,6 +54,7 @@ alias d="docker "
 alias dc="docker-compose "
 alias k="kubectl "
 alias update="sudo pacman -Syu && xmonad --recompile && yay -S --needed visual-studio-code-bin"
+alias davinciresolve="distrobox-enter -n davincibox -- /usr/bin/run-davinci /opt/resolve/bin/resolve %u"
 
 # alias run_bot="cd ~/hdd/python_projects/trading-bot/ && source venv/bin/activate && cd src/ && python run_bot.py"
 alias botcheck="while [ 1 -eq 1 ]; do botdbcli; sleep 60; echo ''; echo ''; done "

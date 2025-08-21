@@ -87,18 +87,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
         -- Super + Shift + key
     , ((modm .|. shiftMask,   xK_d     ), spawn "dmenu_run -i -fn 'DroidSansMono:italics:pixelsize=17' -sb '#AF1620'")
-    , ((modm .|. shiftMask,   xK_g     ), spawn "gtd.sh") -- Getting things done control panel
     , ((modm .|. shiftMask,   xK_r     ), spawn "xmonad --recompile; xmonad --restart")   -- Restart xmonad
     , ((modm .|. shiftMask,   xK_s     ), killAllOtherCopies)    -- Window no longer sticky
 
         -- Super + Control + key
     , ((modm .|. controlMask, xK_a     ), spawn "xfce4-appfinder")
     , ((modm .|. controlMask, xK_b     ), spawn "blender")
+    , ((modm .|. controlMask, xK_d     ), spawn "distrobox-enter -n davincibox -- /usr/bin/run-davinci /opt/resolve/bin/resolve %u")
     , ((modm .|. controlMask, xK_e     ), spawn "emacsclient -c -s EMACS_SERVER -a emacs")
+    , ((modm .|. controlMask, xK_g     ), spawn "gtd.sh") -- Getting things done control panel
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
     , ((modm .|. controlMask, xK_p     ), spawn "write-content.sh")
+    , ((modm .|. controlMask, xK_r     ), spawn "gtd-reference.sh") -- Getting things done control panel
+    , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_s     ), spawn "xfce4-screenshooter")
     , ((modm .|. controlMask, xK_t     ), spawn "thunderbird")
     , ((modm .|. controlMask, xK_v     ), spawn "edit-video.sh")
