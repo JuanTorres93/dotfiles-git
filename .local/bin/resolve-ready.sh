@@ -91,14 +91,14 @@ process_file () {
   # Decisiones:
   if { [ "$v_is_prores" = "yes" ] || [ "$v_is_dnx" = "yes" ]; } && [ "$a_is_pcm" = "yes" ]; then
     # Todo compatible: solo remux (copia sin recomprimir) para asegurar .mov
-    ffmpeg -hide_banner -loglevel error -y -i "$in" -c copy "$out"
+    ffmpeg -hide_banner -stats -y -i "$in" -c copy "$out"
     echo "✅ Remux: $out"
     return
   fi
 
   if { [ "$v_is_prores" = "yes" ] || [ "$v_is_dnx" = "yes" ]; } && [ "$a_is_pcm" = "no" ]; then
     # Vídeo ok, solo arreglar audio a PCM
-    ffmpeg -hide_banner -loglevel error -y -i "$in" -c:v copy -c:a pcm_s16le "$out"
+    ffmpeg -hide_banner -stats -y -i "$in" -c:v copy -c:a pcm_s16le "$out"
     echo "✅ Audio→PCM, vídeo copiado: $out"
     return
   fi
@@ -107,7 +107,7 @@ process_file () {
   if [ "${TARGET_CODEC}" = "dnxhr" ]; then
     # DNxHR para >=2K, DNxHD para <=1080p
     if [ -n "$width" ] && [ "$width" -ge 2000 ]; then
-      ffmpeg -hide_banner -loglevel error -y -i "$in" \
+      ffmpeg -hide_banner -stats -y -i "$in" \
         -c:v dnxhr -profile:v dnxhr_hq -pix_fmt yuv422p \
         -r "$fps" -c:a pcm_s16le "$out"
       echo "✅ DNxHR HQ + PCM: $out"
@@ -118,14 +118,14 @@ process_file () {
       case "$fps" in
         30000/1001|30/1|30) br="45M" ;;
       esac
-      ffmpeg -hide_banner -loglevel error -y -i "$in" \
+      ffmpeg -hide_banner -stats -y -i "$in" \
         -c:v dnxhd -b:v "$br" -pix_fmt yuv422p \
         -r "$fps" -c:a pcm_s16le "$out"
       echo "✅ DNxHD ($br) + PCM: $out"
     fi
   else
     # ProRes 422 (profile 2) + PCM — sencillo y muy compatible
-    ffmpeg -hide_banner -loglevel error -y -i "$in" \
+    ffmpeg -hide_banner -stats -y -i "$in" \
       -c:v prores_ks -profile:v 2 -pix_fmt yuv422p10le \
       -r "$fps" -c:a pcm_s16le "$out"
     echo "✅ ProRes 422 + PCM: $out"
