@@ -42,7 +42,8 @@ if status is-interactive
   alias ll="exa -lgh --color=auto"
   alias la="exa -la --color=auto"
   alias davinciresolve="distrobox-enter -n davincibox -- /usr/bin/run-davinci /opt/resolve/bin/resolve %u"
-  
+  alias rr="resolve-ready.sh "
+
   # Agregando flags
   # alias ls="ls --color=auto"
   # alias ll="ls -lh --color=auto"
@@ -59,6 +60,12 @@ if status is-interactive
   
   alias yta="yt-dlp -ic --extract-audio --audio-format mp3"
   alias yt="yt-dlp -ic"
+  alias yt-resolve='yt-dlp -f bestvideo+bestaudio \
+  --merge-output-format mkv \
+  -o "%(title)s.%(ext)s" \
+  --recode-video mov \
+  --postprocessor-args "ffmpeg:-c:v prores_ks -profile:v 3 -c:a pcm_s16le"'
+
   
   alias subdl="subdl --existing=overwrite"
   alias subdl-name="subdl --existing=overwrite --force-filename"
