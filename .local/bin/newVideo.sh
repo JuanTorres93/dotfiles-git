@@ -5,7 +5,9 @@ TEMPLATE_FOLDER_NAME=00\ -\ KDENLIVE\ TEMPLATE
 THUMBNAIL_TEMPLATE=${VIDEO_DIR}00\ -\ ASSETS/THUMBNAIL\ FACTORY/thumbnailTemplate.xcf
 
 # List elements in the video directory and get last one
-LAST_VIDEO=$(ls "$VIDEO_DIR" | tail -n 1)
+# LAST_VIDEO=$(ls "$VIDEO_DIR" | tail -n 1)
+LAST_VIDEO=$(ls "$VIDEO_DIR" | grep -E '^[0-9]+' | sort -n | tail -n 1)
+
 
 # LAST_VIDEO is in the format "INTEGER - VIDEO_NAME", get the integer
 LAST_VIDEO_NUMBER=$(echo $LAST_VIDEO | cut -d' ' -f1)
