@@ -99,6 +99,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")
     , ((modm .|. controlMask, xK_k     ), spawn "krita")
     , ((modm .|. controlMask, xK_l     ), spawn "lmms")
+    , ((modm .|. controlMask, xK_n     ), spawn "write-newsletter.sh")
     , ((modm .|. controlMask, xK_p     ), spawn "write-content.sh")
     , ((modm .|. controlMask, xK_r     ), spawn "gtd-reference.sh") -- Getting things done control panel
     , ((modm .|. controlMask, xK_i     ), spawn "kdeconnect-indicator")

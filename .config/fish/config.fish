@@ -30,7 +30,7 @@ if status is-interactive
   end
   
   # Ejecutar Neofetch al abrir la terminal
-  neofetch
+  # neofetch
   
   # Activar modo vi (Fish lo maneja con `fish_vi_key_bindings`)
   # No se activa por defecto porque Fish usa sus propias combinaciones

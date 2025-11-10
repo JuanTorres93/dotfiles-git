@@ -7,17 +7,19 @@ if [ "${1-}" = "" ]; then
   exit 1
 fi
 
-# Nombre de la entidad tal cual lo pasas (se asume PascalCase)
+# Nombre de la entidad en PascalCase
 ENTITY_RAW="$1"
 
 # Carpeta en minúsculas
 DIR_NAME="$(echo "$ENTITY_RAW" | tr '[:upper:]' '[:lower:]')"
 
-# Asegura estructura de carpetas
-mkdir -p "$DIR_NAME/__tests__"
+# Nombre en camelCase para variables
+ENTITY_CAMEL="$(echo "${ENTITY_RAW:0:1}" | tr '[:upper:]' '[:lower:]')${ENTITY_RAW:1}"
 
 ENTITY_TS_PATH="$DIR_NAME/${ENTITY_RAW}.ts"
 TEST_TS_PATH="$DIR_NAME/__tests__/${ENTITY_RAW}.test.ts"
+
+mkdir -p "$DIR_NAME/__tests__"
 
 # ---- Template Entity ----
 cat > "$ENTITY_TS_PATH" <<'EOF'
@@ -95,10 +97,15 @@ describe('Entity', () => {
 });
 EOF
 
-# ---- Reemplazos: Entity -> NombreEntidad ----
-# Reemplaza todas las apariciones de 'Entity' por el nombre pasado
-sed -i "s/\bEntity\b/${ENTITY_RAW}/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
+# ---- Reemplazos ----
+# Entity -> NombreEntidad
 sed -i "s/\bEntityProps\b/${ENTITY_RAW}Props/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
+sed -i "s/\bEntity\b/${ENTITY_RAW}/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
+
+# entity -> nombreEntidad
+sed -i "s/\bentity\b/${ENTITY_CAMEL}/g" "$TEST_TS_PATH"
+# validEntityProps -> validNombreEntidadProps
+sed -i "s/\bvalidEntityProps\b/valid${ENTITY_RAW}Props/g" "$TEST_TS_PATH"
 
 echo "✅ Creado scaffolding:"
 echo "  - $ENTITY_TS_PATH"

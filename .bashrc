@@ -17,7 +17,7 @@ if [ -d "$HOME/.bin" ] ;
 	then PATH="$HOME/.bin:$PATH"
 fi
 
-neofetch
+# neofetch
 
 # Activate vi mode
 # set -o vi
