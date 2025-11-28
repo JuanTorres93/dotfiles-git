@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [ "${1-}" = "" ]; then
-  echo "Uso: $0 NombreEntidad (por ejemplo: $0 Product)"
+  echo "Uso: $0 NombreEntidad (por ejemplo: $0 WorkoutLine)"
   exit 1
 fi
 
@@ -19,17 +19,32 @@ ENTITY_CAMEL="$(echo "${ENTITY_RAW:0:1}" | tr '[:upper:]' '[:lower:]')${ENTITY_R
 ENTITY_TS_PATH="$DIR_NAME/${ENTITY_RAW}.ts"
 TEST_TS_PATH="$DIR_NAME/__tests__/${ENTITY_RAW}.test.ts"
 
+# Evitar sobreescribir cosas por accidente
+for path in "$ENTITY_TS_PATH" "$TEST_TS_PATH"; do
+  if [ -e "$path" ]; then
+    echo "❌ Error: el archivo '$path' ya existe. Cancelo para no sobreescribir."
+    exit 1
+  fi
+done
+
 mkdir -p "$DIR_NAME/__tests__"
 
 # ---- Template Entity ----
 cat > "$ENTITY_TS_PATH" <<'EOF'
-import { ValidationError } from '../common/errors';
-import { handleCreatedAt, handleUpdatedAt } from '../common/utils';
-import { validateNonEmptyString } from '../common/validation';
+import { ValidationError } from '../../common/errors';
+import { handleCreatedAt, handleUpdatedAt } from '../../common/utils';
 
-export type EntityProps = {
+export type EntityCreateProps = {
   id: string;
   name: string;
+  // More props
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type EntityProps = {
+  id: string; // TODO change to Value Object
+  name: string; // TODO change to Value Object
   // More props
   createdAt: Date;
   updatedAt: Date;
@@ -38,24 +53,26 @@ export type EntityProps = {
 export class Entity {
   private constructor(private readonly props: EntityProps) {}
 
-  static create(props: EntityProps): Entity {
-    validateNonEmptyString(props.id, 'Entity id');
-    validateNonEmptyString(props.name, 'Entity name');
-
+  static create(props: EntityCreateProps): Entity {
     // Validation
 
-    props.createdAt = handleCreatedAt(props.createdAt);
-    props.updatedAt = handleUpdatedAt(props.updatedAt);
+    const entityProps: EntityProps = {
+      // TODO more props validated with Value Objects
+      createdAt: handleCreatedAt(props.createdAt),
+      updatedAt: handleUpdatedAt(props.updatedAt),
+    };
 
-    return new Entity(props);
+    return new Entity(entityProps);
   }
 
   // Getters
   get id() {
+    // TODO include .value when changing to Value Object
     return this.props.id;
   }
 
   get name() {
+    // TODO include .value when changing to Value Object
     return this.props.name;
   }
 
@@ -71,22 +88,17 @@ EOF
 
 # ---- Template Test ----
 cat > "$TEST_TS_PATH" <<'EOF'
-import { beforeEach, describe, expect, it } from 'vitest';
-
-import { Entity, EntityProps } from '../Entity';
+import { Entity, EntityCreateProps } from '../Entity';
 import { ValidationError } from '@/domain/common/errors';
+import * as vp from '@/../tests/createProps';
 
 describe('Entity', () => {
   let entity: Entity;
-  let validEntityProps: EntityProps;
+  let validEntityProps: EntityCreateProps;
 
   beforeEach(() => {
     validEntityProps = {
-      id: '1',
-      name: 'Cake',
-      // More props
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      ...vp.validEntityProps
     };
     entity = Entity.create(validEntityProps);
   });
@@ -98,14 +110,19 @@ describe('Entity', () => {
 EOF
 
 # ---- Reemplazos ----
-# Entity -> NombreEntidad
-sed -i "s/\bEntityProps\b/${ENTITY_RAW}Props/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
+# Tipos
+sed -i "s/\bEntityCreateProps\b/${ENTITY_RAW}CreateProps/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
+sed -i "s/\bEntityProps\b/${ENTITY_RAW}Props/g" "$ENTITY_TS_PATH"
+
+# Clase / nombre de entidad
 sed -i "s/\bEntity\b/${ENTITY_RAW}/g" "$ENTITY_TS_PATH" "$TEST_TS_PATH"
 
-# entity -> nombreEntidad
+# Variables en los tests
 sed -i "s/\bentity\b/${ENTITY_CAMEL}/g" "$TEST_TS_PATH"
-# validEntityProps -> validNombreEntidadProps
 sed -i "s/\bvalidEntityProps\b/valid${ENTITY_RAW}Props/g" "$TEST_TS_PATH"
+
+# Mensaje del test: 'valid entity' -> 'valid workoutLine'
+sed -i "s/valid entity/valid ${ENTITY_CAMEL}/g" "$TEST_TS_PATH"
 
 echo "✅ Creado scaffolding:"
 echo "  - $ENTITY_TS_PATH"
