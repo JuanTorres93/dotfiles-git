@@ -76,15 +76,6 @@ describe('NAMEFROMSCRIPTUsecase', () => {
     await xxxxRepo.saveXxxx(xxxx);
   });
 
-  it('should return a xxxx if it exists', async () => {
-    const result = await usecase.execute({
-      xxxxId: xxxx.id,
-      userId: vp.userId,
-    });
-
-    expect(result!.id).toEqual(xxxx.id);
-  });
-
   it('should return XxxxDTO', async () => {
     const result = await usecase.execute({
       xxxxId: xxxx.id,
