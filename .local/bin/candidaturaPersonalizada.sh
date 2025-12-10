@@ -19,14 +19,14 @@ case "$LANG" in
   -esp)
     CV_ODT_PATH="/home/juan/hdd/Buscar trabajo/CV/Fullstack/base/CV_Juan_Torres_ESP.odt"
     COVER_LETTER_PATH="/home/juan/hdd/Buscar trabajo/Carta presentacion base/juan_torres_cover_letter_ESP.odt"
-    CV_DEST_PREFIX="CV_Juan_Torres"
-    COVER_DEST_PREFIX="Carta_presentacion_Juan_Torres"
+    CV_DEST_PREFIX="Juan Torres - CV"
+    COVER_DEST_PREFIX="Juan Torres - Carta presentacion"
     ;;
   -eng)
     CV_ODT_PATH="/home/juan/hdd/Buscar trabajo/CV/Fullstack/base/CV_Juan_Torres_ENG.odt"
     COVER_LETTER_PATH="/home/juan/hdd/Buscar trabajo/Carta presentacion base/juan_torres_cover_letter_ENG.odt"
-    CV_DEST_PREFIX="Resume_Juan_Torres"
-    COVER_DEST_PREFIX="Cover_letter_Juan_Torres"
+    CV_DEST_PREFIX="Juan Torres - Resume"
+    COVER_DEST_PREFIX="Juan Torres - Cover letter"
     ;;
 esac
 
@@ -118,9 +118,11 @@ TSV_LINE="${ID}\t${FECHA}\t${COMPANY}\t${RECRUITER}\t${ESTADO}\t${NOTAS}"
 # printf '%s' "$TSV_LINE" | clip_write
 printf '%s' "$COMPANY" | clip_write
 
-# Abre el ODS para que pegues la info
-if command -v xdg-open >/dev/null 2>&1; then
-  xdg-open "$ODS_PATH" >/dev/null 2>&1 &
+# Abrir LibreOffice con locale español para evitar cambio de formato de fecha
+if command -v libreoffice >/dev/null 2>&1; then
+  LANG=es_ES.UTF-8 LC_TIME=es_ES.UTF-8 libreoffice "$ODS_PATH" >/dev/null 2>&1 &
+else
+  echo "LibreOffice no está instalado." >&2
 fi
 
 # 3) Crear archivo de oferta
