@@ -76,17 +76,24 @@ describe('NAMEFROMSCRIPTUsecase', () => {
     await xxxxRepo.saveXxxx(xxxx);
   });
 
-  it('should return XxxxDTO', async () => {
-    const result = await usecase.execute({
-      xxxxId: xxxx.id,
-      userId: vp.userId,
-    });
+  describe('Execution', () => {
+    it('should return XxxxDTO', async () => {
+      const result = await usecase.execute({
+        xxxxId: xxxx.id,
+        userId: vp.userId,
+      });
 
-    expect(result).not.toBeInstanceOf(Xxxx);
-    for (const prop of dto.xxxxDTOProperties) {
-      expect(result).toHaveProperty(prop);
-    }
-  });
+      expect(result).not.toBeInstanceOf(Xxxx);
+      for (const prop of dto.xxxxDTOProperties) {
+        expect(result).toHaveProperty(prop);
+      }
+    });
+  })
+
+  //describe('Errors', () => {
+  
+  //})
+
 });
 EOF
 
