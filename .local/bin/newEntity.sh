@@ -34,6 +34,8 @@ cat > "$ENTITY_TS_PATH" <<'EOF'
 import { ValidationError } from '../../common/errors';
 import { handleCreatedAt, handleUpdatedAt } from '../../common/utils';
 
+// TODO IMPORTANT CREATE DTO
+
 export type EntityCreateProps = {
   id: string;
   name: string;
