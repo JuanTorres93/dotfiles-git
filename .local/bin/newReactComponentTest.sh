@@ -44,8 +44,6 @@ import { TEST_USER_ID } from '@/../tests/mocks/nextjs';
 import COMPONENT_TO_TEST from '../COMPONENT_TO_TEST';
 
 async function setup() {
-  // TODO: create mocks
-
   render(<COMPONENT_TO_TEST />);
 
   // TODO: adjust selectors
