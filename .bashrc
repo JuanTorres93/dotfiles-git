@@ -38,6 +38,7 @@ alias ..='cd ..'
 alias lns='ln -srfi'  
 alias mv='mv -i'  
 alias cp='cp -i'  
+alias bim='vim'
 
 alias grep='grep --color=auto'
 alias df='df -h'
@@ -45,8 +46,8 @@ alias df='df -h'
 alias yta="yt-dlp -ic --extract-audio --audio-format mp3 "
 alias yt="yt-dlp -ic "
 
-alias subdl="subdl --existing=overwrite "
-alias subdl-name="subdl --existing=overwrite --force-filename "
+alias silencios="auto-editor --frame-rate 30 --open --smooth 0.2s,0.1s --export kdenlive "
+
 
 # Useful aliases
 #alias gs="git status "
