@@ -32,7 +32,7 @@ mkdir -p "$DIR_NAME/__tests__"
 # ---- Template Entity ----
 cat > "$ENTITY_TS_PATH" <<'EOF'
 import { ValidationError } from '../../common/errors';
-import { handleCreatedAt, handleUpdatedAt } from '../../common/utils';
+import { DomainDate } from '@/value-objects/DomainDate/DomainDate';
 
 // TODO IMPORTANT CREATE DTO
 
@@ -48,8 +48,8 @@ export type EntityProps = {
   id: string; // TODO change to Value Object
   name: string; // TODO change to Value Object
   // More props
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: DomainDate;
+  updatedAt: DomainDate;
 };
 
 export class Entity {
@@ -60,8 +60,8 @@ export class Entity {
 
     const entityProps: EntityProps = {
       // TODO more props validated with Value Objects
-      createdAt: handleCreatedAt(props.createdAt),
-      updatedAt: handleUpdatedAt(props.updatedAt),
+      createdAt: DomainDate.create(props.createdAt),
+      updatedAt: DomainDate.create(props.updatedAt),
     };
 
     return new Entity(entityProps);
@@ -79,11 +79,11 @@ export class Entity {
   }
 
   get createdAt() {
-    return this.props.createdAt;
+    return this.props.createdAt.value;
   }
 
   get updatedAt() {
-    return this.props.updatedAt;
+    return this.props.updatedAt.value;
   }
 }
 EOF
