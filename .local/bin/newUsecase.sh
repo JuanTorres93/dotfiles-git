@@ -39,7 +39,7 @@ export class NAMEFROMSCRIPTUsecase {
 
   async execute(
     request: NAMEFROMSCRIPTUsecaseRequest
-  ): Promise<XxxxDTO | null> {
+  ): Promise<XxxxDTO> {
     const xxxx = await this.xxxxRepo.getXxxxById(request.xxxxId);
     if (!xxxx) {
       throw new NotFoundError(
@@ -60,8 +60,8 @@ import { NotFoundError } from '@/domain/common/errors';
 import { NAMEFROMSCRIPTUsecase } from '../NAMEFROMSCRIPTUsecase';
 import { Xxxx } from '@/domain/xxxx/Xxxx';
 
-import * as vp from '@/../tests/createProps';
-import * as dto from '@/../tests/dtoProperties';
+import { createTestXxxx } from "../../../../../tests/createProps/xxxxTestProps";
+import { xxxxDTOProperties } from "../../../../../tests/dtoProperties/xxxxDtoProperties";
 
 describe('NAMEFROMSCRIPTUsecase', () => {
   let xxxxRepo: MemoryXxxxRepo;
@@ -73,6 +73,7 @@ describe('NAMEFROMSCRIPTUsecase', () => {
     usecase = new NAMEFROMSCRIPTUsecase(xxxxRepo);
 
     // TODO: crear xxxx y guardarlo
+    xxxx = createTestXxxx();
     await xxxxRepo.saveXxxx(xxxx);
   });
 
