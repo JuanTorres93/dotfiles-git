@@ -10,8 +10,8 @@ fi
 # Nombre del caso de uso en PascalCase
 USECASE_RAW="$1"
 
-# Carpeta con el mismo nombre exacto
-DIR_NAME="$USECASE_RAW"
+# Carpeta con el mismo nombre exacto + "Usecase" al final
+DIR_NAME="${USECASE_RAW}Usecase"
 
 USECASE_TS_PATH="$DIR_NAME/${USECASE_RAW}Usecase.ts"
 TEST_TS_PATH="$DIR_NAME/__tests__/${USECASE_RAW}Usecase.test.ts"
