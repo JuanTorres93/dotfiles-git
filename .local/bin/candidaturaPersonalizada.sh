@@ -3,19 +3,13 @@ set -euo pipefail
 
 # ============================================================
 # USO:
-#   script.sh -dev -esp
-#   script.sh -dev -eng
-#   script.sh -ind -esp
-#   script.sh -ind -eng
+#   ./candidaturaPersonalizada.sh -dev -esp
+#   ./candidaturaPersonalizada.sh -dev -eng
+#   ./candidaturaPersonalizada.sh -ind -esp
+#   ./candidaturaPersonalizada.sh -ind -eng
 # ============================================================
 
-# ---------------- CONFIG GLOBAL ----------------
-
 OFERTA_FILE="Oferta.md"
-
-COVER_BASE_DIR="/home/juan/hdd/Buscar trabajo/Carta presentacion base"
-
-# ---------------- PARSEO FLAGS ----------------
 
 PROFILE=""
 LANG_FLAG=""
@@ -47,10 +41,12 @@ case "$PROFILE" in
   -dev)
     SEARCH_BASE_DIR="/home/juan/hdd/Buscar trabajo/Buscar trabajo full stack"
     CV_BASE_DIR="/home/juan/hdd/Buscar trabajo/CV/Fullstack/base"
+    COVER_BASE_DIR="/home/juan/hdd/Buscar trabajo/Carta presentacion base/Full stack"
     ;;
   -ind)
     SEARCH_BASE_DIR="/home/juan/hdd/Buscar trabajo/Buscar trabajo industrial"
     CV_BASE_DIR="/home/juan/hdd/Buscar trabajo/CV/Industrial/base"
+    COVER_BASE_DIR="/home/juan/hdd/Buscar trabajo/Carta presentacion base/Industrial"
     ;;
 esac
 
@@ -112,7 +108,7 @@ sanitize_name() {
   s="${s//$'\n'/ }"
   s="${s//$'\t'/ }"
 
-  # ñ/Ñ
+  # ñ / Ñ
   s="${s//ñ/n}"
   s="${s//Ñ/N}"
 
@@ -240,7 +236,6 @@ NOTAS="Carpeta: ${DIR_NAME}"
 
 TSV_LINE="$(printf '%s\t%s\t%s\t%s\t%s\t%s' "$ID" "$FECHA" "$COMPANY" "$RECRUITER" "$ESTADO" "$NOTAS")"
 
-# Mantengo empresa en portapapeles como en tu flujo actual.
 # Para copiar la fila completa del seguimiento, cambia la línea activa por la de TSV_LINE.
 printf '%s' "$COMPANY" | clip_write
 # printf '%s' "$TSV_LINE" | clip_write
