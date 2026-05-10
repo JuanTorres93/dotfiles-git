@@ -31,7 +31,7 @@ mkdir -p "$DIR_NAME/__tests__"
 
 # ---- Template Entity ----
 cat > "$ENTITY_TS_PATH" <<'EOF'
-import { ValidationError } from '../../common/errors';
+import { ValidationDomainError } from '../../common/errors';
 import { DomainDate } from '@/value-objects/DomainDate/DomainDate';
 
 // TODO IMPORTANT CREATE DTO
@@ -91,7 +91,7 @@ EOF
 # ---- Template Test ----
 cat > "$TEST_TS_PATH" <<'EOF'
 import { Entity, EntityCreateProps } from '../Entity';
-import { ValidationError } from '@/domain/common/errors';
+import { ValidationDomainError } from '@/domain/common/errors';
 import * as vp from '@/../tests/createProps';
 
 describe('Entity', () => {
