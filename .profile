@@ -28,6 +28,11 @@ export QT_STYLE_OVERRIDE=kvantum
 # Icons in qt5 applications
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
+# Android Studio
+export ANDROID_HOME=$HOME/Android/Sdk 
+export PATH=$PATH:$ANDROID_HOME/emulator 
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=24
