@@ -79,6 +79,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- Super + key
     [ ((modm,                 xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,                 xK_Delete), spawn "xkill")
+    , ((modm,                 xK_c     ), spawn "xclip -selection clipboard < /dev/null")
     , ((modm,                 xK_F1    ), spawn "ChangeWallpaper")
     , ((modm,                 xK_e     ), spawn "thunar")
     , ((modm ,                xK_q     ), kill1)        -- close focused window. kill1 in order to tagged window only close in current worskspace. Otherwise use kill
